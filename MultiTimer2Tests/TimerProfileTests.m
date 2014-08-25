@@ -7,6 +7,7 @@
 //
 
 #import <XCTest/XCTest.h>
+#import "XCTest+CoreDataTestStack.h"
 
 #import "TimerProfile.h"
 
@@ -20,20 +21,7 @@
 
 - (void)setUp
 {
-	[self setUpManagedObjectContext];
-}
-
-- (void)setUpManagedObjectContext
-{
-	someManagedObjectContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSMainQueueConcurrencyType];
-	
-	NSBundle* resourceBundle = [NSBundle bundleForClass:[TimerProfile class]];
-	NSURL* modelURL = [resourceBundle URLForResource:@"MultiTimer2" withExtension:@"momd"];
-	
-	NSManagedObjectModel* model = [[NSManagedObjectModel alloc] initWithContentsOfURL:modelURL];
-	NSPersistentStoreCoordinator* storeCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:model];
-	
-	[someManagedObjectContext setPersistentStoreCoordinator:storeCoordinator];
+	someManagedObjectContext = [self managedObjectTestContext];
 }
 
 - (void)testTimerProfileCanBeCreatedWithManagedObjectContext
