@@ -29,6 +29,8 @@
 		95B622E119ABB1F600BB2708 /* TimerProfileViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 95B622E019ABB1F600BB2708 /* TimerProfileViewModel.m */; };
 		95B622E319ABB22500BB2708 /* TimerProfileViewModelTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 95B622E219ABB22500BB2708 /* TimerProfileViewModelTests.m */; };
 		95B622E619ABB66900BB2708 /* XCTest+CoreDataTestStack.m in Sources */ = {isa = PBXBuildFile; fileRef = 95B622E519ABB66900BB2708 /* XCTest+CoreDataTestStack.m */; };
+		95B622EB19ABCCD000BB2708 /* FetchedResultsDataSourceTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 95B622EA19ABCCD000BB2708 /* FetchedResultsDataSourceTests.m */; };
+		95B622EE19ABCEF300BB2708 /* FetchedResultsDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 95B622ED19ABCEF300BB2708 /* FetchedResultsDataSource.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -72,6 +74,9 @@
 		95B622E219ABB22500BB2708 /* TimerProfileViewModelTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimerProfileViewModelTests.m; sourceTree = "<group>"; };
 		95B622E419ABB66800BB2708 /* XCTest+CoreDataTestStack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "XCTest+CoreDataTestStack.h"; sourceTree = "<group>"; };
 		95B622E519ABB66900BB2708 /* XCTest+CoreDataTestStack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "XCTest+CoreDataTestStack.m"; sourceTree = "<group>"; };
+		95B622EA19ABCCD000BB2708 /* FetchedResultsDataSourceTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FetchedResultsDataSourceTests.m; sourceTree = "<group>"; };
+		95B622EC19ABCEF300BB2708 /* FetchedResultsDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FetchedResultsDataSource.h; sourceTree = "<group>"; };
+		95B622ED19ABCEF300BB2708 /* FetchedResultsDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FetchedResultsDataSource.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -148,6 +153,8 @@
 				95B622DA19ABA8FB00BB2708 /* TimerProfile.m */,
 				95B622DF19ABB1F600BB2708 /* TimerProfileViewModel.h */,
 				95B622E019ABB1F600BB2708 /* TimerProfileViewModel.m */,
+				95B622EC19ABCEF300BB2708 /* FetchedResultsDataSource.h */,
+				95B622ED19ABCEF300BB2708 /* FetchedResultsDataSource.m */,
 			);
 			path = MultiTimer2;
 			sourceTree = "<group>";
@@ -167,10 +174,11 @@
 			isa = PBXGroup;
 			children = (
 				95B622C819ABA0A900BB2708 /* Supporting Files */,
-				95B622D719ABA89A00BB2708 /* TimerProfileTests.m */,
 				95B622E419ABB66800BB2708 /* XCTest+CoreDataTestStack.h */,
 				95B622E519ABB66900BB2708 /* XCTest+CoreDataTestStack.m */,
+				95B622D719ABA89A00BB2708 /* TimerProfileTests.m */,
 				95B622E219ABB22500BB2708 /* TimerProfileViewModelTests.m */,
+				95B622EA19ABCCD000BB2708 /* FetchedResultsDataSourceTests.m */,
 			);
 			path = MultiTimer2Tests;
 			sourceTree = "<group>";
@@ -286,6 +294,7 @@
 				95B622B219ABA0A900BB2708 /* MultiTimer2.xcdatamodeld in Sources */,
 				95B622DB19ABA8FB00BB2708 /* TimerProfile.m in Sources */,
 				95B622AC19ABA0A900BB2708 /* AppDelegate.m in Sources */,
+				95B622EE19ABCEF300BB2708 /* FetchedResultsDataSource.m in Sources */,
 				95B622A819ABA0A900BB2708 /* main.m in Sources */,
 				95B622E119ABB1F600BB2708 /* TimerProfileViewModel.m in Sources */,
 			);
@@ -296,6 +305,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				95B622E319ABB22500BB2708 /* TimerProfileViewModelTests.m in Sources */,
+				95B622EB19ABCCD000BB2708 /* FetchedResultsDataSourceTests.m in Sources */,
 				95B622E619ABB66900BB2708 /* XCTest+CoreDataTestStack.m in Sources */,
 				95B622D819ABA89A00BB2708 /* TimerProfileTests.m in Sources */,
 			);
