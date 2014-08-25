@@ -8,6 +8,9 @@
 
 #import "TimerProfileViewModel.h"
 
+#import "TimerProfile.h"
+
+
 @interface TimerProfileViewModel() {
 	TimerProfile* _timerProfile;
 }
@@ -24,6 +27,16 @@
 	}
 	
 	return self;
+}
+
+- (NSString *)name
+{
+	return [self.timerProfile name];
+}
+
+- (NSString *)duration
+{
+	return @"00:34";
 }
 
 @end

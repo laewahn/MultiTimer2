@@ -12,7 +12,9 @@
 #import "TimerProfileViewModel.h"
 #import "TimerProfile.h"
 
-@interface TimerProfileViewModelTests : XCTestCase
+@interface TimerProfileViewModelTests : XCTestCase {
+	TimerProfileViewModel* testViewModel;
+}
 
 @end
 
@@ -20,11 +22,31 @@
 
 - (void)testTimerProfileViewModelCanBeInitializedWithTimerProfile
 {
-	TimerProfile* testProfile = [TimerProfile createWithManagedObjectContext:[self managedObjectTestContext]];
+	TimerProfile* testProfile = [self someTimerProfile];
+	testViewModel = [[TimerProfileViewModel alloc] initWithTimerProfile:testProfile];
 	
-    TimerProfileViewModel* testViewModel = [[TimerProfileViewModel alloc] initWithTimerProfile:testProfile];
 	XCTAssertNotNil(testViewModel);
 	XCTAssertEqualObjects([testViewModel timerProfile], testProfile, @"Should have the TimerProfile");
+}
+
+- (void)testTimerProfileViewModelReturnsProfileName
+{
+	NSString* timerProfileName = @"Test";
+	testViewModel = [[TimerProfileViewModel alloc] initWithTimerProfile:[self someTimerProfileWithName:timerProfileName]];
+	
+	XCTAssertEqualObjects([testViewModel name], timerProfileName, @"Should return the name");
+}
+
+# pragma mark Fixtures generation
+
+- (TimerProfile *)someTimerProfile
+{
+	return [TimerProfile createWithManagedObjectContext:[self managedObjectTestContext]];
+}
+
+- (TimerProfile *)someTimerProfileWithName:(NSString *)name
+{
+	return [TimerProfile createWithName:name duration:10 managedObjectContext:[self managedObjectTestContext]];
 }
 
 @end

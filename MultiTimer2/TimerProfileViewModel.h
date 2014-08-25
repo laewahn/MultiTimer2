@@ -16,4 +16,7 @@
 
 @property(readonly) TimerProfile* timerProfile;
 
+@property(readonly) NSString* name;
+@property(readonly) NSString* duration;
+
 @end
