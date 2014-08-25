@@ -24,7 +24,6 @@
 		95B622C319ABA0A900BB2708 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95B6229D19ABA0A900BB2708 /* UIKit.framework */; };
 		95B622C419ABA0A900BB2708 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95B6229F19ABA0A900BB2708 /* CoreData.framework */; };
 		95B622CC19ABA0A900BB2708 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 95B622CA19ABA0A900BB2708 /* InfoPlist.strings */; };
-		95B622CE19ABA0A900BB2708 /* MultiTimer2Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 95B622CD19ABA0A900BB2708 /* MultiTimer2Tests.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,7 +59,6 @@
 		95B622C019ABA0A900BB2708 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		95B622C919ABA0A900BB2708 /* MultiTimer2Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MultiTimer2Tests-Info.plist"; sourceTree = "<group>"; };
 		95B622CB19ABA0A900BB2708 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		95B622CD19ABA0A900BB2708 /* MultiTimer2Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MultiTimer2Tests.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -151,7 +149,6 @@
 		95B622C719ABA0A900BB2708 /* MultiTimer2Tests */ = {
 			isa = PBXGroup;
 			children = (
-				95B622CD19ABA0A900BB2708 /* MultiTimer2Tests.m */,
 				95B622C819ABA0A900BB2708 /* Supporting Files */,
 			);
 			path = MultiTimer2Tests;
@@ -275,7 +272,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				95B622CE19ABA0A900BB2708 /* MultiTimer2Tests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
