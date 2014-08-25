@@ -1,0 +1,500 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		95B6229A19ABA0A900BB2708 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95B6229919ABA0A900BB2708 /* Foundation.framework */; };
+		95B6229C19ABA0A900BB2708 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95B6229B19ABA0A900BB2708 /* CoreGraphics.framework */; };
+		95B6229E19ABA0A900BB2708 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95B6229D19ABA0A900BB2708 /* UIKit.framework */; };
+		95B622A019ABA0A900BB2708 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95B6229F19ABA0A900BB2708 /* CoreData.framework */; };
+		95B622A619ABA0A900BB2708 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 95B622A419ABA0A900BB2708 /* InfoPlist.strings */; };
+		95B622A819ABA0A900BB2708 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 95B622A719ABA0A900BB2708 /* main.m */; };
+		95B622AC19ABA0A900BB2708 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 95B622AB19ABA0A900BB2708 /* AppDelegate.m */; };
+		95B622AF19ABA0A900BB2708 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 95B622AD19ABA0A900BB2708 /* Main.storyboard */; };
+		95B622B219ABA0A900BB2708 /* MultiTimer2.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 95B622B019ABA0A900BB2708 /* MultiTimer2.xcdatamodeld */; };
+		95B622B519ABA0A900BB2708 /* MasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95B622B419ABA0A900BB2708 /* MasterViewController.m */; };
+		95B622B819ABA0A900BB2708 /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95B622B719ABA0A900BB2708 /* DetailViewController.m */; };
+		95B622BA19ABA0A900BB2708 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 95B622B919ABA0A900BB2708 /* Images.xcassets */; };
+		95B622C119ABA0A900BB2708 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95B622C019ABA0A900BB2708 /* XCTest.framework */; };
+		95B622C219ABA0A900BB2708 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95B6229919ABA0A900BB2708 /* Foundation.framework */; };
+		95B622C319ABA0A900BB2708 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95B6229D19ABA0A900BB2708 /* UIKit.framework */; };
+		95B622C419ABA0A900BB2708 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95B6229F19ABA0A900BB2708 /* CoreData.framework */; };
+		95B622CC19ABA0A900BB2708 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 95B622CA19ABA0A900BB2708 /* InfoPlist.strings */; };
+		95B622CE19ABA0A900BB2708 /* MultiTimer2Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 95B622CD19ABA0A900BB2708 /* MultiTimer2Tests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		95B622C519ABA0A900BB2708 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 95B6228E19ABA0A900BB2708 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 95B6229519ABA0A900BB2708;
+			remoteInfo = MultiTimer2;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		95B6229619ABA0A900BB2708 /* MultiTimer2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MultiTimer2.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		95B6229919ABA0A900BB2708 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		95B6229B19ABA0A900BB2708 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		95B6229D19ABA0A900BB2708 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		95B6229F19ABA0A900BB2708 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		95B622A319ABA0A900BB2708 /* MultiTimer2-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MultiTimer2-Info.plist"; sourceTree = "<group>"; };
+		95B622A519ABA0A900BB2708 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		95B622A719ABA0A900BB2708 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		95B622A919ABA0A900BB2708 /* MultiTimer2-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MultiTimer2-Prefix.pch"; sourceTree = "<group>"; };
+		95B622AA19ABA0A900BB2708 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		95B622AB19ABA0A900BB2708 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		95B622AE19ABA0A900BB2708 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		95B622B119ABA0A900BB2708 /* MultiTimer2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MultiTimer2.xcdatamodel; sourceTree = "<group>"; };
+		95B622B319ABA0A900BB2708 /* MasterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MasterViewController.h; sourceTree = "<group>"; };
+		95B622B419ABA0A900BB2708 /* MasterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MasterViewController.m; sourceTree = "<group>"; };
+		95B622B619ABA0A900BB2708 /* DetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
+		95B622B719ABA0A900BB2708 /* DetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
+		95B622B919ABA0A900BB2708 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		95B622BF19ABA0A900BB2708 /* MultiTimer2Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MultiTimer2Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		95B622C019ABA0A900BB2708 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		95B622C919ABA0A900BB2708 /* MultiTimer2Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MultiTimer2Tests-Info.plist"; sourceTree = "<group>"; };
+		95B622CB19ABA0A900BB2708 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		95B622CD19ABA0A900BB2708 /* MultiTimer2Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MultiTimer2Tests.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		95B6229319ABA0A900BB2708 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				95B6229C19ABA0A900BB2708 /* CoreGraphics.framework in Frameworks */,
+				95B622A019ABA0A900BB2708 /* CoreData.framework in Frameworks */,
+				95B6229E19ABA0A900BB2708 /* UIKit.framework in Frameworks */,
+				95B6229A19ABA0A900BB2708 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		95B622BC19ABA0A900BB2708 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				95B622C119ABA0A900BB2708 /* XCTest.framework in Frameworks */,
+				95B622C419ABA0A900BB2708 /* CoreData.framework in Frameworks */,
+				95B622C319ABA0A900BB2708 /* UIKit.framework in Frameworks */,
+				95B622C219ABA0A900BB2708 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		95B6228D19ABA0A900BB2708 = {
+			isa = PBXGroup;
+			children = (
+				95B622A119ABA0A900BB2708 /* MultiTimer2 */,
+				95B622C719ABA0A900BB2708 /* MultiTimer2Tests */,
+				95B6229819ABA0A900BB2708 /* Frameworks */,
+				95B6229719ABA0A900BB2708 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		95B6229719ABA0A900BB2708 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				95B6229619ABA0A900BB2708 /* MultiTimer2.app */,
+				95B622BF19ABA0A900BB2708 /* MultiTimer2Tests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		95B6229819ABA0A900BB2708 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				95B6229919ABA0A900BB2708 /* Foundation.framework */,
+				95B6229B19ABA0A900BB2708 /* CoreGraphics.framework */,
+				95B6229D19ABA0A900BB2708 /* UIKit.framework */,
+				95B6229F19ABA0A900BB2708 /* CoreData.framework */,
+				95B622C019ABA0A900BB2708 /* XCTest.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		95B622A119ABA0A900BB2708 /* MultiTimer2 */ = {
+			isa = PBXGroup;
+			children = (
+				95B622AA19ABA0A900BB2708 /* AppDelegate.h */,
+				95B622AB19ABA0A900BB2708 /* AppDelegate.m */,
+				95B622AD19ABA0A900BB2708 /* Main.storyboard */,
+				95B622B319ABA0A900BB2708 /* MasterViewController.h */,
+				95B622B419ABA0A900BB2708 /* MasterViewController.m */,
+				95B622B619ABA0A900BB2708 /* DetailViewController.h */,
+				95B622B719ABA0A900BB2708 /* DetailViewController.m */,
+				95B622B919ABA0A900BB2708 /* Images.xcassets */,
+				95B622B019ABA0A900BB2708 /* MultiTimer2.xcdatamodeld */,
+				95B622A219ABA0A900BB2708 /* Supporting Files */,
+			);
+			path = MultiTimer2;
+			sourceTree = "<group>";
+		};
+		95B622A219ABA0A900BB2708 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				95B622A319ABA0A900BB2708 /* MultiTimer2-Info.plist */,
+				95B622A419ABA0A900BB2708 /* InfoPlist.strings */,
+				95B622A719ABA0A900BB2708 /* main.m */,
+				95B622A919ABA0A900BB2708 /* MultiTimer2-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		95B622C719ABA0A900BB2708 /* MultiTimer2Tests */ = {
+			isa = PBXGroup;
+			children = (
+				95B622CD19ABA0A900BB2708 /* MultiTimer2Tests.m */,
+				95B622C819ABA0A900BB2708 /* Supporting Files */,
+			);
+			path = MultiTimer2Tests;
+			sourceTree = "<group>";
+		};
+		95B622C819ABA0A900BB2708 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				95B622C919ABA0A900BB2708 /* MultiTimer2Tests-Info.plist */,
+				95B622CA19ABA0A900BB2708 /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		95B6229519ABA0A900BB2708 /* MultiTimer2 */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 95B622D119ABA0A900BB2708 /* Build configuration list for PBXNativeTarget "MultiTimer2" */;
+			buildPhases = (
+				95B6229219ABA0A900BB2708 /* Sources */,
+				95B6229319ABA0A900BB2708 /* Frameworks */,
+				95B6229419ABA0A900BB2708 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = MultiTimer2;
+			productName = MultiTimer2;
+			productReference = 95B6229619ABA0A900BB2708 /* MultiTimer2.app */;
+			productType = "com.apple.product-type.application";
+		};
+		95B622BE19ABA0A900BB2708 /* MultiTimer2Tests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 95B622D419ABA0A900BB2708 /* Build configuration list for PBXNativeTarget "MultiTimer2Tests" */;
+			buildPhases = (
+				95B622BB19ABA0A900BB2708 /* Sources */,
+				95B622BC19ABA0A900BB2708 /* Frameworks */,
+				95B622BD19ABA0A900BB2708 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				95B622C619ABA0A900BB2708 /* PBXTargetDependency */,
+			);
+			name = MultiTimer2Tests;
+			productName = MultiTimer2Tests;
+			productReference = 95B622BF19ABA0A900BB2708 /* MultiTimer2Tests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		95B6228E19ABA0A900BB2708 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0510;
+				ORGANIZATIONNAME = laewahn;
+				TargetAttributes = {
+					95B622BE19ABA0A900BB2708 = {
+						TestTargetID = 95B6229519ABA0A900BB2708;
+					};
+				};
+			};
+			buildConfigurationList = 95B6229119ABA0A900BB2708 /* Build configuration list for PBXProject "MultiTimer2" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 95B6228D19ABA0A900BB2708;
+			productRefGroup = 95B6229719ABA0A900BB2708 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				95B6229519ABA0A900BB2708 /* MultiTimer2 */,
+				95B622BE19ABA0A900BB2708 /* MultiTimer2Tests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		95B6229419ABA0A900BB2708 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				95B622BA19ABA0A900BB2708 /* Images.xcassets in Resources */,
+				95B622A619ABA0A900BB2708 /* InfoPlist.strings in Resources */,
+				95B622AF19ABA0A900BB2708 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		95B622BD19ABA0A900BB2708 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				95B622CC19ABA0A900BB2708 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		95B6229219ABA0A900BB2708 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				95B622B819ABA0A900BB2708 /* DetailViewController.m in Sources */,
+				95B622B519ABA0A900BB2708 /* MasterViewController.m in Sources */,
+				95B622B219ABA0A900BB2708 /* MultiTimer2.xcdatamodeld in Sources */,
+				95B622AC19ABA0A900BB2708 /* AppDelegate.m in Sources */,
+				95B622A819ABA0A900BB2708 /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		95B622BB19ABA0A900BB2708 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				95B622CE19ABA0A900BB2708 /* MultiTimer2Tests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		95B622C619ABA0A900BB2708 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 95B6229519ABA0A900BB2708 /* MultiTimer2 */;
+			targetProxy = 95B622C519ABA0A900BB2708 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		95B622A419ABA0A900BB2708 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				95B622A519ABA0A900BB2708 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		95B622AD19ABA0A900BB2708 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				95B622AE19ABA0A900BB2708 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		95B622CA19ABA0A900BB2708 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				95B622CB19ABA0A900BB2708 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		95B622CF19ABA0A900BB2708 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		95B622D019ABA0A900BB2708 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		95B622D219ABA0A900BB2708 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "MultiTimer2/MultiTimer2-Prefix.pch";
+				INFOPLIST_FILE = "MultiTimer2/MultiTimer2-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		95B622D319ABA0A900BB2708 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "MultiTimer2/MultiTimer2-Prefix.pch";
+				INFOPLIST_FILE = "MultiTimer2/MultiTimer2-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		95B622D519ABA0A900BB2708 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/MultiTimer2.app/MultiTimer2";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "MultiTimer2/MultiTimer2-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "MultiTimer2Tests/MultiTimer2Tests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		95B622D619ABA0A900BB2708 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/MultiTimer2.app/MultiTimer2";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "MultiTimer2/MultiTimer2-Prefix.pch";
+				INFOPLIST_FILE = "MultiTimer2Tests/MultiTimer2Tests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		95B6229119ABA0A900BB2708 /* Build configuration list for PBXProject "MultiTimer2" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				95B622CF19ABA0A900BB2708 /* Debug */,
+				95B622D019ABA0A900BB2708 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		95B622D119ABA0A900BB2708 /* Build configuration list for PBXNativeTarget "MultiTimer2" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				95B622D219ABA0A900BB2708 /* Debug */,
+				95B622D319ABA0A900BB2708 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		95B622D419ABA0A900BB2708 /* Build configuration list for PBXNativeTarget "MultiTimer2Tests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				95B622D519ABA0A900BB2708 /* Debug */,
+				95B622D619ABA0A900BB2708 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		95B622B019ABA0A900BB2708 /* MultiTimer2.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				95B622B119ABA0A900BB2708 /* MultiTimer2.xcdatamodel */,
+			);
+			currentVersion = 95B622B119ABA0A900BB2708 /* MultiTimer2.xcdatamodel */;
+			path = MultiTimer2.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = 95B6228E19ABA0A900BB2708 /* Project object */;
+}
