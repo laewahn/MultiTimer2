@@ -37,6 +37,28 @@
 	XCTAssertEqualObjects([testViewModel name], timerProfileName, @"Should return the name");
 }
 
+- (void)testTimerProfileViewModelReturnsCorrectlyFormattedDurationLessThan60Seconds
+{
+	testViewModel = [[TimerProfileViewModel alloc] initWithTimerProfile:[self someTimerProfileWithDuration:34]];
+	
+	XCTAssertEqualObjects([testViewModel duration], @"00:34", @"Duration should be formatted with leading zeros");
+}
+
+- (void)testTimerProfileViewModelReturnsCorretlyFormattedDurationForOneMinute
+{
+    testViewModel = [[TimerProfileViewModel alloc] initWithTimerProfile:[self someTimerProfileWithDuration:60]];
+	
+	XCTAssertEqualObjects([testViewModel duration], @"01:00");
+}
+
+- (void)testTimerProfileViewModelReturnsCorrectlyFormattedDurationForMoreThanOneMinute
+{
+    testViewModel = [[TimerProfileViewModel alloc] initWithTimerProfile:[self someTimerProfileWithDuration:133]];
+	
+	XCTAssertEqualObjects([testViewModel duration], @"02:13");
+}
+
+
 # pragma mark Fixtures generation
 
 - (TimerProfile *)someTimerProfile
@@ -47,6 +69,11 @@
 - (TimerProfile *)someTimerProfileWithName:(NSString *)name
 {
 	return [TimerProfile createWithName:name duration:10 managedObjectContext:[self managedObjectTestContext]];
+}
+
+- (TimerProfile *)someTimerProfileWithDuration:(NSTimeInterval)duration
+{
+	return [TimerProfile createWithName:@"Test" duration:duration managedObjectContext:[self managedObjectTestContext]];
 }
 
 @end
