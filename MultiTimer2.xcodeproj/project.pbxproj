@@ -1,532 +1,1367 @@
-// !$*UTF8*$!
-{
-	archiveVersion = 1;
-	classes = {
-	};
-	objectVersion = 46;
-	objects = {
-
-/* Begin PBXBuildFile section */
-		95B6229A19ABA0A900BB2708 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95B6229919ABA0A900BB2708 /* Foundation.framework */; };
-		95B6229C19ABA0A900BB2708 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95B6229B19ABA0A900BB2708 /* CoreGraphics.framework */; };
-		95B6229E19ABA0A900BB2708 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95B6229D19ABA0A900BB2708 /* UIKit.framework */; };
-		95B622A019ABA0A900BB2708 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95B6229F19ABA0A900BB2708 /* CoreData.framework */; };
-		95B622A619ABA0A900BB2708 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 95B622A419ABA0A900BB2708 /* InfoPlist.strings */; };
-		95B622A819ABA0A900BB2708 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 95B622A719ABA0A900BB2708 /* main.m */; };
-		95B622AC19ABA0A900BB2708 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 95B622AB19ABA0A900BB2708 /* AppDelegate.m */; };
-		95B622AF19ABA0A900BB2708 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 95B622AD19ABA0A900BB2708 /* Main.storyboard */; };
-		95B622B219ABA0A900BB2708 /* MultiTimer2.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 95B622B019ABA0A900BB2708 /* MultiTimer2.xcdatamodeld */; };
-		95B622B519ABA0A900BB2708 /* TimerOverviewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95B622B419ABA0A900BB2708 /* TimerOverviewViewController.m */; };
-		95B622B819ABA0A900BB2708 /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95B622B719ABA0A900BB2708 /* DetailViewController.m */; };
-		95B622BA19ABA0A900BB2708 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 95B622B919ABA0A900BB2708 /* Images.xcassets */; };
-		95B622C119ABA0A900BB2708 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95B622C019ABA0A900BB2708 /* XCTest.framework */; };
-		95B622C219ABA0A900BB2708 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95B6229919ABA0A900BB2708 /* Foundation.framework */; };
-		95B622C319ABA0A900BB2708 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95B6229D19ABA0A900BB2708 /* UIKit.framework */; };
-		95B622C419ABA0A900BB2708 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95B6229F19ABA0A900BB2708 /* CoreData.framework */; };
-		95B622CC19ABA0A900BB2708 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 95B622CA19ABA0A900BB2708 /* InfoPlist.strings */; };
-		95B622D819ABA89A00BB2708 /* TimerProfileTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 95B622D719ABA89A00BB2708 /* TimerProfileTests.m */; };
-		95B622DB19ABA8FB00BB2708 /* TimerProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = 95B622DA19ABA8FB00BB2708 /* TimerProfile.m */; };
-		95B622E119ABB1F600BB2708 /* TimerProfileViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 95B622E019ABB1F600BB2708 /* TimerProfileViewModel.m */; };
-		95B622E319ABB22500BB2708 /* TimerProfileViewModelTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 95B622E219ABB22500BB2708 /* TimerProfileViewModelTests.m */; };
-		95B622E619ABB66900BB2708 /* XCTest+CoreDataTestStack.m in Sources */ = {isa = PBXBuildFile; fileRef = 95B622E519ABB66900BB2708 /* XCTest+CoreDataTestStack.m */; };
-		95B622EB19ABCCD000BB2708 /* FetchedResultsDataSourceTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 95B622EA19ABCCD000BB2708 /* FetchedResultsDataSourceTests.m */; };
-		95B622EE19ABCEF300BB2708 /* FetchedResultsDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 95B622ED19ABCEF300BB2708 /* FetchedResultsDataSource.m */; };
-/* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		95B622C519ABA0A900BB2708 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 95B6228E19ABA0A900BB2708 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 95B6229519ABA0A900BB2708;
-			remoteInfo = MultiTimer2;
-		};
-/* End PBXContainerItemProxy section */
-
-/* Begin PBXFileReference section */
-		95B6229619ABA0A900BB2708 /* MultiTimer2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MultiTimer2.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		95B6229919ABA0A900BB2708 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		95B6229B19ABA0A900BB2708 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		95B6229D19ABA0A900BB2708 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
-		95B6229F19ABA0A900BB2708 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
-		95B622A319ABA0A900BB2708 /* MultiTimer2-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MultiTimer2-Info.plist"; sourceTree = "<group>"; };
-		95B622A519ABA0A900BB2708 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		95B622A719ABA0A900BB2708 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		95B622A919ABA0A900BB2708 /* MultiTimer2-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MultiTimer2-Prefix.pch"; sourceTree = "<group>"; };
-		95B622AA19ABA0A900BB2708 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		95B622AB19ABA0A900BB2708 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		95B622AE19ABA0A900BB2708 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		95B622B119ABA0A900BB2708 /* MultiTimer2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MultiTimer2.xcdatamodel; sourceTree = "<group>"; };
-		95B622B319ABA0A900BB2708 /* TimerOverviewViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TimerOverviewViewController.h; sourceTree = "<group>"; };
-		95B622B419ABA0A900BB2708 /* TimerOverviewViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TimerOverviewViewController.m; sourceTree = "<group>"; };
-		95B622B619ABA0A900BB2708 /* DetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
-		95B622B719ABA0A900BB2708 /* DetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
-		95B622B919ABA0A900BB2708 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		95B622BF19ABA0A900BB2708 /* MultiTimer2Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MultiTimer2Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		95B622C019ABA0A900BB2708 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
-		95B622C919ABA0A900BB2708 /* MultiTimer2Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MultiTimer2Tests-Info.plist"; sourceTree = "<group>"; };
-		95B622CB19ABA0A900BB2708 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		95B622D719ABA89A00BB2708 /* TimerProfileTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimerProfileTests.m; sourceTree = "<group>"; };
-		95B622D919ABA8FB00BB2708 /* TimerProfile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimerProfile.h; sourceTree = "<group>"; };
-		95B622DA19ABA8FB00BB2708 /* TimerProfile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimerProfile.m; sourceTree = "<group>"; };
-		95B622DF19ABB1F600BB2708 /* TimerProfileViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimerProfileViewModel.h; sourceTree = "<group>"; };
-		95B622E019ABB1F600BB2708 /* TimerProfileViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimerProfileViewModel.m; sourceTree = "<group>"; };
-		95B622E219ABB22500BB2708 /* TimerProfileViewModelTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimerProfileViewModelTests.m; sourceTree = "<group>"; };
-		95B622E419ABB66800BB2708 /* XCTest+CoreDataTestStack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "XCTest+CoreDataTestStack.h"; sourceTree = "<group>"; };
-		95B622E519ABB66900BB2708 /* XCTest+CoreDataTestStack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "XCTest+CoreDataTestStack.m"; sourceTree = "<group>"; };
-		95B622EA19ABCCD000BB2708 /* FetchedResultsDataSourceTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FetchedResultsDataSourceTests.m; sourceTree = "<group>"; };
-		95B622EC19ABCEF300BB2708 /* FetchedResultsDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FetchedResultsDataSource.h; sourceTree = "<group>"; };
-		95B622ED19ABCEF300BB2708 /* FetchedResultsDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FetchedResultsDataSource.m; sourceTree = "<group>"; };
-/* End PBXFileReference section */
-
-/* Begin PBXFrameworksBuildPhase section */
-		95B6229319ABA0A900BB2708 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				95B6229C19ABA0A900BB2708 /* CoreGraphics.framework in Frameworks */,
-				95B622A019ABA0A900BB2708 /* CoreData.framework in Frameworks */,
-				95B6229E19ABA0A900BB2708 /* UIKit.framework in Frameworks */,
-				95B6229A19ABA0A900BB2708 /* Foundation.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		95B622BC19ABA0A900BB2708 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				95B622C119ABA0A900BB2708 /* XCTest.framework in Frameworks */,
-				95B622C419ABA0A900BB2708 /* CoreData.framework in Frameworks */,
-				95B622C319ABA0A900BB2708 /* UIKit.framework in Frameworks */,
-				95B622C219ABA0A900BB2708 /* Foundation.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXFrameworksBuildPhase section */
-
-/* Begin PBXGroup section */
-		95B6228D19ABA0A900BB2708 = {
-			isa = PBXGroup;
-			children = (
-				95B622A119ABA0A900BB2708 /* MultiTimer2 */,
-				95B622C719ABA0A900BB2708 /* MultiTimer2Tests */,
-				95B6229819ABA0A900BB2708 /* Frameworks */,
-				95B6229719ABA0A900BB2708 /* Products */,
-			);
-			sourceTree = "<group>";
-		};
-		95B6229719ABA0A900BB2708 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				95B6229619ABA0A900BB2708 /* MultiTimer2.app */,
-				95B622BF19ABA0A900BB2708 /* MultiTimer2Tests.xctest */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		95B6229819ABA0A900BB2708 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				95B6229919ABA0A900BB2708 /* Foundation.framework */,
-				95B6229B19ABA0A900BB2708 /* CoreGraphics.framework */,
-				95B6229D19ABA0A900BB2708 /* UIKit.framework */,
-				95B6229F19ABA0A900BB2708 /* CoreData.framework */,
-				95B622C019ABA0A900BB2708 /* XCTest.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		95B622A119ABA0A900BB2708 /* MultiTimer2 */ = {
-			isa = PBXGroup;
-			children = (
-				95B622AA19ABA0A900BB2708 /* AppDelegate.h */,
-				95B622AB19ABA0A900BB2708 /* AppDelegate.m */,
-				95B622AD19ABA0A900BB2708 /* Main.storyboard */,
-				95B622B319ABA0A900BB2708 /* TimerOverviewViewController.h */,
-				95B622B419ABA0A900BB2708 /* TimerOverviewViewController.m */,
-				95B622B619ABA0A900BB2708 /* DetailViewController.h */,
-				95B622B719ABA0A900BB2708 /* DetailViewController.m */,
-				95B622B919ABA0A900BB2708 /* Images.xcassets */,
-				95B622B019ABA0A900BB2708 /* MultiTimer2.xcdatamodeld */,
-				95B622A219ABA0A900BB2708 /* Supporting Files */,
-				95B622D919ABA8FB00BB2708 /* TimerProfile.h */,
-				95B622DA19ABA8FB00BB2708 /* TimerProfile.m */,
-				95B622DF19ABB1F600BB2708 /* TimerProfileViewModel.h */,
-				95B622E019ABB1F600BB2708 /* TimerProfileViewModel.m */,
-				95B622EC19ABCEF300BB2708 /* FetchedResultsDataSource.h */,
-				95B622ED19ABCEF300BB2708 /* FetchedResultsDataSource.m */,
-			);
-			path = MultiTimer2;
-			sourceTree = "<group>";
-		};
-		95B622A219ABA0A900BB2708 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				95B622A319ABA0A900BB2708 /* MultiTimer2-Info.plist */,
-				95B622A419ABA0A900BB2708 /* InfoPlist.strings */,
-				95B622A719ABA0A900BB2708 /* main.m */,
-				95B622A919ABA0A900BB2708 /* MultiTimer2-Prefix.pch */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		95B622C719ABA0A900BB2708 /* MultiTimer2Tests */ = {
-			isa = PBXGroup;
-			children = (
-				95B622C819ABA0A900BB2708 /* Supporting Files */,
-				95B622E419ABB66800BB2708 /* XCTest+CoreDataTestStack.h */,
-				95B622E519ABB66900BB2708 /* XCTest+CoreDataTestStack.m */,
-				95B622D719ABA89A00BB2708 /* TimerProfileTests.m */,
-				95B622E219ABB22500BB2708 /* TimerProfileViewModelTests.m */,
-				95B622EA19ABCCD000BB2708 /* FetchedResultsDataSourceTests.m */,
-			);
-			path = MultiTimer2Tests;
-			sourceTree = "<group>";
-		};
-		95B622C819ABA0A900BB2708 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				95B622C919ABA0A900BB2708 /* MultiTimer2Tests-Info.plist */,
-				95B622CA19ABA0A900BB2708 /* InfoPlist.strings */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-/* End PBXGroup section */
-
-/* Begin PBXNativeTarget section */
-		95B6229519ABA0A900BB2708 /* MultiTimer2 */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 95B622D119ABA0A900BB2708 /* Build configuration list for PBXNativeTarget "MultiTimer2" */;
-			buildPhases = (
-				95B6229219ABA0A900BB2708 /* Sources */,
-				95B6229319ABA0A900BB2708 /* Frameworks */,
-				95B6229419ABA0A900BB2708 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = MultiTimer2;
-			productName = MultiTimer2;
-			productReference = 95B6229619ABA0A900BB2708 /* MultiTimer2.app */;
-			productType = "com.apple.product-type.application";
-		};
-		95B622BE19ABA0A900BB2708 /* MultiTimer2Tests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 95B622D419ABA0A900BB2708 /* Build configuration list for PBXNativeTarget "MultiTimer2Tests" */;
-			buildPhases = (
-				95B622BB19ABA0A900BB2708 /* Sources */,
-				95B622BC19ABA0A900BB2708 /* Frameworks */,
-				95B622BD19ABA0A900BB2708 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				95B622C619ABA0A900BB2708 /* PBXTargetDependency */,
-			);
-			name = MultiTimer2Tests;
-			productName = MultiTimer2Tests;
-			productReference = 95B622BF19ABA0A900BB2708 /* MultiTimer2Tests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
-/* End PBXNativeTarget section */
-
-/* Begin PBXProject section */
-		95B6228E19ABA0A900BB2708 /* Project object */ = {
-			isa = PBXProject;
-			attributes = {
-				LastUpgradeCheck = 0510;
-				ORGANIZATIONNAME = laewahn;
-				TargetAttributes = {
-					95B622BE19ABA0A900BB2708 = {
-						TestTargetID = 95B6229519ABA0A900BB2708;
-					};
-				};
-			};
-			buildConfigurationList = 95B6229119ABA0A900BB2708 /* Build configuration list for PBXProject "MultiTimer2" */;
-			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = English;
-			hasScannedForEncodings = 0;
-			knownRegions = (
-				en,
-				Base,
-			);
-			mainGroup = 95B6228D19ABA0A900BB2708;
-			productRefGroup = 95B6229719ABA0A900BB2708 /* Products */;
-			projectDirPath = "";
-			projectRoot = "";
-			targets = (
-				95B6229519ABA0A900BB2708 /* MultiTimer2 */,
-				95B622BE19ABA0A900BB2708 /* MultiTimer2Tests */,
-			);
-		};
-/* End PBXProject section */
-
-/* Begin PBXResourcesBuildPhase section */
-		95B6229419ABA0A900BB2708 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				95B622BA19ABA0A900BB2708 /* Images.xcassets in Resources */,
-				95B622A619ABA0A900BB2708 /* InfoPlist.strings in Resources */,
-				95B622AF19ABA0A900BB2708 /* Main.storyboard in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		95B622BD19ABA0A900BB2708 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				95B622CC19ABA0A900BB2708 /* InfoPlist.strings in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXResourcesBuildPhase section */
-
-/* Begin PBXSourcesBuildPhase section */
-		95B6229219ABA0A900BB2708 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				95B622B819ABA0A900BB2708 /* DetailViewController.m in Sources */,
-				95B622B519ABA0A900BB2708 /* TimerOverviewViewController.m in Sources */,
-				95B622B219ABA0A900BB2708 /* MultiTimer2.xcdatamodeld in Sources */,
-				95B622DB19ABA8FB00BB2708 /* TimerProfile.m in Sources */,
-				95B622AC19ABA0A900BB2708 /* AppDelegate.m in Sources */,
-				95B622EE19ABCEF300BB2708 /* FetchedResultsDataSource.m in Sources */,
-				95B622A819ABA0A900BB2708 /* main.m in Sources */,
-				95B622E119ABB1F600BB2708 /* TimerProfileViewModel.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		95B622BB19ABA0A900BB2708 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				95B622E319ABB22500BB2708 /* TimerProfileViewModelTests.m in Sources */,
-				95B622EB19ABCCD000BB2708 /* FetchedResultsDataSourceTests.m in Sources */,
-				95B622E619ABB66900BB2708 /* XCTest+CoreDataTestStack.m in Sources */,
-				95B622D819ABA89A00BB2708 /* TimerProfileTests.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		95B622C619ABA0A900BB2708 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 95B6229519ABA0A900BB2708 /* MultiTimer2 */;
-			targetProxy = 95B622C519ABA0A900BB2708 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
-
-/* Begin PBXVariantGroup section */
-		95B622A419ABA0A900BB2708 /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				95B622A519ABA0A900BB2708 /* en */,
-			);
-			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		95B622AD19ABA0A900BB2708 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				95B622AE19ABA0A900BB2708 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		95B622CA19ABA0A900BB2708 /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				95B622CB19ABA0A900BB2708 /* en */,
-			);
-			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
-
-/* Begin XCBuildConfiguration section */
-		95B622CF19ABA0A900BB2708 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				COPY_PHASE_STRIP = NO;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
-				ONLY_ACTIVE_ARCH = YES;
-				SDKROOT = iphoneos;
-			};
-			name = Debug;
-		};
-		95B622D019ABA0A900BB2708 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				COPY_PHASE_STRIP = YES;
-				ENABLE_NS_ASSERTIONS = NO;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
-				SDKROOT = iphoneos;
-				VALIDATE_PRODUCT = YES;
-			};
-			name = Release;
-		};
-		95B622D219ABA0A900BB2708 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "MultiTimer2/MultiTimer2-Prefix.pch";
-				INFOPLIST_FILE = "MultiTimer2/MultiTimer2-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				WRAPPER_EXTENSION = app;
-			};
-			name = Debug;
-		};
-		95B622D319ABA0A900BB2708 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "MultiTimer2/MultiTimer2-Prefix.pch";
-				INFOPLIST_FILE = "MultiTimer2/MultiTimer2-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				WRAPPER_EXTENSION = app;
-			};
-			name = Release;
-		};
-		95B622D519ABA0A900BB2708 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/MultiTimer2.app/MultiTimer2";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "MultiTimer2/MultiTimer2-Prefix.pch";
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = "MultiTimer2Tests/MultiTimer2Tests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = xctest;
-			};
-			name = Debug;
-		};
-		95B622D619ABA0A900BB2708 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/MultiTimer2.app/MultiTimer2";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "MultiTimer2/MultiTimer2-Prefix.pch";
-				INFOPLIST_FILE = "MultiTimer2Tests/MultiTimer2Tests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = xctest;
-			};
-			name = Release;
-		};
-/* End XCBuildConfiguration section */
-
-/* Begin XCConfigurationList section */
-		95B6229119ABA0A900BB2708 /* Build configuration list for PBXProject "MultiTimer2" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				95B622CF19ABA0A900BB2708 /* Debug */,
-				95B622D019ABA0A900BB2708 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		95B622D119ABA0A900BB2708 /* Build configuration list for PBXNativeTarget "MultiTimer2" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				95B622D219ABA0A900BB2708 /* Debug */,
-				95B622D319ABA0A900BB2708 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-		};
-		95B622D419ABA0A900BB2708 /* Build configuration list for PBXNativeTarget "MultiTimer2Tests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				95B622D519ABA0A900BB2708 /* Debug */,
-				95B622D619ABA0A900BB2708 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-		};
-/* End XCConfigurationList section */
-
-/* Begin XCVersionGroup section */
-		95B622B019ABA0A900BB2708 /* MultiTimer2.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				95B622B119ABA0A900BB2708 /* MultiTimer2.xcdatamodel */,
-			);
-			currentVersion = 95B622B119ABA0A900BB2708 /* MultiTimer2.xcdatamodel */;
-			path = MultiTimer2.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-/* End XCVersionGroup section */
-	};
-	rootObject = 95B6228E19ABA0A900BB2708 /* Project object */;
-}
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>archiveVersion</key>
+	<string>1</string>
+	<key>classes</key>
+	<dict/>
+	<key>objectVersion</key>
+	<string>46</string>
+	<key>objects</key>
+	<dict>
+		<key>304FCFF41E94465AB7C4B728</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array/>
+			<key>inputPaths</key>
+			<array/>
+			<key>isa</key>
+			<string>PBXShellScriptBuildPhase</string>
+			<key>name</key>
+			<string>Copy Pods Resources</string>
+			<key>outputPaths</key>
+			<array/>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+			<key>shellPath</key>
+			<string>/bin/sh</string>
+			<key>shellScript</key>
+			<string>"${SRCROOT}/Pods/Pods-MultiTimer2Tests-resources.sh"
+</string>
+			<key>showEnvVarsInLog</key>
+			<string>0</string>
+		</dict>
+		<key>82E24051A3E64982A3F5B88A</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>text.xcconfig</string>
+			<key>name</key>
+			<string>Pods-MultiTimer2Tests.xcconfig</string>
+			<key>path</key>
+			<string>Pods/Pods-MultiTimer2Tests.xcconfig</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>89E59869C92B4FC1AC56BF16</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array/>
+			<key>inputPaths</key>
+			<array/>
+			<key>isa</key>
+			<string>PBXShellScriptBuildPhase</string>
+			<key>name</key>
+			<string>Check Pods Manifest.lock</string>
+			<key>outputPaths</key>
+			<array/>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+			<key>shellPath</key>
+			<string>/bin/sh</string>
+			<key>shellScript</key>
+			<string>diff "${PODS_ROOT}/../Podfile.lock" "${PODS_ROOT}/Manifest.lock" &gt; /dev/null
+if [[ $? != 0 ]] ; then
+    cat &lt;&lt; EOM
+error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.
+EOM
+    exit 1
+fi
+</string>
+			<key>showEnvVarsInLog</key>
+			<string>0</string>
+		</dict>
+		<key>95B6228D19ABA0A900BB2708</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>95B622A119ABA0A900BB2708</string>
+				<string>95B622C719ABA0A900BB2708</string>
+				<string>95B6229819ABA0A900BB2708</string>
+				<string>95B6229719ABA0A900BB2708</string>
+				<string>82E24051A3E64982A3F5B88A</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>95B6228E19ABA0A900BB2708</key>
+		<dict>
+			<key>attributes</key>
+			<dict>
+				<key>LastUpgradeCheck</key>
+				<string>0510</string>
+				<key>ORGANIZATIONNAME</key>
+				<string>laewahn</string>
+				<key>TargetAttributes</key>
+				<dict>
+					<key>95B622BE19ABA0A900BB2708</key>
+					<dict>
+						<key>TestTargetID</key>
+						<string>95B6229519ABA0A900BB2708</string>
+					</dict>
+				</dict>
+			</dict>
+			<key>buildConfigurationList</key>
+			<string>95B6229119ABA0A900BB2708</string>
+			<key>compatibilityVersion</key>
+			<string>Xcode 3.2</string>
+			<key>developmentRegion</key>
+			<string>English</string>
+			<key>hasScannedForEncodings</key>
+			<string>0</string>
+			<key>isa</key>
+			<string>PBXProject</string>
+			<key>knownRegions</key>
+			<array>
+				<string>en</string>
+				<string>Base</string>
+			</array>
+			<key>mainGroup</key>
+			<string>95B6228D19ABA0A900BB2708</string>
+			<key>productRefGroup</key>
+			<string>95B6229719ABA0A900BB2708</string>
+			<key>projectDirPath</key>
+			<string></string>
+			<key>projectReferences</key>
+			<array/>
+			<key>projectRoot</key>
+			<string></string>
+			<key>targets</key>
+			<array>
+				<string>95B6229519ABA0A900BB2708</string>
+				<string>95B622BE19ABA0A900BB2708</string>
+			</array>
+		</dict>
+		<key>95B6229119ABA0A900BB2708</key>
+		<dict>
+			<key>buildConfigurations</key>
+			<array>
+				<string>95B622CF19ABA0A900BB2708</string>
+				<string>95B622D019ABA0A900BB2708</string>
+			</array>
+			<key>defaultConfigurationIsVisible</key>
+			<string>0</string>
+			<key>defaultConfigurationName</key>
+			<string>Release</string>
+			<key>isa</key>
+			<string>XCConfigurationList</string>
+		</dict>
+		<key>95B6229219ABA0A900BB2708</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array>
+				<string>95B622B819ABA0A900BB2708</string>
+				<string>95B622B519ABA0A900BB2708</string>
+				<string>95B622B219ABA0A900BB2708</string>
+				<string>95B622DB19ABA8FB00BB2708</string>
+				<string>95B622AC19ABA0A900BB2708</string>
+				<string>95B622EE19ABCEF300BB2708</string>
+				<string>95B622A819ABA0A900BB2708</string>
+				<string>95B622E119ABB1F600BB2708</string>
+			</array>
+			<key>isa</key>
+			<string>PBXSourcesBuildPhase</string>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+		</dict>
+		<key>95B6229319ABA0A900BB2708</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array>
+				<string>95B6229C19ABA0A900BB2708</string>
+				<string>95B622A019ABA0A900BB2708</string>
+				<string>95B6229E19ABA0A900BB2708</string>
+				<string>95B6229A19ABA0A900BB2708</string>
+			</array>
+			<key>isa</key>
+			<string>PBXFrameworksBuildPhase</string>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+		</dict>
+		<key>95B6229419ABA0A900BB2708</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array>
+				<string>95B622BA19ABA0A900BB2708</string>
+				<string>95B622A619ABA0A900BB2708</string>
+				<string>95B622AF19ABA0A900BB2708</string>
+			</array>
+			<key>isa</key>
+			<string>PBXResourcesBuildPhase</string>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+		</dict>
+		<key>95B6229519ABA0A900BB2708</key>
+		<dict>
+			<key>buildConfigurationList</key>
+			<string>95B622D119ABA0A900BB2708</string>
+			<key>buildPhases</key>
+			<array>
+				<string>95B6229219ABA0A900BB2708</string>
+				<string>95B6229319ABA0A900BB2708</string>
+				<string>95B6229419ABA0A900BB2708</string>
+			</array>
+			<key>buildRules</key>
+			<array/>
+			<key>dependencies</key>
+			<array/>
+			<key>isa</key>
+			<string>PBXNativeTarget</string>
+			<key>name</key>
+			<string>MultiTimer2</string>
+			<key>productName</key>
+			<string>MultiTimer2</string>
+			<key>productReference</key>
+			<string>95B6229619ABA0A900BB2708</string>
+			<key>productType</key>
+			<string>com.apple.product-type.application</string>
+		</dict>
+		<key>95B6229619ABA0A900BB2708</key>
+		<dict>
+			<key>explicitFileType</key>
+			<string>wrapper.application</string>
+			<key>includeInIndex</key>
+			<string>0</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>path</key>
+			<string>MultiTimer2.app</string>
+			<key>sourceTree</key>
+			<string>BUILT_PRODUCTS_DIR</string>
+		</dict>
+		<key>95B6229719ABA0A900BB2708</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>95B6229619ABA0A900BB2708</string>
+				<string>95B622BF19ABA0A900BB2708</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Products</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>95B6229819ABA0A900BB2708</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>95B6229919ABA0A900BB2708</string>
+				<string>95B6229B19ABA0A900BB2708</string>
+				<string>95B6229D19ABA0A900BB2708</string>
+				<string>95B6229F19ABA0A900BB2708</string>
+				<string>95B622C019ABA0A900BB2708</string>
+				<string>C77687E550DB4633ABC8CBD7</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Frameworks</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>95B6229919ABA0A900BB2708</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>wrapper.framework</string>
+			<key>name</key>
+			<string>Foundation.framework</string>
+			<key>path</key>
+			<string>System/Library/Frameworks/Foundation.framework</string>
+			<key>sourceTree</key>
+			<string>SDKROOT</string>
+		</dict>
+		<key>95B6229A19ABA0A900BB2708</key>
+		<dict>
+			<key>fileRef</key>
+			<string>95B6229919ABA0A900BB2708</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>95B6229B19ABA0A900BB2708</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>wrapper.framework</string>
+			<key>name</key>
+			<string>CoreGraphics.framework</string>
+			<key>path</key>
+			<string>System/Library/Frameworks/CoreGraphics.framework</string>
+			<key>sourceTree</key>
+			<string>SDKROOT</string>
+		</dict>
+		<key>95B6229C19ABA0A900BB2708</key>
+		<dict>
+			<key>fileRef</key>
+			<string>95B6229B19ABA0A900BB2708</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>95B6229D19ABA0A900BB2708</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>wrapper.framework</string>
+			<key>name</key>
+			<string>UIKit.framework</string>
+			<key>path</key>
+			<string>System/Library/Frameworks/UIKit.framework</string>
+			<key>sourceTree</key>
+			<string>SDKROOT</string>
+		</dict>
+		<key>95B6229E19ABA0A900BB2708</key>
+		<dict>
+			<key>fileRef</key>
+			<string>95B6229D19ABA0A900BB2708</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>95B6229F19ABA0A900BB2708</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>wrapper.framework</string>
+			<key>name</key>
+			<string>CoreData.framework</string>
+			<key>path</key>
+			<string>System/Library/Frameworks/CoreData.framework</string>
+			<key>sourceTree</key>
+			<string>SDKROOT</string>
+		</dict>
+		<key>95B622A019ABA0A900BB2708</key>
+		<dict>
+			<key>fileRef</key>
+			<string>95B6229F19ABA0A900BB2708</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>95B622A119ABA0A900BB2708</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>95B622AA19ABA0A900BB2708</string>
+				<string>95B622AB19ABA0A900BB2708</string>
+				<string>95B622AD19ABA0A900BB2708</string>
+				<string>95B622B319ABA0A900BB2708</string>
+				<string>95B622B419ABA0A900BB2708</string>
+				<string>95B622B619ABA0A900BB2708</string>
+				<string>95B622B719ABA0A900BB2708</string>
+				<string>95B622B919ABA0A900BB2708</string>
+				<string>95B622B019ABA0A900BB2708</string>
+				<string>95B622A219ABA0A900BB2708</string>
+				<string>95B622D919ABA8FB00BB2708</string>
+				<string>95B622DA19ABA8FB00BB2708</string>
+				<string>95B622DF19ABB1F600BB2708</string>
+				<string>95B622E019ABB1F600BB2708</string>
+				<string>95B622EC19ABCEF300BB2708</string>
+				<string>95B622ED19ABCEF300BB2708</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>path</key>
+			<string>MultiTimer2</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>95B622A219ABA0A900BB2708</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>95B622A319ABA0A900BB2708</string>
+				<string>95B622A419ABA0A900BB2708</string>
+				<string>95B622A719ABA0A900BB2708</string>
+				<string>95B622A919ABA0A900BB2708</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Supporting Files</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>95B622A319ABA0A900BB2708</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>text.plist.xml</string>
+			<key>path</key>
+			<string>MultiTimer2-Info.plist</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>95B622A419ABA0A900BB2708</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>95B622A519ABA0A900BB2708</string>
+			</array>
+			<key>isa</key>
+			<string>PBXVariantGroup</string>
+			<key>name</key>
+			<string>InfoPlist.strings</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>95B622A519ABA0A900BB2708</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>text.plist.strings</string>
+			<key>name</key>
+			<string>en</string>
+			<key>path</key>
+			<string>en.lproj/InfoPlist.strings</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>95B622A619ABA0A900BB2708</key>
+		<dict>
+			<key>fileRef</key>
+			<string>95B622A419ABA0A900BB2708</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>95B622A719ABA0A900BB2708</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>path</key>
+			<string>main.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>95B622A819ABA0A900BB2708</key>
+		<dict>
+			<key>fileRef</key>
+			<string>95B622A719ABA0A900BB2708</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>95B622A919ABA0A900BB2708</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>path</key>
+			<string>MultiTimer2-Prefix.pch</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>95B622AA19ABA0A900BB2708</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>path</key>
+			<string>AppDelegate.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>95B622AB19ABA0A900BB2708</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>path</key>
+			<string>AppDelegate.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>95B622AC19ABA0A900BB2708</key>
+		<dict>
+			<key>fileRef</key>
+			<string>95B622AB19ABA0A900BB2708</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>95B622AD19ABA0A900BB2708</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>95B622AE19ABA0A900BB2708</string>
+			</array>
+			<key>isa</key>
+			<string>PBXVariantGroup</string>
+			<key>name</key>
+			<string>Main.storyboard</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>95B622AE19ABA0A900BB2708</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>file.storyboard</string>
+			<key>name</key>
+			<string>Base</string>
+			<key>path</key>
+			<string>Base.lproj/Main.storyboard</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>95B622AF19ABA0A900BB2708</key>
+		<dict>
+			<key>fileRef</key>
+			<string>95B622AD19ABA0A900BB2708</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>95B622B019ABA0A900BB2708</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>95B622B119ABA0A900BB2708</string>
+			</array>
+			<key>currentVersion</key>
+			<string>95B622B119ABA0A900BB2708</string>
+			<key>isa</key>
+			<string>XCVersionGroup</string>
+			<key>path</key>
+			<string>MultiTimer2.xcdatamodeld</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+			<key>versionGroupType</key>
+			<string>wrapper.xcdatamodel</string>
+		</dict>
+		<key>95B622B119ABA0A900BB2708</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>wrapper.xcdatamodel</string>
+			<key>path</key>
+			<string>MultiTimer2.xcdatamodel</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>95B622B219ABA0A900BB2708</key>
+		<dict>
+			<key>fileRef</key>
+			<string>95B622B019ABA0A900BB2708</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>95B622B319ABA0A900BB2708</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>path</key>
+			<string>TimerOverviewViewController.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>95B622B419ABA0A900BB2708</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>path</key>
+			<string>TimerOverviewViewController.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>95B622B519ABA0A900BB2708</key>
+		<dict>
+			<key>fileRef</key>
+			<string>95B622B419ABA0A900BB2708</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>95B622B619ABA0A900BB2708</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>path</key>
+			<string>DetailViewController.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>95B622B719ABA0A900BB2708</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>path</key>
+			<string>DetailViewController.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>95B622B819ABA0A900BB2708</key>
+		<dict>
+			<key>fileRef</key>
+			<string>95B622B719ABA0A900BB2708</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>95B622B919ABA0A900BB2708</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>folder.assetcatalog</string>
+			<key>path</key>
+			<string>Images.xcassets</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>95B622BA19ABA0A900BB2708</key>
+		<dict>
+			<key>fileRef</key>
+			<string>95B622B919ABA0A900BB2708</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>95B622BB19ABA0A900BB2708</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array>
+				<string>95B622E319ABB22500BB2708</string>
+				<string>95B622EB19ABCCD000BB2708</string>
+				<string>95B622E619ABB66900BB2708</string>
+				<string>95B622D819ABA89A00BB2708</string>
+			</array>
+			<key>isa</key>
+			<string>PBXSourcesBuildPhase</string>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+		</dict>
+		<key>95B622BC19ABA0A900BB2708</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array>
+				<string>95B622C119ABA0A900BB2708</string>
+				<string>95B622C419ABA0A900BB2708</string>
+				<string>95B622C319ABA0A900BB2708</string>
+				<string>95B622C219ABA0A900BB2708</string>
+				<string>FE605C03E3434DBA96C7D1DF</string>
+			</array>
+			<key>isa</key>
+			<string>PBXFrameworksBuildPhase</string>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+		</dict>
+		<key>95B622BD19ABA0A900BB2708</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array>
+				<string>95B622CC19ABA0A900BB2708</string>
+			</array>
+			<key>isa</key>
+			<string>PBXResourcesBuildPhase</string>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+		</dict>
+		<key>95B622BE19ABA0A900BB2708</key>
+		<dict>
+			<key>buildConfigurationList</key>
+			<string>95B622D419ABA0A900BB2708</string>
+			<key>buildPhases</key>
+			<array>
+				<string>89E59869C92B4FC1AC56BF16</string>
+				<string>95B622BB19ABA0A900BB2708</string>
+				<string>95B622BC19ABA0A900BB2708</string>
+				<string>95B622BD19ABA0A900BB2708</string>
+				<string>304FCFF41E94465AB7C4B728</string>
+			</array>
+			<key>buildRules</key>
+			<array/>
+			<key>dependencies</key>
+			<array>
+				<string>95B622C619ABA0A900BB2708</string>
+			</array>
+			<key>isa</key>
+			<string>PBXNativeTarget</string>
+			<key>name</key>
+			<string>MultiTimer2Tests</string>
+			<key>productName</key>
+			<string>MultiTimer2Tests</string>
+			<key>productReference</key>
+			<string>95B622BF19ABA0A900BB2708</string>
+			<key>productType</key>
+			<string>com.apple.product-type.bundle.unit-test</string>
+		</dict>
+		<key>95B622BF19ABA0A900BB2708</key>
+		<dict>
+			<key>explicitFileType</key>
+			<string>wrapper.cfbundle</string>
+			<key>includeInIndex</key>
+			<string>0</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>path</key>
+			<string>MultiTimer2Tests.xctest</string>
+			<key>sourceTree</key>
+			<string>BUILT_PRODUCTS_DIR</string>
+		</dict>
+		<key>95B622C019ABA0A900BB2708</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>wrapper.framework</string>
+			<key>name</key>
+			<string>XCTest.framework</string>
+			<key>path</key>
+			<string>Library/Frameworks/XCTest.framework</string>
+			<key>sourceTree</key>
+			<string>DEVELOPER_DIR</string>
+		</dict>
+		<key>95B622C119ABA0A900BB2708</key>
+		<dict>
+			<key>fileRef</key>
+			<string>95B622C019ABA0A900BB2708</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>95B622C219ABA0A900BB2708</key>
+		<dict>
+			<key>fileRef</key>
+			<string>95B6229919ABA0A900BB2708</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>95B622C319ABA0A900BB2708</key>
+		<dict>
+			<key>fileRef</key>
+			<string>95B6229D19ABA0A900BB2708</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>95B622C419ABA0A900BB2708</key>
+		<dict>
+			<key>fileRef</key>
+			<string>95B6229F19ABA0A900BB2708</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>95B622C519ABA0A900BB2708</key>
+		<dict>
+			<key>containerPortal</key>
+			<string>95B6228E19ABA0A900BB2708</string>
+			<key>isa</key>
+			<string>PBXContainerItemProxy</string>
+			<key>proxyType</key>
+			<string>1</string>
+			<key>remoteGlobalIDString</key>
+			<string>95B6229519ABA0A900BB2708</string>
+			<key>remoteInfo</key>
+			<string>MultiTimer2</string>
+		</dict>
+		<key>95B622C619ABA0A900BB2708</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXTargetDependency</string>
+			<key>target</key>
+			<string>95B6229519ABA0A900BB2708</string>
+			<key>targetProxy</key>
+			<string>95B622C519ABA0A900BB2708</string>
+		</dict>
+		<key>95B622C719ABA0A900BB2708</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>95B622C819ABA0A900BB2708</string>
+				<string>95B622E419ABB66800BB2708</string>
+				<string>95B622E519ABB66900BB2708</string>
+				<string>95B622D719ABA89A00BB2708</string>
+				<string>95B622E219ABB22500BB2708</string>
+				<string>95B622EA19ABCCD000BB2708</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>path</key>
+			<string>MultiTimer2Tests</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>95B622C819ABA0A900BB2708</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>95B622C919ABA0A900BB2708</string>
+				<string>95B622CA19ABA0A900BB2708</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Supporting Files</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>95B622C919ABA0A900BB2708</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>text.plist.xml</string>
+			<key>path</key>
+			<string>MultiTimer2Tests-Info.plist</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>95B622CA19ABA0A900BB2708</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>95B622CB19ABA0A900BB2708</string>
+			</array>
+			<key>isa</key>
+			<string>PBXVariantGroup</string>
+			<key>name</key>
+			<string>InfoPlist.strings</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>95B622CB19ABA0A900BB2708</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>text.plist.strings</string>
+			<key>name</key>
+			<string>en</string>
+			<key>path</key>
+			<string>en.lproj/InfoPlist.strings</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>95B622CC19ABA0A900BB2708</key>
+		<dict>
+			<key>fileRef</key>
+			<string>95B622CA19ABA0A900BB2708</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>95B622CF19ABA0A900BB2708</key>
+		<dict>
+			<key>buildSettings</key>
+			<dict>
+				<key>ALWAYS_SEARCH_USER_PATHS</key>
+				<string>NO</string>
+				<key>CLANG_CXX_LANGUAGE_STANDARD</key>
+				<string>gnu++0x</string>
+				<key>CLANG_CXX_LIBRARY</key>
+				<string>libc++</string>
+				<key>CLANG_ENABLE_MODULES</key>
+				<string>YES</string>
+				<key>CLANG_ENABLE_OBJC_ARC</key>
+				<string>YES</string>
+				<key>CLANG_WARN_BOOL_CONVERSION</key>
+				<string>YES</string>
+				<key>CLANG_WARN_CONSTANT_CONVERSION</key>
+				<string>YES</string>
+				<key>CLANG_WARN_DIRECT_OBJC_ISA_USAGE</key>
+				<string>YES_ERROR</string>
+				<key>CLANG_WARN_EMPTY_BODY</key>
+				<string>YES</string>
+				<key>CLANG_WARN_ENUM_CONVERSION</key>
+				<string>YES</string>
+				<key>CLANG_WARN_INT_CONVERSION</key>
+				<string>YES</string>
+				<key>CLANG_WARN_OBJC_ROOT_CLASS</key>
+				<string>YES_ERROR</string>
+				<key>CLANG_WARN__DUPLICATE_METHOD_MATCH</key>
+				<string>YES</string>
+				<key>CODE_SIGN_IDENTITY[sdk=iphoneos*]</key>
+				<string>iPhone Developer</string>
+				<key>COPY_PHASE_STRIP</key>
+				<string>NO</string>
+				<key>GCC_C_LANGUAGE_STANDARD</key>
+				<string>gnu99</string>
+				<key>GCC_DYNAMIC_NO_PIC</key>
+				<string>NO</string>
+				<key>GCC_OPTIMIZATION_LEVEL</key>
+				<string>0</string>
+				<key>GCC_PREPROCESSOR_DEFINITIONS</key>
+				<array>
+					<string>DEBUG=1</string>
+					<string>$(inherited)</string>
+				</array>
+				<key>GCC_SYMBOLS_PRIVATE_EXTERN</key>
+				<string>NO</string>
+				<key>GCC_WARN_64_TO_32_BIT_CONVERSION</key>
+				<string>YES</string>
+				<key>GCC_WARN_ABOUT_RETURN_TYPE</key>
+				<string>YES_ERROR</string>
+				<key>GCC_WARN_UNDECLARED_SELECTOR</key>
+				<string>YES</string>
+				<key>GCC_WARN_UNINITIALIZED_AUTOS</key>
+				<string>YES_AGGRESSIVE</string>
+				<key>GCC_WARN_UNUSED_FUNCTION</key>
+				<string>YES</string>
+				<key>GCC_WARN_UNUSED_VARIABLE</key>
+				<string>YES</string>
+				<key>IPHONEOS_DEPLOYMENT_TARGET</key>
+				<string>7.1</string>
+				<key>ONLY_ACTIVE_ARCH</key>
+				<string>YES</string>
+				<key>SDKROOT</key>
+				<string>iphoneos</string>
+			</dict>
+			<key>isa</key>
+			<string>XCBuildConfiguration</string>
+			<key>name</key>
+			<string>Debug</string>
+		</dict>
+		<key>95B622D019ABA0A900BB2708</key>
+		<dict>
+			<key>buildSettings</key>
+			<dict>
+				<key>ALWAYS_SEARCH_USER_PATHS</key>
+				<string>NO</string>
+				<key>CLANG_CXX_LANGUAGE_STANDARD</key>
+				<string>gnu++0x</string>
+				<key>CLANG_CXX_LIBRARY</key>
+				<string>libc++</string>
+				<key>CLANG_ENABLE_MODULES</key>
+				<string>YES</string>
+				<key>CLANG_ENABLE_OBJC_ARC</key>
+				<string>YES</string>
+				<key>CLANG_WARN_BOOL_CONVERSION</key>
+				<string>YES</string>
+				<key>CLANG_WARN_CONSTANT_CONVERSION</key>
+				<string>YES</string>
+				<key>CLANG_WARN_DIRECT_OBJC_ISA_USAGE</key>
+				<string>YES_ERROR</string>
+				<key>CLANG_WARN_EMPTY_BODY</key>
+				<string>YES</string>
+				<key>CLANG_WARN_ENUM_CONVERSION</key>
+				<string>YES</string>
+				<key>CLANG_WARN_INT_CONVERSION</key>
+				<string>YES</string>
+				<key>CLANG_WARN_OBJC_ROOT_CLASS</key>
+				<string>YES_ERROR</string>
+				<key>CLANG_WARN__DUPLICATE_METHOD_MATCH</key>
+				<string>YES</string>
+				<key>CODE_SIGN_IDENTITY[sdk=iphoneos*]</key>
+				<string>iPhone Developer</string>
+				<key>COPY_PHASE_STRIP</key>
+				<string>YES</string>
+				<key>ENABLE_NS_ASSERTIONS</key>
+				<string>NO</string>
+				<key>GCC_C_LANGUAGE_STANDARD</key>
+				<string>gnu99</string>
+				<key>GCC_WARN_64_TO_32_BIT_CONVERSION</key>
+				<string>YES</string>
+				<key>GCC_WARN_ABOUT_RETURN_TYPE</key>
+				<string>YES_ERROR</string>
+				<key>GCC_WARN_UNDECLARED_SELECTOR</key>
+				<string>YES</string>
+				<key>GCC_WARN_UNINITIALIZED_AUTOS</key>
+				<string>YES_AGGRESSIVE</string>
+				<key>GCC_WARN_UNUSED_FUNCTION</key>
+				<string>YES</string>
+				<key>GCC_WARN_UNUSED_VARIABLE</key>
+				<string>YES</string>
+				<key>IPHONEOS_DEPLOYMENT_TARGET</key>
+				<string>7.1</string>
+				<key>SDKROOT</key>
+				<string>iphoneos</string>
+				<key>VALIDATE_PRODUCT</key>
+				<string>YES</string>
+			</dict>
+			<key>isa</key>
+			<string>XCBuildConfiguration</string>
+			<key>name</key>
+			<string>Release</string>
+		</dict>
+		<key>95B622D119ABA0A900BB2708</key>
+		<dict>
+			<key>buildConfigurations</key>
+			<array>
+				<string>95B622D219ABA0A900BB2708</string>
+				<string>95B622D319ABA0A900BB2708</string>
+			</array>
+			<key>defaultConfigurationIsVisible</key>
+			<string>0</string>
+			<key>isa</key>
+			<string>XCConfigurationList</string>
+		</dict>
+		<key>95B622D219ABA0A900BB2708</key>
+		<dict>
+			<key>buildSettings</key>
+			<dict>
+				<key>ASSETCATALOG_COMPILER_APPICON_NAME</key>
+				<string>AppIcon</string>
+				<key>ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME</key>
+				<string>LaunchImage</string>
+				<key>GCC_PRECOMPILE_PREFIX_HEADER</key>
+				<string>YES</string>
+				<key>GCC_PREFIX_HEADER</key>
+				<string>MultiTimer2/MultiTimer2-Prefix.pch</string>
+				<key>INFOPLIST_FILE</key>
+				<string>MultiTimer2/MultiTimer2-Info.plist</string>
+				<key>PRODUCT_NAME</key>
+				<string>$(TARGET_NAME)</string>
+				<key>WRAPPER_EXTENSION</key>
+				<string>app</string>
+			</dict>
+			<key>isa</key>
+			<string>XCBuildConfiguration</string>
+			<key>name</key>
+			<string>Debug</string>
+		</dict>
+		<key>95B622D319ABA0A900BB2708</key>
+		<dict>
+			<key>buildSettings</key>
+			<dict>
+				<key>ASSETCATALOG_COMPILER_APPICON_NAME</key>
+				<string>AppIcon</string>
+				<key>ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME</key>
+				<string>LaunchImage</string>
+				<key>GCC_PRECOMPILE_PREFIX_HEADER</key>
+				<string>YES</string>
+				<key>GCC_PREFIX_HEADER</key>
+				<string>MultiTimer2/MultiTimer2-Prefix.pch</string>
+				<key>INFOPLIST_FILE</key>
+				<string>MultiTimer2/MultiTimer2-Info.plist</string>
+				<key>PRODUCT_NAME</key>
+				<string>$(TARGET_NAME)</string>
+				<key>WRAPPER_EXTENSION</key>
+				<string>app</string>
+			</dict>
+			<key>isa</key>
+			<string>XCBuildConfiguration</string>
+			<key>name</key>
+			<string>Release</string>
+		</dict>
+		<key>95B622D419ABA0A900BB2708</key>
+		<dict>
+			<key>buildConfigurations</key>
+			<array>
+				<string>95B622D519ABA0A900BB2708</string>
+				<string>95B622D619ABA0A900BB2708</string>
+			</array>
+			<key>defaultConfigurationIsVisible</key>
+			<string>0</string>
+			<key>isa</key>
+			<string>XCConfigurationList</string>
+		</dict>
+		<key>95B622D519ABA0A900BB2708</key>
+		<dict>
+			<key>baseConfigurationReference</key>
+			<string>82E24051A3E64982A3F5B88A</string>
+			<key>buildSettings</key>
+			<dict>
+				<key>BUNDLE_LOADER</key>
+				<string>$(BUILT_PRODUCTS_DIR)/MultiTimer2.app/MultiTimer2</string>
+				<key>FRAMEWORK_SEARCH_PATHS</key>
+				<array>
+					<string>$(SDKROOT)/Developer/Library/Frameworks</string>
+					<string>$(inherited)</string>
+					<string>$(DEVELOPER_FRAMEWORKS_DIR)</string>
+				</array>
+				<key>GCC_PRECOMPILE_PREFIX_HEADER</key>
+				<string>YES</string>
+				<key>GCC_PREFIX_HEADER</key>
+				<string>MultiTimer2/MultiTimer2-Prefix.pch</string>
+				<key>GCC_PREPROCESSOR_DEFINITIONS</key>
+				<array>
+					<string>DEBUG=1</string>
+					<string>$(inherited)</string>
+				</array>
+				<key>INFOPLIST_FILE</key>
+				<string>MultiTimer2Tests/MultiTimer2Tests-Info.plist</string>
+				<key>PRODUCT_NAME</key>
+				<string>$(TARGET_NAME)</string>
+				<key>TEST_HOST</key>
+				<string>$(BUNDLE_LOADER)</string>
+				<key>WRAPPER_EXTENSION</key>
+				<string>xctest</string>
+			</dict>
+			<key>isa</key>
+			<string>XCBuildConfiguration</string>
+			<key>name</key>
+			<string>Debug</string>
+		</dict>
+		<key>95B622D619ABA0A900BB2708</key>
+		<dict>
+			<key>baseConfigurationReference</key>
+			<string>82E24051A3E64982A3F5B88A</string>
+			<key>buildSettings</key>
+			<dict>
+				<key>BUNDLE_LOADER</key>
+				<string>$(BUILT_PRODUCTS_DIR)/MultiTimer2.app/MultiTimer2</string>
+				<key>FRAMEWORK_SEARCH_PATHS</key>
+				<array>
+					<string>$(SDKROOT)/Developer/Library/Frameworks</string>
+					<string>$(inherited)</string>
+					<string>$(DEVELOPER_FRAMEWORKS_DIR)</string>
+				</array>
+				<key>GCC_PRECOMPILE_PREFIX_HEADER</key>
+				<string>YES</string>
+				<key>GCC_PREFIX_HEADER</key>
+				<string>MultiTimer2/MultiTimer2-Prefix.pch</string>
+				<key>INFOPLIST_FILE</key>
+				<string>MultiTimer2Tests/MultiTimer2Tests-Info.plist</string>
+				<key>PRODUCT_NAME</key>
+				<string>$(TARGET_NAME)</string>
+				<key>TEST_HOST</key>
+				<string>$(BUNDLE_LOADER)</string>
+				<key>WRAPPER_EXTENSION</key>
+				<string>xctest</string>
+			</dict>
+			<key>isa</key>
+			<string>XCBuildConfiguration</string>
+			<key>name</key>
+			<string>Release</string>
+		</dict>
+		<key>95B622D719ABA89A00BB2708</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>path</key>
+			<string>TimerProfileTests.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>95B622D819ABA89A00BB2708</key>
+		<dict>
+			<key>fileRef</key>
+			<string>95B622D719ABA89A00BB2708</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>95B622D919ABA8FB00BB2708</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>path</key>
+			<string>TimerProfile.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>95B622DA19ABA8FB00BB2708</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>path</key>
+			<string>TimerProfile.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>95B622DB19ABA8FB00BB2708</key>
+		<dict>
+			<key>fileRef</key>
+			<string>95B622DA19ABA8FB00BB2708</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>95B622DF19ABB1F600BB2708</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>path</key>
+			<string>TimerProfileViewModel.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>95B622E019ABB1F600BB2708</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>path</key>
+			<string>TimerProfileViewModel.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>95B622E119ABB1F600BB2708</key>
+		<dict>
+			<key>fileRef</key>
+			<string>95B622E019ABB1F600BB2708</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>95B622E219ABB22500BB2708</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>path</key>
+			<string>TimerProfileViewModelTests.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>95B622E319ABB22500BB2708</key>
+		<dict>
+			<key>fileRef</key>
+			<string>95B622E219ABB22500BB2708</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>95B622E419ABB66800BB2708</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>path</key>
+			<string>XCTest+CoreDataTestStack.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>95B622E519ABB66900BB2708</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>path</key>
+			<string>XCTest+CoreDataTestStack.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>95B622E619ABB66900BB2708</key>
+		<dict>
+			<key>fileRef</key>
+			<string>95B622E519ABB66900BB2708</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>95B622EA19ABCCD000BB2708</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>path</key>
+			<string>FetchedResultsDataSourceTests.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>95B622EB19ABCCD000BB2708</key>
+		<dict>
+			<key>fileRef</key>
+			<string>95B622EA19ABCCD000BB2708</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>95B622EC19ABCEF300BB2708</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>path</key>
+			<string>FetchedResultsDataSource.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>95B622ED19ABCEF300BB2708</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>path</key>
+			<string>FetchedResultsDataSource.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>95B622EE19ABCEF300BB2708</key>
+		<dict>
+			<key>fileRef</key>
+			<string>95B622ED19ABCEF300BB2708</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>C77687E550DB4633ABC8CBD7</key>
+		<dict>
+			<key>explicitFileType</key>
+			<string>archive.ar</string>
+			<key>includeInIndex</key>
+			<string>0</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>path</key>
+			<string>libPods-MultiTimer2Tests.a</string>
+			<key>sourceTree</key>
+			<string>BUILT_PRODUCTS_DIR</string>
+		</dict>
+		<key>FE605C03E3434DBA96C7D1DF</key>
+		<dict>
+			<key>fileRef</key>
+			<string>C77687E550DB4633ABC8CBD7</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+	</dict>
+	<key>rootObject</key>
+	<string>95B6228E19ABA0A900BB2708</string>
+</dict>
+</plist>
