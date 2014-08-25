@@ -1,5 +1,5 @@
 //
-//  MasterViewController.h
+//  TimerOverviewViewController.h
 //  MultiTimer2
 //
 //  Created by Dennis Lewandowski on 25/08/14.
@@ -10,6 +10,6 @@
 
 #import <CoreData/CoreData.h>
 
-@interface MasterViewController : UITableViewController
+@interface TimerOverviewViewController : UITableViewController
 
 @end

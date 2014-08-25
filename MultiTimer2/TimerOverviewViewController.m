@@ -1,19 +1,19 @@
 //
-//  MasterViewController.m
+//  TimerOverviewViewController.m
 //  MultiTimer2
 //
 //  Created by Dennis Lewandowski on 25/08/14.
 //  Copyright (c) 2014 laewahn. All rights reserved.
 //
 
-#import "MasterViewController.h"
+#import "TimerOverviewViewController.h"
 
 #import "DetailViewController.h"
 
-@interface MasterViewController ()
+@interface TimerOverviewViewController ()
 @end
 
-@implementation MasterViewController
+@implementation TimerOverviewViewController
 
 - (void)viewDidLoad
 {

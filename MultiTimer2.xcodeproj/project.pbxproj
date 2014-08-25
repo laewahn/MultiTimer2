@@ -16,7 +16,7 @@
 		95B622AC19ABA0A900BB2708 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 95B622AB19ABA0A900BB2708 /* AppDelegate.m */; };
 		95B622AF19ABA0A900BB2708 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 95B622AD19ABA0A900BB2708 /* Main.storyboard */; };
 		95B622B219ABA0A900BB2708 /* MultiTimer2.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 95B622B019ABA0A900BB2708 /* MultiTimer2.xcdatamodeld */; };
-		95B622B519ABA0A900BB2708 /* MasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95B622B419ABA0A900BB2708 /* MasterViewController.m */; };
+		95B622B519ABA0A900BB2708 /* TimerOverviewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95B622B419ABA0A900BB2708 /* TimerOverviewViewController.m */; };
 		95B622B819ABA0A900BB2708 /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95B622B719ABA0A900BB2708 /* DetailViewController.m */; };
 		95B622BA19ABA0A900BB2708 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 95B622B919ABA0A900BB2708 /* Images.xcassets */; };
 		95B622C119ABA0A900BB2708 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95B622C019ABA0A900BB2708 /* XCTest.framework */; };
@@ -55,8 +55,8 @@
 		95B622AB19ABA0A900BB2708 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		95B622AE19ABA0A900BB2708 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		95B622B119ABA0A900BB2708 /* MultiTimer2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MultiTimer2.xcdatamodel; sourceTree = "<group>"; };
-		95B622B319ABA0A900BB2708 /* MasterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MasterViewController.h; sourceTree = "<group>"; };
-		95B622B419ABA0A900BB2708 /* MasterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MasterViewController.m; sourceTree = "<group>"; };
+		95B622B319ABA0A900BB2708 /* TimerOverviewViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TimerOverviewViewController.h; sourceTree = "<group>"; };
+		95B622B419ABA0A900BB2708 /* TimerOverviewViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TimerOverviewViewController.m; sourceTree = "<group>"; };
 		95B622B619ABA0A900BB2708 /* DetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
 		95B622B719ABA0A900BB2708 /* DetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
 		95B622B919ABA0A900BB2708 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
@@ -137,8 +137,8 @@
 				95B622AA19ABA0A900BB2708 /* AppDelegate.h */,
 				95B622AB19ABA0A900BB2708 /* AppDelegate.m */,
 				95B622AD19ABA0A900BB2708 /* Main.storyboard */,
-				95B622B319ABA0A900BB2708 /* MasterViewController.h */,
-				95B622B419ABA0A900BB2708 /* MasterViewController.m */,
+				95B622B319ABA0A900BB2708 /* TimerOverviewViewController.h */,
+				95B622B419ABA0A900BB2708 /* TimerOverviewViewController.m */,
 				95B622B619ABA0A900BB2708 /* DetailViewController.h */,
 				95B622B719ABA0A900BB2708 /* DetailViewController.m */,
 				95B622B919ABA0A900BB2708 /* Images.xcassets */,
@@ -282,7 +282,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				95B622B819ABA0A900BB2708 /* DetailViewController.m in Sources */,
-				95B622B519ABA0A900BB2708 /* MasterViewController.m in Sources */,
+				95B622B519ABA0A900BB2708 /* TimerOverviewViewController.m in Sources */,
 				95B622B219ABA0A900BB2708 /* MultiTimer2.xcdatamodeld in Sources */,
 				95B622DB19ABA8FB00BB2708 /* TimerProfile.m in Sources */,
 				95B622AC19ABA0A900BB2708 /* AppDelegate.m in Sources */,
