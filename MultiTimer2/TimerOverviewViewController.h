@@ -12,4 +12,6 @@
 
 @interface TimerOverviewViewController : UITableViewController
 
+@property(readonly) NSManagedObjectContext* managedObjectContext;
+
 @end

@@ -9,11 +9,18 @@
 #import "TimerOverviewViewController.h"
 
 #import "DetailViewController.h"
+#import "FetchedResultsDataSource.h"
 
 @interface TimerOverviewViewController ()
 @end
 
 @implementation TimerOverviewViewController
+
+- (void)awakeFromNib
+{
+	FetchedResultsDataSource* frds = (FetchedResultsDataSource *)[self.tableView dataSource];
+	_managedObjectContext = [frds.fetchedResultsController managedObjectContext];
+}
 
 - (void)viewDidLoad
 {
