@@ -8,8 +8,15 @@
 
 #import <Foundation/Foundation.h>
 
+@class TimerProfile;
+
 @interface TimerProfileStore : NSObject
 
+- (TimerProfile *)createTimerProfileWithName:(NSString *)name duration:(NSTimeInterval)duration;
+
+- (NSArray *)fetchTimerProfiles;
+
+@property(nonatomic, readonly) NSFetchedResultsController*  timerProfilesFetchedResultsController;
 @property(nonatomic, strong) NSManagedObjectContext* managedObjectContext;
 
 @end
