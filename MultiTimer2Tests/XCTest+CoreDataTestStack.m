@@ -27,4 +27,16 @@
 	return testManagedObjectContext;
 }
 
+- (NSManagedObjectContext *)managedObjectTestContextWithTimerProfileNamed:(NSString *)name duration:(NSTimeInterval)duration
+{
+	NSManagedObjectContext* context = [self managedObjectTestContext];
+	NSManagedObject* someProfile = [NSEntityDescription insertNewObjectForEntityForName:@"TimerProfile" inManagedObjectContext:context];
+	
+	[someProfile setValue:name forKey:@"name"];
+	[someProfile setPrimitiveValue:@(duration) forKey:@"duration"];
+	
+	return context;
+}
+
+
 @end

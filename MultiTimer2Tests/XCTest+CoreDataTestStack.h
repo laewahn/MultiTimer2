@@ -11,5 +11,6 @@
 @interface XCTest (CoreDataTestStack)
 
 - (NSManagedObjectContext *)managedObjectTestContext;
+- (NSManagedObjectContext *)managedObjectTestContextWithTimerProfileNamed:(NSString *)name duration:(NSTimeInterval)duration;
 
 @end
