@@ -18,7 +18,27 @@
 	// Override point for customization after application launch.
     return YES;
 }
-							
+
+- (NSManagedObjectContext *)managedObjectContext
+{
+	NSURL* modelURL = [[NSBundle mainBundle] URLForResource:@"MultiTimer2" withExtension:@"momd"];
+	NSManagedObjectModel* model = [[NSManagedObjectModel alloc] initWithContentsOfURL:modelURL];
+	
+	NSPersistentStoreCoordinator* persistenStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:model];
+	NSURL* sqliteStoreURL = [[self applicationDocumentsDirectory] URLByAppendingPathComponent:@"MultiTimer2.sqlite"];
+	NSError* error;
+	[persistenStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType
+											configuration:nil
+													  URL:sqliteStoreURL
+												  options:nil
+													error:&error];
+	
+	NSManagedObjectContext* context = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSMainQueueConcurrencyType];
+	[context setPersistentStoreCoordinator:persistenStoreCoordinator];
+	
+	return context;
+}
+
 - (void)applicationWillResignActive:(UIApplication *)application
 {
 	// Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
@@ -27,7 +47,7 @@
 
 - (void)applicationDidEnterBackground:(UIApplication *)application
 {
-	// Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later. 
+	// Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
 	// If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
 }
 

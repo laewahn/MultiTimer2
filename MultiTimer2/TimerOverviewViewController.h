@@ -10,8 +10,10 @@
 
 #import <CoreData/CoreData.h>
 
+@class TimerProfileStore;
+
 @interface TimerOverviewViewController : UITableViewController
 
-@property(readonly) NSManagedObjectContext* managedObjectContext;
+@property(nonatomic, strong) IBOutlet TimerProfileStore* timerProfileStore;
 
 @end

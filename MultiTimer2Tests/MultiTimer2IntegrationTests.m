@@ -24,6 +24,18 @@
 	XCTAssertNotNil(app);
 }
 
+- (void)testAppSetsUpCoreDataStack
+{
+	AppDelegate* appDelegate = [[UIApplication sharedApplication] delegate];
+	
+	NSManagedObjectContext* appContext = [appDelegate managedObjectContext];
+	
+	XCTAssertNotNil(appContext);
+	XCTAssertEqual([appContext concurrencyType], NSMainQueueConcurrencyType);
+	XCTAssertNotNil([appContext persistentStoreCoordinator]);
+	XCTAssertNotEqual([appContext.persistentStoreCoordinator.persistentStores count], 0);
+}
+
 - (void)testOverviewViewControllerTableViewIsInitializedWithFetchedResultsDataSource
 {
     AppDelegate* appDelegate = [[UIApplication sharedApplication] delegate];
@@ -32,12 +44,4 @@
 	XCTAssertTrue([[overviewViewController.tableView dataSource] isKindOfClass:[FetchedResultsDataSource class]]);
 }
 
-- (void)testFetchedResultsDataSourceHasFetchedResultsController
-{
-    AppDelegate* appDelegate = [[UIApplication sharedApplication] delegate];
-	TimerOverviewViewController* overviewViewController = (TimerOverviewViewController *)[(UINavigationController *)appDelegate.window.rootViewController topViewController];
-	
-	NSFetchedResultsController* frc = [(FetchedResultsDataSource *)overviewViewController.tableView.dataSource fetchedResultsController];
-	XCTAssertNotNil(frc);
-}
 @end

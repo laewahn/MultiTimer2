@@ -10,6 +10,7 @@
 
 #import "DetailViewController.h"
 #import "FetchedResultsDataSource.h"
+#import "TimerProfileStore.h"
 
 @interface TimerOverviewViewController ()
 @end
@@ -18,8 +19,7 @@
 
 - (void)awakeFromNib
 {
-	FetchedResultsDataSource* frds = (FetchedResultsDataSource *)[self.tableView dataSource];
-	_managedObjectContext = [frds.fetchedResultsController managedObjectContext];
+//	[(FetchedResultsDataSource *)self.tableView.dataSource setFetchedResultsController:[self.timerProfileStore timerProfilesFetchedResultsController]];
 }
 
 - (void)viewDidLoad
@@ -30,6 +30,12 @@
 
 	UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(insertNewObject:)];
 	self.navigationItem.rightBarButtonItem = addButton;
+}
+
+- (void)setTimerProfileStore:(TimerProfileStore *)timerProfileStore
+{
+	_timerProfileStore = timerProfileStore;
+	[(FetchedResultsDataSource *)self.tableView.dataSource setFetchedResultsController:[_timerProfileStore timerProfilesFetchedResultsController]];
 }
 
 - (void)insertNewObject:(id)sender

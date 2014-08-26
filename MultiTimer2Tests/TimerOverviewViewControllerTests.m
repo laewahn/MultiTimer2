@@ -7,8 +7,11 @@
 //
 
 #import <XCTest/XCTest.h>
+#import "XCTest+CoreDataTestStack.h"
 
 #import "TimerOverviewViewController.h"
+#import "FetchedResultsDataSource.h"
+#import "TimerProfileStore.h"
 
 @interface TimerOverviewViewControllerTests : XCTestCase
 
@@ -16,13 +19,30 @@
 
 @implementation TimerOverviewViewControllerTests
 
-- (void)testOverviewControllerHasManagedObjectContextAfterInitialization
+- (void)testOverviewViewControllerHasFetchedResultsDataSourceAfterLoading
 {
 	NSBundle* mainBundle = [NSBundle bundleForClass:[TimerOverviewViewController class]];
 	UIStoryboard* storyBoard = [UIStoryboard storyboardWithName:@"Main" bundle:mainBundle];
 	
     TimerOverviewViewController* testVC = [storyBoard instantiateViewControllerWithIdentifier:@"TimerOverviewViewController"];
-	XCTAssertNotNil([testVC managedObjectContext]);
+	
+	XCTAssertNotNil([testVC.tableView dataSource]);
+	XCTAssertTrue([[testVC.tableView dataSource] isKindOfClass:[FetchedResultsDataSource class]]);
+}
+
+- (void)testSettingTimerProfileStoreOnOverviewViewControllerConnectsTimerProfileFetchedResultsControllerWithDataSource
+{
+    NSBundle* mainBundle = [NSBundle bundleForClass:[TimerOverviewViewController class]];
+	UIStoryboard* storyBoard = [UIStoryboard storyboardWithName:@"Main" bundle:mainBundle];
+	
+    TimerOverviewViewController* testVC = [storyBoard instantiateViewControllerWithIdentifier:@"TimerOverviewViewController"];
+	
+	TimerProfileStore* testStore = [[TimerProfileStore alloc] init];
+	[testStore setManagedObjectContext:[self managedObjectTestContext]];
+	
+	[testVC setTimerProfileStore:testStore];
+	
+	XCTAssertEqualObjects([(FetchedResultsDataSource *)testVC.tableView.dataSource fetchedResultsController], [testStore timerProfilesFetchedResultsController]);
 }
 
 @end
