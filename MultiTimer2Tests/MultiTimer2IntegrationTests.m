@@ -12,11 +12,34 @@
 #import "TimerOverviewViewController.h"
 #import "FetchedResultsDataSource.h"
 
-@interface MultiTimer2IntegrationTests : XCTestCase
-
+@interface MultiTimer2IntegrationTests : XCTestCase {
+	AppDelegate* appDelegate;
+}
 @end
 
 @implementation MultiTimer2IntegrationTests
+
+- (void)setUp
+{
+	appDelegate = [[UIApplication sharedApplication] delegate];
+}
+
+- (void)tearDown
+{
+	[self clearSQLiteStore];
+}
+
+- (void)clearSQLiteStore
+{
+	NSURL* sqliteFileURL = [[appDelegate applicationDocumentsDirectory] URLByAppendingPathComponent:@"MultiTimer2.sqlite"];
+
+	if ([[NSFileManager defaultManager] fileExistsAtPath:[sqliteFileURL path]]) {
+		NSError* fileDeletionError;
+		BOOL fileDeletionSuccess = [[NSFileManager defaultManager] removeItemAtURL:sqliteFileURL error:&fileDeletionError];
+		
+		NSAssert(fileDeletionSuccess, @"Clearing SQLite file failed with error: %@", fileDeletionError);
+	}
+}
 
 - (void)testAppStarts
 {
@@ -26,8 +49,6 @@
 
 - (void)testAppSetsUpCoreDataStack
 {
-	AppDelegate* appDelegate = [[UIApplication sharedApplication] delegate];
-	
 	NSManagedObjectContext* appContext = [appDelegate managedObjectContext];
 	
 	XCTAssertNotNil(appContext);
@@ -38,7 +59,6 @@
 
 - (void)testOverviewViewControllerTableViewIsInitializedWithFetchedResultsDataSource
 {
-    AppDelegate* appDelegate = [[UIApplication sharedApplication] delegate];
 	TimerOverviewViewController* overviewViewController = (TimerOverviewViewController *)[(UINavigationController *)appDelegate.window.rootViewController topViewController];
 	
 	XCTAssertTrue([[overviewViewController.tableView dataSource] isKindOfClass:[FetchedResultsDataSource class]]);
