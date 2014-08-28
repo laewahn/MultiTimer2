@@ -14,7 +14,7 @@
 @interface FetchedResultsDataSourceTests : XCTestCase {
 	FetchedResultsDataSource* testDataSource;
 	
-	NSArray* stubSectionWithOneRow;
+	NSArray* sections;
 	NSString* testReuseIdentifier;
 	NSIndexPath* pathForTestRow;
 }
@@ -26,25 +26,28 @@
 - (void)setUp
 {
 	testDataSource = [[FetchedResultsDataSource alloc] init];
+	
+	id<NSFetchedResultsSectionInfo> stubSectionWithOneRow = OCMProtocolMock(@protocol(NSFetchedResultsSectionInfo));
+	OCMStub([stubSectionWithOneRow objects]).andReturn(@[@"one"]);
+	sections = [NSArray arrayWithObject:stubSectionWithOneRow];
 
-	stubSectionWithOneRow = [NSArray arrayWithObject:@[@"one"]];
 	testReuseIdentifier = @"TestCell";
 	pathForTestRow = [NSIndexPath indexPathForItem:0 inSection:0];
 	
-	[testDataSource setFetchedResultsController:[self stubFetchedResultsControllerWithSectionsAndRows:stubSectionWithOneRow]];
+	[testDataSource setFetchedResultsController:[self stubFetchedResultsControllerWithSectionsAndRows:sections]];
 }
 
 - (NSFetchedResultsController *)stubFetchedResultsControllerWithSectionsAndRows:(NSArray *)sectionsAndRows
 {
 	id stubFRC = OCMClassMock([NSFetchedResultsController class]);
-	OCMStub([stubFRC sections]).andReturn(stubSectionWithOneRow);
+	OCMStub([stubFRC sections]).andReturn(sections);
 	
 	return stubFRC;
 }
 
 - (void)testDataSourceCanHaveFetchedResultsController
 {
-	id stubFRC = [self stubFetchedResultsControllerWithSectionsAndRows:stubSectionWithOneRow];
+	id stubFRC = [self stubFetchedResultsControllerWithSectionsAndRows:sections];
 	[testDataSource setFetchedResultsController:stubFRC];
 	XCTAssertEqualObjects([testDataSource fetchedResultsController], stubFRC);
 }
@@ -56,12 +59,12 @@
 
 - (void)testDataSourceReturnsNumberOfSectionsOfFetchedResultsController
 {
-	XCTAssertEqual([testDataSource numberOfSectionsInTableView:nil], [stubSectionWithOneRow count]);
+	XCTAssertEqual([testDataSource numberOfSectionsInTableView:nil], [sections count]);
 }
 
 - (void)testDataSourceReturnsNumberOfRowsForSectionOfFetchedResultsController
 {
-	XCTAssertEqual([testDataSource tableView:nil numberOfRowsInSection:0], [[stubSectionWithOneRow objectAtIndex:0] count]);
+	XCTAssertEqual([testDataSource tableView:nil numberOfRowsInSection:0], [[sections objectAtIndex:0] numberOfObjects]);
 }
 
 - (void)testTableViewCellReuseIdentifierCanBeSepecifiedForDataSource
@@ -84,7 +87,8 @@
 {
 	__block BOOL blockWasCalled = NO;
 	
-	NSString* expectedObject = [[stubSectionWithOneRow firstObject] firstObject];
+	NSArray* objectsInSection = [[sections firstObject] objects];
+	NSString* expectedObject = [objectsInSection firstObject];
 	
     void(^testConfigurationBlock)(UITableViewCell* cell, id object) = ^(UITableViewCell* cell, id object) {
 		blockWasCalled = YES;
