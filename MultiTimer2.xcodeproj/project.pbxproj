@@ -11,6 +11,7 @@
 		952823FC19AD0E4C007E5F7C /* MultiTimer2IntegrationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 952823FB19AD0E4C007E5F7C /* MultiTimer2IntegrationTests.m */; };
 		952823FE19AD167B007E5F7C /* TimerProfileStoreTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 952823FD19AD167B007E5F7C /* TimerProfileStoreTests.m */; };
 		9528240119AD16B1007E5F7C /* TimerProfileStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 9528240019AD16B1007E5F7C /* TimerProfileStore.m */; };
+		9528240319AFACD7007E5F7C /* MultiTimer2Fixtures.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 9528240219AFACB7007E5F7C /* MultiTimer2Fixtures.sqlite */; };
 		95B6229A19ABA0A900BB2708 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95B6229919ABA0A900BB2708 /* Foundation.framework */; };
 		95B6229C19ABA0A900BB2708 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95B6229B19ABA0A900BB2708 /* CoreGraphics.framework */; };
 		95B6229E19ABA0A900BB2708 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95B6229D19ABA0A900BB2708 /* UIKit.framework */; };
@@ -55,6 +56,7 @@
 		952823FD19AD167B007E5F7C /* TimerProfileStoreTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimerProfileStoreTests.m; sourceTree = "<group>"; };
 		952823FF19AD16B1007E5F7C /* TimerProfileStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimerProfileStore.h; sourceTree = "<group>"; };
 		9528240019AD16B1007E5F7C /* TimerProfileStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimerProfileStore.m; sourceTree = "<group>"; };
+		9528240219AFACB7007E5F7C /* MultiTimer2Fixtures.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = MultiTimer2Fixtures.sqlite; sourceTree = "<group>"; };
 		95B6229619ABA0A900BB2708 /* MultiTimer2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MultiTimer2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		95B6229919ABA0A900BB2708 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		95B6229B19ABA0A900BB2708 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -199,6 +201,7 @@
 				95B622EA19ABCCD000BB2708 /* FetchedResultsDataSourceTests.m */,
 				952823F919AD083B007E5F7C /* TimerOverviewViewControllerTests.m */,
 				952823FD19AD167B007E5F7C /* TimerProfileStoreTests.m */,
+				9528240219AFACB7007E5F7C /* MultiTimer2Fixtures.sqlite */,
 			);
 			path = MultiTimer2Tests;
 			sourceTree = "<group>";
@@ -241,6 +244,7 @@
 				95B622BC19ABA0A900BB2708 /* Frameworks */,
 				95B622BD19ABA0A900BB2708 /* Resources */,
 				304FCFF41E94465AB7C4B728 /* Copy Pods Resources */,
+				9528240419AFBFEE007E5F7C /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -301,6 +305,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				95B622CC19ABA0A900BB2708 /* InfoPlist.strings in Resources */,
+				9528240319AFACD7007E5F7C /* MultiTimer2Fixtures.sqlite in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -336,6 +341,19 @@
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
+		};
+		9528240419AFBFEE007E5F7C /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = printenv;
 		};
 /* End PBXShellScriptBuildPhase section */
 
