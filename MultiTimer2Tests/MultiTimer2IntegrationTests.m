@@ -15,6 +15,7 @@
 
 @interface MultiTimer2IntegrationTests : XCTestCase {
 	AppDelegate* appDelegate;
+	TimerOverviewViewController* overviewViewController;
 }
 @end
 
@@ -23,6 +24,7 @@
 - (void)setUp
 {
 	appDelegate = [[UIApplication sharedApplication] delegate];
+	overviewViewController = (TimerOverviewViewController *)[(UINavigationController *)appDelegate.window.rootViewController topViewController];
 }
 
 - (void)tearDown
