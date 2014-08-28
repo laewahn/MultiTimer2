@@ -11,6 +11,7 @@
 #import "AppDelegate.h"
 #import "TimerOverviewViewController.h"
 #import "FetchedResultsDataSource.h"
+#import "TimerProfileStore.h"
 
 @interface MultiTimer2IntegrationTests : XCTestCase {
 	AppDelegate* appDelegate;
@@ -64,4 +65,11 @@
 	XCTAssertTrue([[overviewViewController.tableView dataSource] isKindOfClass:[FetchedResultsDataSource class]]);
 }
 
+- (void)testOverviewViewControllerTimerProfileStoreIsSetUpWithManagedObjectContext
+{
+    TimerOverviewViewController* overviewViewController = (TimerOverviewViewController *)[(UINavigationController *)appDelegate.window.rootViewController topViewController];
+	
+	TimerProfileStore* store = [overviewViewController timerProfileStore];
+	XCTAssertEqualObjects([store managedObjectContext] , [appDelegate managedObjectContext]);
+}
 @end

@@ -10,33 +10,47 @@
 
 #import "TimerOverviewViewController.h"
 #import "FetchedResultsDataSource.h"
+#import "TimerProfileStore.h"
 
 @implementation AppDelegate
+
+@synthesize managedObjectContext = _managedObjectContext;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
 	// Override point for customization after application launch.
+	UINavigationController* navigationController = (UINavigationController *)[self.window rootViewController];
+	TimerOverviewViewController* overviewVC = (TimerOverviewViewController *)[navigationController topViewController];
+	TimerProfileStore* store = [[TimerProfileStore alloc] init];
+	[store setManagedObjectContext:[self managedObjectContext]];
+	[overviewVC setTimerProfileStore:store];
+	
     return YES;
 }
 
 - (NSManagedObjectContext *)managedObjectContext
 {
-	NSURL* modelURL = [[NSBundle mainBundle] URLForResource:@"MultiTimer2" withExtension:@"momd"];
-	NSManagedObjectModel* model = [[NSManagedObjectModel alloc] initWithContentsOfURL:modelURL];
+	if(_managedObjectContext == nil) {
+		NSURL* modelURL = [[NSBundle mainBundle] URLForResource:@"MultiTimer2" withExtension:@"momd"];
+		NSManagedObjectModel* model = [[NSManagedObjectModel alloc] initWithContentsOfURL:modelURL];
+		
+		NSPersistentStoreCoordinator* persistenStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:model];
+		NSURL* sqliteStoreURL = [[self applicationDocumentsDirectory] URLByAppendingPathComponent:@"MultiTimer2.sqlite"];
+		NSError* error;
+		[persistenStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType
+												configuration:nil
+														  URL:sqliteStoreURL
+													  options:nil
+														error:&error];
+		
+		NSManagedObjectContext* context = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSMainQueueConcurrencyType];
+		[context setPersistentStoreCoordinator:persistenStoreCoordinator];
+		
+		_managedObjectContext = context;
+	}
 	
-	NSPersistentStoreCoordinator* persistenStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:model];
-	NSURL* sqliteStoreURL = [[self applicationDocumentsDirectory] URLByAppendingPathComponent:@"MultiTimer2.sqlite"];
-	NSError* error;
-	[persistenStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType
-											configuration:nil
-													  URL:sqliteStoreURL
-												  options:nil
-													error:&error];
 	
-	NSManagedObjectContext* context = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSMainQueueConcurrencyType];
-	[context setPersistentStoreCoordinator:persistenStoreCoordinator];
-	
-	return context;
+	return _managedObjectContext;
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application
