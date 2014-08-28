@@ -1,0 +1,32 @@
+=== Timer management ===
+* The user is presented a list of timers
+* The user can add a new timer
+	* The user can select the duration of a timer
+	* The user can select a name for the timer
+* The user can delete a timer
+
+=== Timer functionality ===
+* The user can select a timer
+* A timer is initialized with its duration
+* The user can start the timer
+	* When the timer is started, it starts to count down the time
+* When the timer is running, the user can pause or stop the timer
+	* When the user pauses the timer, the timer no longer counts down
+		* The user can select to continue or reset the timer
+		* Continue continues the countdown
+		* Reset resets the timer to the initial duration
+	* When the user stops the timer, it is paused and reset
+* When a timer reaches 0, it is paused and an alert is posted together with a sound
+* When the alert is dismissed, the timer is resetted
+
+=== Timer overview ===
+* When the user navigates to the overview, it shows the updated remaining duration for started timers
+* The timers count down in real time
+* The user can start timers in the overview
+	* The user can pause timers in the overview
+* The user can reset timers in the overview
+	* The user can stop timers in the overview
+
+=== Background timers ===
+* When the application is sent to background, timers that reach 0 post notifications
+* When the application returns from background, running timers are updated to their new duration
