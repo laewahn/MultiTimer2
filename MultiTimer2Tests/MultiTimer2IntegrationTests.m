@@ -62,21 +62,6 @@
 	XCTAssertNotNil(app);
 }
 
-- (void)testOverviewViewControllerTableViewIsInitializedWithFetchedResultsDataSource
-{
-	overviewViewController = (TimerOverviewViewController *)[(UINavigationController *)appDelegate.window.rootViewController topViewController];
-	
-	XCTAssertTrue([[overviewViewController.tableView dataSource] isKindOfClass:[FetchedResultsDataSource class]]);
-}
-
-- (void)testOverviewViewControllerTimerProfileStoreIsSetUpWithManagedObjectContext
-{
-    overviewViewController = (TimerOverviewViewController *)[(UINavigationController *)appDelegate.window.rootViewController topViewController];
-	
-	TimerProfileStore* store = [overviewViewController timerProfileStore];
-	XCTAssertEqualObjects([store managedObjectContext] , [appDelegate managedObjectContext]);
-}
-
 - (void)testWhenTheAppStartsTheUserIsPresentedAListOfTimers
 {
 	NSIndexPath* firstCellIndexPath = [NSIndexPath indexPathForItem:0 inSection:0];

@@ -36,7 +36,7 @@
 	XCTAssertTrue([[testVC.tableView dataSource] isKindOfClass:[FetchedResultsDataSource class]]);
 }
 
-- (void)testSettingTimerProfileStoreOnOverviewViewControllerConnectsTimerProfileFetchedResultsControllerWithDataSource
+- (void)testSettingTimerProfileStoreOnOverviewViewControllerSetsTimerProfileFetchedResultsControllerOnDataSource
 {
 	TimerProfileStore* testStore = [[TimerProfileStore alloc] init];
 	[testStore setManagedObjectContext:[self managedObjectTestContext]];

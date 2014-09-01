@@ -10,6 +10,9 @@
 
 #import "AppDelegate.h"
 
+#import "TimerOverviewViewController.h"
+#import "TimerProfileStore.h"
+
 @interface AppDelegateTests : XCTestCase {
 	AppDelegate* appDelegate;
 }
@@ -31,6 +34,14 @@
 	XCTAssertEqual([appContext concurrencyType], NSMainQueueConcurrencyType);
 	XCTAssertNotNil([appContext persistentStoreCoordinator]);
 	XCTAssertNotEqual([appContext.persistentStoreCoordinator.persistentStores count], 0);
+}
+
+- (void)testAppDelegateSetsTimerProfileStoreOnOverviewViewControllerWithManagedObjectContext
+{
+    TimerOverviewViewController* overviewViewController = (TimerOverviewViewController *)[(UINavigationController *)appDelegate.window.rootViewController topViewController];
+	
+	TimerProfileStore* store = [overviewViewController timerProfileStore];
+	XCTAssertEqualObjects([store managedObjectContext] , [appDelegate managedObjectContext]);
 }
 
 @end

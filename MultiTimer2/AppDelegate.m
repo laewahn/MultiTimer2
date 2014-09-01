@@ -20,9 +20,11 @@
 {
 	// Override point for customization after application launch.
 	UINavigationController* navigationController = (UINavigationController *)[self.window rootViewController];
-	TimerOverviewViewController* overviewVC = (TimerOverviewViewController *)[navigationController topViewController];
+	
 	TimerProfileStore* store = [[TimerProfileStore alloc] init];
 	[store setManagedObjectContext:[self managedObjectContext]];
+	
+	TimerOverviewViewController* overviewVC = (TimerOverviewViewController *)[navigationController topViewController];
 	[overviewVC setTimerProfileStore:store];
 	
     return YES;
