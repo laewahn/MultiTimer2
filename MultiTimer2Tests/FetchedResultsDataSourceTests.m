@@ -94,32 +94,29 @@
 	XCTAssertEqualObjects([testDataSource tableView:stubTableView cellForRowAtIndexPath:pathForTestRow], expectedCell);
 }
 
-- (void)testDataSourceUsesBlockToConfigureCellContent
+- (void)testDataSourceHasDelegate
 {
-	__block BOOL blockWasCalled = NO;
+    id<FetchedResultsDataSourceDelegate> delegateMock = OCMProtocolMock(@protocol(FetchedResultsDataSourceDelegate));
+	[testDataSource setDelegate:delegateMock];
 	
+	XCTAssertEqualObjects([testDataSource delegate], delegateMock);
+}
+
+- (void)testDataSourceCallsDelegateForCellConfiguration
+{
 	NSArray* objectsInSection = [[sections firstObject] objects];
 	NSString* expectedObject = [objectsInSection firstObject];
-	
-    void(^testConfigurationBlock)(UITableViewCell* cell, id object) = ^(UITableViewCell* cell, id object) {
-		blockWasCalled = YES;
-		XCTAssertNotNil(cell);
-		XCTAssertEqual(object, expectedObject);
-		XCTAssertTrue([object isKindOfClass:[NSString class]]);
-		
-		[cell.textLabel setText:object];
-	};
-	
-	[testDataSource setCellConfigurationBlock:testConfigurationBlock];
-	
-	UITableViewCell* someCell = [[UITableViewCell alloc] init];
-	UITableView* stubTableView = [self stubTableViewDequeueingCell:someCell forReuseIdentifier:OCMOCK_ANY];
 	OCMStub([testDataSource.fetchedResultsController objectAtIndexPath:pathForTestRow]).andReturn(expectedObject);
+	
+	UITableViewCell* expectedCell = [[UITableViewCell alloc] init];
+	UITableView* stubTableView = [self stubTableViewDequeueingCell:expectedCell forReuseIdentifier:OCMOCK_ANY];
+
+	id<FetchedResultsDataSourceDelegate> delegateMock = OCMProtocolMock(@protocol(FetchedResultsDataSourceDelegate));
+	[testDataSource setDelegate:delegateMock];
 	
 	[testDataSource tableView:stubTableView cellForRowAtIndexPath:pathForTestRow];
 	
-	XCTAssertTrue(blockWasCalled);
-	XCTAssertEqualObjects([someCell.textLabel text], expectedObject);
+	OCMVerify([delegateMock configureCell:expectedCell withObject:expectedObject]);
 }
 
 - (UITableView *)stubTableViewDequeueingCell:(UITableViewCell *)someCell forReuseIdentifier:(NSString *)reuseIdentifier

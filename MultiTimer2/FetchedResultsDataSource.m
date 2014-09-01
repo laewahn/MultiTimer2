@@ -33,11 +33,10 @@
 {
 	UITableViewCell* cellToConfigure = [tableView dequeueReusableCellWithIdentifier:[self cellReuseIdentifier]];
 	
-	if ([self cellConfigurationBlock]) {
-		id objectForConfiguration = [self.fetchedResultsController objectAtIndexPath:indexPath];
-		[self cellConfigurationBlock](cellToConfigure, objectForConfiguration);
-	}
-
+	id objectForConfiguration = [self.fetchedResultsController objectAtIndexPath:indexPath];
+		
+	[self.delegate configureCell:cellToConfigure withObject:objectForConfiguration];
+	
 	return cellToConfigure;
 }
 

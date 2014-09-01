@@ -8,13 +8,15 @@
 
 #import <Foundation/Foundation.h>
 
-
-typedef void(^FetchedResultsDataSourceCellConfigurationBlock)(UITableViewCell* cell, id object);
+@protocol FetchedResultsDataSourceDelegate <NSObject>
+- (void) configureCell:(UITableViewCell *)someCell withObject:(id)someObject;
+@end
 
 @interface FetchedResultsDataSource : NSObject<UITableViewDataSource>
 
 @property(nonatomic, strong) NSFetchedResultsController* fetchedResultsController;
 @property(nonatomic, strong) NSString* cellReuseIdentifier;
-@property(nonatomic, strong) FetchedResultsDataSourceCellConfigurationBlock cellConfigurationBlock;
+
+@property(nonatomic, weak) id<FetchedResultsDataSourceDelegate> delegate;
 
 @end
