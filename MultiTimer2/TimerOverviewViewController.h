@@ -9,10 +9,11 @@
 #import <UIKit/UIKit.h>
 
 #import <CoreData/CoreData.h>
+#import "FetchedResultsDataSource.h"
 
 @class TimerProfileStore;
 
-@interface TimerOverviewViewController : UITableViewController
+@interface TimerOverviewViewController : UITableViewController <FetchedResultsDataSourceDelegate>
 
 @property(nonatomic, strong) IBOutlet TimerProfileStore* timerProfileStore;
 

@@ -64,13 +64,13 @@
 
 - (void)testWhenTheAppStartsTheUserIsPresentedAListOfTimers
 {
+	NSArray* cells = [overviewViewController.tableView visibleCells];
+	XCTAssertNotEqual([cells count], 0);
+
 	NSIndexPath* firstCellIndexPath = [NSIndexPath indexPathForItem:0 inSection:0];
 	UITableViewCell* firstCell = [overviewViewController.tableView cellForRowAtIndexPath:firstCellIndexPath];
-	
-	NSArray* cells = [overviewViewController.tableView visibleCells];
-	XCTAssertNotNil(cells);
-	
-	XCTAssertNotEqual([cells count], 0);
+	XCTAssertEqualObjects([firstCell.textLabel text], @"Black Tea");
+	XCTAssertEqualObjects([firstCell.detailTextLabel text], @"03:00");
 }
 
 

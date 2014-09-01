@@ -9,7 +9,7 @@
 #import "TimerOverviewViewController.h"
 
 #import "DetailViewController.h"
-#import "FetchedResultsDataSource.h"
+#import "TimerProfileViewModel.h"
 #import "TimerProfileStore.h"
 
 @interface TimerOverviewViewController ()
@@ -29,6 +29,9 @@
 
 	UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(insertNewObject:)];
 	self.navigationItem.rightBarButtonItem = addButton;
+
+	FetchedResultsDataSource* dataSource = (FetchedResultsDataSource *)[self.tableView dataSource];
+	[dataSource setDelegate:self];
 }
 
 - (void)setTimerProfileStore:(TimerProfileStore *)timerProfileStore
@@ -37,6 +40,7 @@
 	
 	FetchedResultsDataSource* dataSource = (FetchedResultsDataSource *)[self.tableView dataSource];
 	[dataSource setFetchedResultsController:[_timerProfileStore timerProfilesFetchedResultsController]];
+	
 	[dataSource setCellReuseIdentifier:@"Cell"];
 	
 	[self.tableView reloadData];
@@ -45,6 +49,14 @@
 - (void)insertNewObject:(id)sender
 {
 
+}
+
+- (void)configureCell:(UITableViewCell *)someCell withObject:(id)someObject
+{
+	TimerProfileViewModel* tpViewModel = [[TimerProfileViewModel alloc] initWithTimerProfile:someObject];
+	
+	[someCell.textLabel setText:[tpViewModel name]];
+	[someCell.detailTextLabel setText:[tpViewModel duration]];
 }
 
 @end

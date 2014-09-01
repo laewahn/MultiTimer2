@@ -14,9 +14,11 @@
 #import "TimerOverviewViewController.h"
 #import "FetchedResultsDataSource.h"
 #import "TimerProfileStore.h"
+#import "TimerProfile.h"
 
 @interface TimerOverviewViewControllerTests : XCTestCase {
 	TimerOverviewViewController* testVC;
+	TimerProfileStore* testStore;
 }
 @end
 
@@ -28,21 +30,25 @@
 	UIStoryboard* storyBoard = [UIStoryboard storyboardWithName:@"Main" bundle:mainBundle];
 	
     testVC = [storyBoard instantiateViewControllerWithIdentifier:@"TimerOverviewViewController"];
+	
+	testStore = [[TimerProfileStore alloc] init];
+	[testStore setManagedObjectContext:[self managedObjectTestContext]];
+	[testVC setTimerProfileStore:testStore];
 }
 
-- (void)testOverviewViewControllerHasFetchedResultsDataSourceAfterLoading
+- (void)testTableViewHasFetchedResultsDataSourceAfterLoading
 {
 	XCTAssertNotNil([testVC.tableView dataSource]);
 	XCTAssertTrue([[testVC.tableView dataSource] isKindOfClass:[FetchedResultsDataSource class]]);
 }
 
+- (void)testOverviewViewControllerSetsItselfAsDelegateForFetchedResultsController
+{
+	XCTAssertEqualObjects([(FetchedResultsDataSource *)testVC.tableView.dataSource delegate], testVC);
+}
+
 - (void)testOverviewViewControllerSetsTimerProfileFetchedResultsControllerOnDataSource
 {
-	TimerProfileStore* testStore = [[TimerProfileStore alloc] init];
-	[testStore setManagedObjectContext:[self managedObjectTestContext]];
-	
-	[testVC setTimerProfileStore:testStore];
-	
 	XCTAssertEqualObjects([(FetchedResultsDataSource *)testVC.tableView.dataSource fetchedResultsController], [testStore timerProfilesFetchedResultsController]);
 }
 
@@ -54,6 +60,19 @@
 	[testVC setTimerProfileStore:nil];
 	
 	OCMVerify([mockTableView reloadData]);
+}
+
+- (void)testOverviewViewControllerConfiguresCells
+{
+	UITableViewCell* someCell = [testVC.tableView dequeueReusableCellWithIdentifier:@"Cell"];
+	
+	NSString* profileName = @"The final countdown.";
+	TimerProfile* someProfile = [testStore createTimerProfileWithName:profileName duration:10];
+	
+	[testVC configureCell:someCell withObject:someProfile];
+	
+	XCTAssertEqualObjects([someCell.textLabel text], profileName);
+	XCTAssertEqualObjects([someCell.detailTextLabel text], @"00:10");
 }
 
 
