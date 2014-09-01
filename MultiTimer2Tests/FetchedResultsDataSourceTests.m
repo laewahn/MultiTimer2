@@ -13,12 +13,16 @@
 
 #define OCMOCK_ANY_ERROR ((NSError __autoreleasing **)[OCMArg anyPointer])
 
+static NSString* const kTestReuseIdentifier = @"TestCell";
+
 @interface FetchedResultsDataSourceTests : XCTestCase {
 	FetchedResultsDataSource* testDataSource;
 	
 	NSArray* sections;
-	NSString* testReuseIdentifier;
 	NSIndexPath* pathForTestRow;
+	
+	UITableViewCell* someCell;
+	UITableView* stubTableView;
 }
 
 @end
@@ -33,9 +37,11 @@
 	OCMStub([stubSectionWithOneRow objects]).andReturn(@[@"one"]);
 	sections = [NSArray arrayWithObject:stubSectionWithOneRow];
 
-	testReuseIdentifier = @"TestCell";
 	pathForTestRow = [NSIndexPath indexPathForItem:0 inSection:0];
-	
+
+	someCell = [[UITableViewCell alloc] init];
+	stubTableView = [self stubTableViewDequeueingCell:someCell forReuseIdentifier:OCMOCK_ANY];
+
 	[testDataSource setFetchedResultsController:[self stubFetchedResultsControllerWithSectionsAndRows:sections]];
 }
 
@@ -80,18 +86,15 @@
 
 - (void)testTableViewCellReuseIdentifierCanBeSepecifiedForDataSource
 {
-	[testDataSource setCellReuseIdentifier:testReuseIdentifier];
-	XCTAssertEqualObjects([testDataSource cellReuseIdentifier], testReuseIdentifier);
+	[testDataSource setCellReuseIdentifier:kTestReuseIdentifier];
+	XCTAssertEqualObjects([testDataSource cellReuseIdentifier], kTestReuseIdentifier);
 }
 
 - (void)testDataSourceReturnsDequeuedCellWithGivenIdentifierForRow
 {
-	[testDataSource setCellReuseIdentifier:testReuseIdentifier];
-	UITableViewCell* expectedCell = [[UITableViewCell alloc] init];
+	[testDataSource setCellReuseIdentifier:kTestReuseIdentifier];
 	
-    UITableView* stubTableView = [self stubTableViewDequeueingCell:expectedCell forReuseIdentifier:testReuseIdentifier];
-	
-	XCTAssertEqualObjects([testDataSource tableView:stubTableView cellForRowAtIndexPath:pathForTestRow], expectedCell);
+	XCTAssertEqualObjects([testDataSource tableView:stubTableView cellForRowAtIndexPath:pathForTestRow], someCell);
 }
 
 - (void)testDataSourceHasDelegate
@@ -106,26 +109,23 @@
 {
 	NSArray* objectsInSection = [[sections firstObject] objects];
 	NSString* expectedObject = [objectsInSection firstObject];
-	OCMStub([testDataSource.fetchedResultsController objectAtIndexPath:pathForTestRow]).andReturn(expectedObject);
 	
-	UITableViewCell* expectedCell = [[UITableViewCell alloc] init];
-	UITableView* stubTableView = [self stubTableViewDequeueingCell:expectedCell forReuseIdentifier:OCMOCK_ANY];
-
+	OCMStub([testDataSource.fetchedResultsController objectAtIndexPath:pathForTestRow]).andReturn(expectedObject);
+		
 	id<FetchedResultsDataSourceDelegate> delegateMock = OCMProtocolMock(@protocol(FetchedResultsDataSourceDelegate));
 	[testDataSource setDelegate:delegateMock];
 	
 	[testDataSource tableView:stubTableView cellForRowAtIndexPath:pathForTestRow];
 	
-	OCMVerify([delegateMock configureCell:expectedCell withObject:expectedObject]);
+	OCMVerify([delegateMock configureCell:someCell withObject:expectedObject]);
 }
 
-- (UITableView *)stubTableViewDequeueingCell:(UITableViewCell *)someCell forReuseIdentifier:(NSString *)reuseIdentifier
+- (UITableView *)stubTableViewDequeueingCell:(UITableViewCell *)aCell forReuseIdentifier:(NSString *)reuseIdentifier
 {
 	UITableView* tableViewStub = OCMClassMock([UITableView class]);
-	OCMStub([tableViewStub dequeueReusableCellWithIdentifier:reuseIdentifier]).andReturn(someCell);
+	OCMStub([tableViewStub dequeueReusableCellWithIdentifier:reuseIdentifier]).andReturn(aCell);
 	
-	return tableViewStub;
-	
+	return tableViewStub;	
 }
 
 @end

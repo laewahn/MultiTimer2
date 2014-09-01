@@ -9,7 +9,6 @@
 #import "AppDelegate.h"
 
 #import "TimerOverviewViewController.h"
-#import "FetchedResultsDataSource.h"
 #import "TimerProfileStore.h"
 
 @implementation AppDelegate

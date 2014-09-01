@@ -18,7 +18,6 @@
 	
 	NSString* someProfileName;
 	NSTimeInterval someProfileDuration;
-
 }
 @end
 
@@ -89,7 +88,6 @@
 	XCTAssertTrue([someObject isKindOfClass:[TimerProfile class]]);
 	XCTAssertEqualObjects([someObject name], name);
 	XCTAssertEqual([(TimerProfile *)someObject duration], duration);
-
 }
 
 - (void)testFetchedResultsControllerIsInitializedLazily

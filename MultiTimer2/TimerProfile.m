@@ -8,7 +8,6 @@
 
 #import "TimerProfile.h"
 
-
 @implementation TimerProfile
 
 @dynamic name;

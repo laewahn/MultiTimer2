@@ -11,7 +11,6 @@
 #import "AppDelegate.h"
 #import "TimerOverviewViewController.h"
 #import "FetchedResultsDataSource.h"
-#import "TimerProfileStore.h"
 
 @interface MultiTimer2IntegrationTests : XCTestCase {
 	AppDelegate* appDelegate;
@@ -52,7 +51,7 @@
 																			 error:&addStoreError];
 	NSAssert(addStoreError == nil, @"Adding store: %@ failed with error: %@", fixtureStore, addStoreError);
 	
-	[overviewViewController.timerProfileStore.timerProfilesFetchedResultsController performFetch:nil];
+	[((FetchedResultsDataSource *)overviewViewController.tableView.dataSource).fetchedResultsController performFetch:nil];
 	[overviewViewController.tableView reloadData];
 }
 
