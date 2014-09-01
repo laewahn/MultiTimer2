@@ -44,7 +44,6 @@
 		8DF37BEC441449BA9D16C66B /* OCClassMockObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 38CC0851C68D4A9A8E14E85C /* OCClassMockObject.h */; };
 		8EF90A2C6FE74E408F5969E5 /* OCProtocolMockObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BC5B53A3F1A4395AC689968 /* OCProtocolMockObject.m */; };
 		9364637A118C4F0AB96708EC /* NSMethodSignature+OCMAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = AA8B62CFEC1D427C9CF86808 /* NSMethodSignature+OCMAdditions.h */; };
-		9528240619B4D73F007E5F7C /* AppDelegateTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9528240519B4D73F007E5F7C /* AppDelegateTests.m */; };
 		9FE6D998821143E6963AA621 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5414EB46227845888E6F3A9B /* Foundation.framework */; };
 		A1D60913380B497A84BF87E5 /* OCMArg.h in Headers */ = {isa = PBXBuildFile; fileRef = 44E7621550D24C068803F697 /* OCMArg.h */; };
 		A211DDB5F97346439802DA3A /* OCMNotificationPoster.m in Sources */ = {isa = PBXBuildFile; fileRef = 199503CCB9164510AC0FA264 /* OCMNotificationPoster.m */; };
@@ -137,7 +136,6 @@
 		8BC5B53A3F1A4395AC689968 /* OCProtocolMockObject.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = OCProtocolMockObject.m; path = Source/OCMock/OCProtocolMockObject.m; sourceTree = "<group>"; };
 		8D1DBBC51161420AAD97748B /* Pods-MultiTimer2Tests-OCMock-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-MultiTimer2Tests-OCMock-dummy.m"; sourceTree = "<group>"; };
 		93A52D1FD98E4BA98CF28E73 /* OCMInvocationMatcher.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = OCMInvocationMatcher.h; path = Source/OCMock/OCMInvocationMatcher.h; sourceTree = "<group>"; };
-		9528240519B4D73F007E5F7C /* AppDelegateTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegateTests.m; path = ../MultiTimer2Tests/AppDelegateTests.m; sourceTree = "<group>"; };
 		964F6D787A3C4D78B055FBB6 /* Pods-MultiTimer2Tests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-MultiTimer2Tests-dummy.m"; sourceTree = "<group>"; };
 		A2852B7DC9B0487B8F2328DC /* OCMConstraint.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = OCMConstraint.h; path = Source/OCMock/OCMConstraint.h; sourceTree = "<group>"; };
 		A33591BA2C08434482B6505B /* OCPartialMockObject.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = OCPartialMockObject.m; path = Source/OCMock/OCPartialMockObject.m; sourceTree = "<group>"; };
@@ -333,7 +331,6 @@
 		FA9EE9719DC545D3A7CCE291 = {
 			isa = PBXGroup;
 			children = (
-				9528240519B4D73F007E5F7C /* AppDelegateTests.m */,
 				B31FBC2D513143179993207C /* Podfile */,
 				611E96FBE61A4EC3AA5ADAB2 /* Frameworks */,
 				4DC3E881A17840319D341129 /* Pods */,
@@ -491,7 +488,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9528240619B4D73F007E5F7C /* AppDelegateTests.m in Sources */,
 				BD839D67410D40B6B61D84E3 /* Pods-MultiTimer2Tests-dummy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

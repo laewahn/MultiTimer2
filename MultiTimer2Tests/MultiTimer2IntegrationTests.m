@@ -62,16 +62,6 @@
 	XCTAssertNotNil(app);
 }
 
-- (void)testAppSetsUpCoreDataStack
-{
-	NSManagedObjectContext* appContext = [appDelegate managedObjectContext];
-	
-	XCTAssertNotNil(appContext);
-	XCTAssertEqual([appContext concurrencyType], NSMainQueueConcurrencyType);
-	XCTAssertNotNil([appContext persistentStoreCoordinator]);
-	XCTAssertNotEqual([appContext.persistentStoreCoordinator.persistentStores count], 0);
-}
-
 - (void)testOverviewViewControllerTableViewIsInitializedWithFetchedResultsDataSource
 {
 	overviewViewController = (TimerOverviewViewController *)[(UINavigationController *)appDelegate.window.rootViewController topViewController];
