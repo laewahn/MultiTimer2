@@ -11,6 +11,8 @@
 
 #import "FetchedResultsDataSource.h"
 
+#define OCMOCK_ANY_ERROR ((NSError __autoreleasing **)[OCMArg anyPointer])
+
 @interface FetchedResultsDataSourceTests : XCTestCase {
 	FetchedResultsDataSource* testDataSource;
 	
@@ -50,6 +52,15 @@
 	id stubFRC = [self stubFetchedResultsControllerWithSectionsAndRows:sections];
 	[testDataSource setFetchedResultsController:stubFRC];
 	XCTAssertEqualObjects([testDataSource fetchedResultsController], stubFRC);
+}
+
+- (void)testDataSourcePerformsFetchWhenFetchedResultsControllerIsSet
+{
+    id stubFRC = OCMClassMock([NSFetchedResultsController class]);
+	
+	[testDataSource setFetchedResultsController:stubFRC];
+	
+	OCMVerify([stubFRC performFetch:OCMOCK_ANY_ERROR]);
 }
 
 - (void)testDataSourceImplementsUITableViewDataSourceProtocol

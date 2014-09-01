@@ -10,6 +10,14 @@
 
 @implementation FetchedResultsDataSource
 
+- (void)setFetchedResultsController:(NSFetchedResultsController *)fetchedResultsController
+{
+	_fetchedResultsController = fetchedResultsController;
+	
+	NSError* fetchError;
+	[_fetchedResultsController performFetch:&fetchError];
+}
+
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
 	return [self.fetchedResultsController.sections count];
