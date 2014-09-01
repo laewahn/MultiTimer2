@@ -19,7 +19,6 @@
 
 - (void)awakeFromNib
 {
-//	[(FetchedResultsDataSource *)self.tableView.dataSource setFetchedResultsController:[self.timerProfileStore timerProfilesFetchedResultsController]];
 }
 
 - (void)viewDidLoad
@@ -30,12 +29,21 @@
 
 	UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(insertNewObject:)];
 	self.navigationItem.rightBarButtonItem = addButton;
+	
+	[(FetchedResultsDataSource *)self.tableView.dataSource setFetchedResultsController:[self.timerProfileStore timerProfilesFetchedResultsController]];
+	
+	NSError* fetchError;
+	[self.timerProfileStore.timerProfilesFetchedResultsController performFetch:&fetchError];
+	[self.tableView reloadData];
 }
 
 - (void)setTimerProfileStore:(TimerProfileStore *)timerProfileStore
 {
 	_timerProfileStore = timerProfileStore;
-	[(FetchedResultsDataSource *)self.tableView.dataSource setFetchedResultsController:[_timerProfileStore timerProfilesFetchedResultsController]];
+	
+	FetchedResultsDataSource* dataSource = (FetchedResultsDataSource *)[self.tableView dataSource];
+	[dataSource setFetchedResultsController:[_timerProfileStore timerProfilesFetchedResultsController]];
+	[dataSource setCellReuseIdentifier:@"Cell"];
 }
 
 - (void)insertNewObject:(id)sender

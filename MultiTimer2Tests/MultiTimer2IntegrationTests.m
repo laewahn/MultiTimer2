@@ -25,23 +25,35 @@
 {
 	appDelegate = [[UIApplication sharedApplication] delegate];
 	overviewViewController = (TimerOverviewViewController *)[(UINavigationController *)appDelegate.window.rootViewController topViewController];
+	
+	[self replaceTheSQLiteStoreWithTheFixtureStore];
 }
 
-- (void)tearDown
+- (void)replaceTheSQLiteStoreWithTheFixtureStore
 {
-	[self clearSQLiteStore];
-}
-
-- (void)clearSQLiteStore
-{
-	NSURL* sqliteFileURL = [[appDelegate applicationDocumentsDirectory] URLByAppendingPathComponent:@"MultiTimer2.sqlite"];
-
-	if ([[NSFileManager defaultManager] fileExistsAtPath:[sqliteFileURL path]]) {
-		NSError* fileDeletionError;
-		BOOL fileDeletionSuccess = [[NSFileManager defaultManager] removeItemAtURL:sqliteFileURL error:&fileDeletionError];
+	[appDelegate.managedObjectContext reset];
+	
+	NSPersistentStoreCoordinator* storeCoordinator = [appDelegate.managedObjectContext persistentStoreCoordinator];
+	for (NSPersistentStore* store in [storeCoordinator persistentStores]) {
+		NSError* removeStoreError;
+		[storeCoordinator removePersistentStore:store error:&removeStoreError];
 		
-		NSAssert(fileDeletionSuccess, @"Clearing SQLite file failed with error: %@", fileDeletionError);
+		NSAssert(removeStoreError == nil, @"Removing store: %@ failed with error: %@", store, removeStoreError);
 	}
+	
+	NSBundle* testBundle = [NSBundle bundleForClass:[self class]];
+	NSURL* urlForFixtureDatabase = [testBundle URLForResource:@"MultiTimer2Fixtures" withExtension:@"sqlite"];
+	
+	NSError* addStoreError;
+	NSPersistentStore* fixtureStore = [storeCoordinator addPersistentStoreWithType:NSSQLiteStoreType
+																	 configuration:nil
+																			   URL:urlForFixtureDatabase
+																		   options:nil
+																			 error:&addStoreError];
+	NSAssert(addStoreError == nil, @"Adding store: %@ failed with error: %@", fixtureStore, addStoreError);
+	
+	[overviewViewController.timerProfileStore.timerProfilesFetchedResultsController performFetch:nil];
+	[overviewViewController.tableView reloadData];
 }
 
 - (void)testAppStarts
@@ -62,16 +74,29 @@
 
 - (void)testOverviewViewControllerTableViewIsInitializedWithFetchedResultsDataSource
 {
-	TimerOverviewViewController* overviewViewController = (TimerOverviewViewController *)[(UINavigationController *)appDelegate.window.rootViewController topViewController];
+	overviewViewController = (TimerOverviewViewController *)[(UINavigationController *)appDelegate.window.rootViewController topViewController];
 	
 	XCTAssertTrue([[overviewViewController.tableView dataSource] isKindOfClass:[FetchedResultsDataSource class]]);
 }
 
 - (void)testOverviewViewControllerTimerProfileStoreIsSetUpWithManagedObjectContext
 {
-    TimerOverviewViewController* overviewViewController = (TimerOverviewViewController *)[(UINavigationController *)appDelegate.window.rootViewController topViewController];
+    overviewViewController = (TimerOverviewViewController *)[(UINavigationController *)appDelegate.window.rootViewController topViewController];
 	
 	TimerProfileStore* store = [overviewViewController timerProfileStore];
 	XCTAssertEqualObjects([store managedObjectContext] , [appDelegate managedObjectContext]);
 }
+
+- (void)testWhenTheAppStartsTheUserIsPresentedAListOfTimers
+{
+	NSIndexPath* firstCellIndexPath = [NSIndexPath indexPathForItem:0 inSection:0];
+	UITableViewCell* firstCell = [overviewViewController.tableView cellForRowAtIndexPath:firstCellIndexPath];
+	
+	NSArray* cells = [overviewViewController.tableView visibleCells];
+	XCTAssertNotNil(cells);
+	
+	XCTAssertNotEqual([cells count], 0);
+}
+
+
 @end
