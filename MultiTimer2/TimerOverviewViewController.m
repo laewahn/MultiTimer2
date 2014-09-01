@@ -29,12 +29,6 @@
 
 	UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(insertNewObject:)];
 	self.navigationItem.rightBarButtonItem = addButton;
-	
-	[(FetchedResultsDataSource *)self.tableView.dataSource setFetchedResultsController:[self.timerProfileStore timerProfilesFetchedResultsController]];
-	
-	NSError* fetchError;
-	[self.timerProfileStore.timerProfilesFetchedResultsController performFetch:&fetchError];
-	[self.tableView reloadData];
 }
 
 - (void)setTimerProfileStore:(TimerProfileStore *)timerProfileStore
@@ -44,6 +38,8 @@
 	FetchedResultsDataSource* dataSource = (FetchedResultsDataSource *)[self.tableView dataSource];
 	[dataSource setFetchedResultsController:[_timerProfileStore timerProfilesFetchedResultsController]];
 	[dataSource setCellReuseIdentifier:@"Cell"];
+	
+	[self.tableView reloadData];
 }
 
 - (void)insertNewObject:(id)sender

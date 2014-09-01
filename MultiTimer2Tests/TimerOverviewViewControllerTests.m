@@ -7,6 +7,8 @@
 //
 
 #import <XCTest/XCTest.h>
+#import <OCMock/OCMock.h>
+
 #import "XCTest+CoreDataTestStack.h"
 
 #import "TimerOverviewViewController.h"
@@ -42,6 +44,16 @@
 	[testVC setTimerProfileStore:testStore];
 	
 	XCTAssertEqualObjects([(FetchedResultsDataSource *)testVC.tableView.dataSource fetchedResultsController], [testStore timerProfilesFetchedResultsController]);
+}
+
+- (void)testOverviewViewControllerReloadsTableWhenStoreIsSet
+{
+    id mockTableView = OCMClassMock([UITableView class]);
+	
+	[testVC setTableView:mockTableView];
+	[testVC setTimerProfileStore:nil];
+	
+	OCMVerify([mockTableView reloadData]);
 }
 
 @end
