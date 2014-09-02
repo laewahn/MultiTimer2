@@ -45,7 +45,7 @@
 	[self.tableView reloadData];
 }
 
-- (void)insertNewObject:(id)sender
+- (void)createNewProfile:(id)sender
 {
 
 }
