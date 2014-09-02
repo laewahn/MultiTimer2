@@ -18,10 +18,6 @@
 
 @implementation TimerOverviewViewController
 
-- (void)awakeFromNib
-{
-}
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];

@@ -13,9 +13,7 @@
 @interface TimerProfile : NSManagedObject
 
 + (instancetype) createWithManagedObjectContext:(NSManagedObjectContext *)context;
-
 + (instancetype) createWithName:(NSString *)profileName duration:(NSTimeInterval)profileDuration managedObjectContext:(NSManagedObjectContext *)context;
-
 
 @property (nonatomic, retain) NSString* name;
 @property (nonatomic) double duration;
