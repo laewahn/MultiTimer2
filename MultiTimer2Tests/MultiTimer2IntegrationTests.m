@@ -72,5 +72,13 @@
 	XCTAssertEqualObjects([firstCell.detailTextLabel text], @"03:00");
 }
 
+- (void)testWhenTheUserPressesTheAddButtonTheCreateTimerProfileViewIsPresented
+{
+    UIBarButtonItem* addButton = [overviewViewController addButton];
+	[overviewViewController performSelectorOnMainThread:[addButton action] withObject:addButton waitUntilDone:YES];
+	
+	UIViewController* createProfileViewController = [overviewViewController presentedViewController];
+//	XCTAssertEqual([createProfileViewController class], [CreateProfileViewController class]);
+}
 
 @end
