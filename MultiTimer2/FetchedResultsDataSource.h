@@ -12,9 +12,10 @@
 - (void) configureCell:(UITableViewCell *)someCell withObject:(id)someObject;
 @end
 
-@interface FetchedResultsDataSource : NSObject<UITableViewDataSource>
+@interface FetchedResultsDataSource : NSObject<UITableViewDataSource, NSFetchedResultsControllerDelegate>
 
 @property(nonatomic, strong) NSFetchedResultsController* fetchedResultsController;
+@property(nonatomic, strong) UITableView* tableView;
 @property(nonatomic, strong) NSString* cellReuseIdentifier;
 
 @property(nonatomic, weak) id<FetchedResultsDataSourceDelegate> delegate;

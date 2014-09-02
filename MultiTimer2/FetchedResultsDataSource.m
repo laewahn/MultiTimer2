@@ -14,6 +14,8 @@
 {
 	_fetchedResultsController = fetchedResultsController;
 	
+	[_fetchedResultsController setDelegate:self];
+	
 	NSError* fetchError;
 	[_fetchedResultsController performFetch:&fetchError];
 }
@@ -38,6 +40,23 @@
 	[self.delegate configureCell:cellToConfigure withObject:objectForConfiguration];
 	
 	return cellToConfigure;
+}
+
+- (void)controllerWillChangeContent:(NSFetchedResultsController *)controller
+{
+	[self.tableView beginUpdates];
+}
+
+- (void)controllerDidChangeContent:(NSFetchedResultsController *)controller
+{
+	[self.tableView endUpdates];
+}
+
+- (void)controller:(NSFetchedResultsController *)controller didChangeObject:(id)anObject atIndexPath:(NSIndexPath *)indexPath forChangeType:(NSFetchedResultsChangeType)type newIndexPath:(NSIndexPath *)newIndexPath
+{
+	if (type == NSFetchedResultsChangeInsert) {
+		[self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+	}
 }
 
 @end

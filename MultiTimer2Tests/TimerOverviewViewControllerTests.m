@@ -54,6 +54,11 @@
 	XCTAssertEqualObjects([(FetchedResultsDataSource *)testVC.tableView.dataSource fetchedResultsController], [testStore timerProfilesFetchedResultsController]);
 }
 
+- (void)testOverviewViewControllerSetsTableOnDataSource
+{
+    XCTAssertEqualObjects([(FetchedResultsDataSource *)testVC.tableView.dataSource tableView], [testVC tableView]);
+}
+
 - (void)testOverviewViewControllerReloadsTableWhenStoreIsSet
 {
     id mockTableView = OCMClassMock([UITableView class]);

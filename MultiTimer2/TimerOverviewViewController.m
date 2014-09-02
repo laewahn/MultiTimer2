@@ -30,6 +30,7 @@
 
 	FetchedResultsDataSource* dataSource = (FetchedResultsDataSource *)[self.tableView dataSource];
 	[dataSource setDelegate:self];
+	[dataSource setTableView:[self tableView]];
 }
 
 - (void)setTimerProfileStore:(TimerProfileStore *)timerProfileStore

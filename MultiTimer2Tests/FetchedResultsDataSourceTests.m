@@ -17,6 +17,7 @@ static NSString* const kTestReuseIdentifier = @"TestCell";
 
 @interface FetchedResultsDataSourceTests : XCTestCase {
 	FetchedResultsDataSource* testDataSource;
+	id stubFetchedResultsController;
 	
 	NSArray* sections;
 	NSIndexPath* pathForTestRow;
@@ -47,26 +48,37 @@ static NSString* const kTestReuseIdentifier = @"TestCell";
 
 - (NSFetchedResultsController *)stubFetchedResultsControllerWithSectionsAndRows:(NSArray *)sectionsAndRows
 {
-	id stubFRC = OCMClassMock([NSFetchedResultsController class]);
-	OCMStub([stubFRC sections]).andReturn(sections);
+	stubFetchedResultsController = OCMClassMock([NSFetchedResultsController class]);
+	OCMStub([stubFetchedResultsController sections]).andReturn(sections);
 	
-	return stubFRC;
+	return stubFetchedResultsController;
 }
 
 - (void)testDataSourceCanHaveFetchedResultsController
 {
-	id stubFRC = [self stubFetchedResultsControllerWithSectionsAndRows:sections];
-	[testDataSource setFetchedResultsController:stubFRC];
-	XCTAssertEqualObjects([testDataSource fetchedResultsController], stubFRC);
+	[testDataSource setFetchedResultsController:stubFetchedResultsController];
+	XCTAssertEqualObjects([testDataSource fetchedResultsController], stubFetchedResultsController);
+}
+
+- (void)testDataSourceCanHaveReferenceToTheTableView
+{
+    UITableView* tableViewMock = OCMClassMock([UITableView class]);
+	[testDataSource setTableView:tableViewMock];
+	XCTAssertEqualObjects([testDataSource tableView], tableViewMock);
 }
 
 - (void)testDataSourcePerformsFetchWhenFetchedResultsControllerIsSet
 {
-    id stubFRC = OCMClassMock([NSFetchedResultsController class]);
+	[testDataSource setFetchedResultsController:stubFetchedResultsController];
 	
-	[testDataSource setFetchedResultsController:stubFRC];
+	OCMVerify([stubFetchedResultsController performFetch:OCMOCK_ANY_ERROR]);
+}
+
+- (void)testDataSourceSetsItselfAsFetchedResultsControllerDelegateWhenSet
+{
+	[testDataSource setFetchedResultsController:stubFetchedResultsController];
 	
-	OCMVerify([stubFRC performFetch:OCMOCK_ANY_ERROR]);
+	OCMVerify([stubFetchedResultsController setDelegate:testDataSource]);
 }
 
 - (void)testDataSourceImplementsUITableViewDataSourceProtocol
