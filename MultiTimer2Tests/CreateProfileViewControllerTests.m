@@ -7,8 +7,13 @@
 //
 
 #import <XCTest/XCTest.h>
+#import <OCMock/OCMock.h>
+
+#import "UIView+FindingViews.h"
+#import "UIBarButtonItem+UserInputSimulation.h"
 
 #import "CreateProfileViewController.h"
+#import "TimerProfileStore.h"
 
 @interface CreateProfileViewControllerTests : XCTestCase {
 	CreateProfileViewController* testVC;
@@ -27,44 +32,45 @@
 
 - (void)testViewControllerHasSomeFieldToEnterProfileName
 {
-	UITextField* nameField = [self findTextfieldWithPlaceHolderText:@"Profile Name" inView:[testVC view]];
+	UITextField* nameField = [testVC.view findTextfieldWithPlaceHolderText:@"Profile Name"];
 	XCTAssertNotNil(nameField);
 }
 
 - (void)testViewControllerHasSomeDatePickerToSelectCountdownDuration
 {
-	UIDatePicker* countdownPicker = [self findCountdownPickerViewInView:[testVC view]];
+	UIDatePicker* countdownPicker = [testVC.view findCountdownPickerView];
 	XCTAssertNotNil(countdownPicker);
 	XCTAssertEqual([countdownPicker datePickerMode], UIDatePickerModeCountDownTimer);
 }
 
-- (UITextField *)findTextfieldWithPlaceHolderText:(NSString *)someText inView:(UIView *)someView
+- (void)testViewControllerHasSaveButton
 {
-	ViewFilterBlock filterForTextFieldWithPlaceHolder = ^BOOL(UIView *theView) {
-		return [[(UITextField *)theView placeholder] isEqualToString:someText];
-	};
-	return (UITextField *)[self findViewWithClass:[UITextField class] additionalFilter:filterForTextFieldWithPlaceHolder inView:someView];
-}
-
-- (UIDatePicker *)findCountdownPickerViewInView:(UIView *)someView
-{
-	return (UIDatePicker *)[self findViewWithClass:[UIDatePicker class] additionalFilter:nil inView:someView];
-}
-
-typedef BOOL(^ViewFilterBlock)(UIView *);
-
-- (UIView *)findViewWithClass:(Class)someClass additionalFilter:(ViewFilterBlock)viewFilterBlock inView:(UIView *)someView
-{
-	UIView* theView;
-	for (UIView* subView in [someView subviews]) {
-		if ([subView isKindOfClass:someClass] && (viewFilterBlock ? viewFilterBlock(subView) : YES)) {
-			return subView;
-		} else {
-			theView = [self findCountdownPickerViewInView:subView];
-		}
-	}
+	[testVC loadView];
+    UIBarButtonItem* doneButton = [testVC doneButton];
 	
-	return theView;
+	XCTAssertNotNil(doneButton);
+	XCTAssertEqualObjects([doneButton title], @"Done");
+}
+
+- (void)testViewControllerCanHasAStore
+{
+    TimerProfileStore* store = [[TimerProfileStore alloc] init];
+	[testVC setTimerProfileStore:store];
+	XCTAssertNotNil([testVC timerProfileStore]);
+}
+
+- (void)testWhenPressingDoneANewTimerProfileIsCreatedInTheStore
+{
+    TimerProfileStore* storeMock = OCMClassMock([TimerProfileStore class]);
+	[testVC setTimerProfileStore:storeMock];
+	
+	[[testVC.view findTextfieldWithPlaceHolderText:@"Profile Name"] setText:@"Foo"];
+	UIDatePicker* countdownPicker = [testVC.view findCountdownPickerView];
+	[countdownPicker setCountDownDuration:120];
+	
+	[testVC doneButtonPressed:nil];
+	
+	OCMVerify([storeMock createTimerProfileWithName:@"Foo" duration:120]);
 }
 
 @end

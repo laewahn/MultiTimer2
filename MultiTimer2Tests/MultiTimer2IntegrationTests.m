@@ -7,6 +7,8 @@
 //
 
 #import <XCTest/XCTest.h>
+#import "UIBarButtonItem+UserInputSimulation.h"
+#import "UIView+FindingViews.h"
 
 #import "AppDelegate.h"
 #import "TimerOverviewViewController.h"
@@ -76,10 +78,26 @@
 - (void)testWhenTheUserPressesTheAddButtonTheCreateTimerProfileViewIsPresented
 {
     UIBarButtonItem* addButton = [overviewViewController addButton];
-	[overviewViewController performSelectorOnMainThread:[addButton action] withObject:addButton waitUntilDone:YES];
+	[[addButton target] performSelectorOnMainThread:[addButton action] withObject:addButton waitUntilDone:YES];
 	
 	UIViewController* createProfileViewController = [overviewViewController presentedViewController];
 	XCTAssertEqual([createProfileViewController class], [CreateProfileViewController class]);
+}
+
+- (void)testWhenTheUserEntersTimerProfileInformationInTheCreateProfileDialogAndPressesSaveTheNewProfileIsVisibleInTheTable
+{
+	[[overviewViewController addButton] simulateTap];
+	
+	CreateProfileViewController* createProfileViewController = (CreateProfileViewController *)[overviewViewController presentedViewController];
+	
+	[[createProfileViewController.view findTextfieldWithPlaceHolderText:@"Profile Name"] setText:@"Green Tea"];
+	[[createProfileViewController.view findCountdownPickerView] setCountDownDuration:3660];
+	
+	[[createProfileViewController doneButton] simulateTap];
+	XCTAssertNil([overviewViewController presentedViewController]);
+	
+	NSArray* cells = [overviewViewController.tableView visibleCells];
+	XCTAssertEqual([cells count], 2);
 }
 
 @end

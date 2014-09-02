@@ -44,12 +44,6 @@
 	[self.tableView reloadData];
 }
 
-- (void)createNewProfile:(id)sender
-{
-	CreateProfileViewController* createProfileVC = [self.storyboard instantiateViewControllerWithIdentifier:@"CreateProfileViewController"];
-	[self presentViewController:createProfileVC animated:YES completion:nil];
-}
-
 - (void)configureCell:(UITableViewCell *)someCell withObject:(id)someObject
 {
 	TimerProfileViewModel* tpViewModel = [[TimerProfileViewModel alloc] initWithTimerProfile:someObject];
