@@ -43,13 +43,22 @@
 	XCTAssertEqual([countdownPicker datePickerMode], UIDatePickerModeCountDownTimer);
 }
 
-- (void)testViewControllerHasSaveButton
+- (void)testViewControllerHasDoneButton
 {
 	[testVC loadView];
     UIBarButtonItem* doneButton = [testVC doneButton];
 	
 	XCTAssertNotNil(doneButton);
 	XCTAssertEqualObjects([doneButton title], @"Done");
+}
+
+- (void)testViewControllerHasCancelButton
+{
+    [testVC loadView];
+	UIBarButtonItem* cancelButton = [testVC cancelButton];
+	
+	XCTAssertNotNil(cancelButton);
+	XCTAssertEqualObjects([cancelButton title], @"Cancel");
 }
 
 - (void)testViewControllerCanHasAStore

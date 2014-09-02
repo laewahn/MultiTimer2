@@ -106,4 +106,19 @@
 	XCTAssertEqualObjects([firstCell.detailTextLabel text], @"1:01:00");
 }
 
+- (void)testWhenTheUserCancelsCreatingNewTimerProfileNoNewProfileIsInTheTable
+{
+	NSArray* cellsBeforeCancel = [overviewViewController.tableView visibleCells];
+	
+    [[overviewViewController addButton] simulateTap];
+	
+	CreateProfileViewController* createProfileViewController = (CreateProfileViewController *)[overviewViewController presentedViewController];
+	[[createProfileViewController cancelButton] simulateTap];
+	
+	XCTAssertNil([overviewViewController presentedViewController]);
+	
+	NSArray* cellsAfterCancel = [overviewViewController.tableView visibleCells];
+	XCTAssertEqualObjects(cellsBeforeCancel, cellsAfterCancel);
+}
+
 @end

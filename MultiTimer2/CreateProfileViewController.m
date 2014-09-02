@@ -24,6 +24,11 @@
 	[self createNewTimerProfile];
 }
 
+- (IBAction)cancelButtonPressed:(id)sender
+{
+	[self dismissViewControllerAnimated:YES completion:nil];
+}
+
 - (void)createNewTimerProfile
 {
 	NSString* newProfileName = [self.profileNameTextField text];

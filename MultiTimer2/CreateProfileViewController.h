@@ -14,10 +14,13 @@
 
 @property(nonatomic, strong) IBOutlet UITextField* profileNameTextField;
 @property(nonatomic, strong) IBOutlet UIDatePicker* profileDurationPicker;
+
 @property(nonatomic, strong) IBOutlet UIBarButtonItem* doneButton;
+@property(nonatomic, strong) IBOutlet UIBarButtonItem* cancelButton;
 
 @property(nonatomic, strong) TimerProfileStore* timerProfileStore;
 
 - (IBAction)doneButtonPressed:(id)sender;
+- (IBAction)cancelButtonPressed:(id)sender;
 
 @end
