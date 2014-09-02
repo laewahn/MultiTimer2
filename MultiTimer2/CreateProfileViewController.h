@@ -10,4 +10,6 @@
 
 @interface CreateProfileViewController : UIViewController
 
+@property(nonatomic, strong) IBOutlet UITextField* profileNameTextField;
+
 @end

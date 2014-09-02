@@ -10,4 +10,11 @@
 
 @implementation CreateProfileViewController
 
+- (void)viewDidAppear:(BOOL)animated
+{
+	[super viewWillAppear:animated];
+	
+	[self.profileNameTextField becomeFirstResponder];
+}
+
 @end
