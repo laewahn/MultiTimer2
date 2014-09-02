@@ -15,7 +15,7 @@
 
 @interface TimerOverviewViewController : UITableViewController <FetchedResultsDataSourceDelegate>
 
-@property(nonatomic, strong) IBOutlet TimerProfileStore* timerProfileStore;
+@property(nonatomic, strong) TimerProfileStore* timerProfileStore;
 @property(nonatomic, strong) IBOutlet UIBarButtonItem* addButton;
 
 - (IBAction)createNewProfile:(id)sender;
