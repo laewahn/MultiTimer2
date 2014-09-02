@@ -11,6 +11,8 @@
 #import "TimerProfileViewModel.h"
 #import "TimerProfileStore.h"
 
+#import "CreateProfileViewController.h"
+
 @interface TimerOverviewViewController ()
 @end
 
@@ -44,7 +46,8 @@
 
 - (void)createNewProfile:(id)sender
 {
-
+	CreateProfileViewController* createProfileVC = [self.storyboard instantiateViewControllerWithIdentifier:@"CreateProfileViewController"];
+	[self presentViewController:createProfileVC animated:YES completion:nil];
 }
 
 - (void)configureCell:(UITableViewCell *)someCell withObject:(id)someObject

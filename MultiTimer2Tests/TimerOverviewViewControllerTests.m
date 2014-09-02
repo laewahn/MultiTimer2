@@ -12,9 +12,11 @@
 #import "XCTest+CoreDataTestStack.h"
 
 #import "TimerOverviewViewController.h"
+
 #import "FetchedResultsDataSource.h"
 #import "TimerProfileStore.h"
 #import "TimerProfile.h"
+#import "CreateProfileViewController.h"
 
 @interface TimerOverviewViewControllerTests : XCTestCase {
 	TimerOverviewViewController* testVC;
@@ -82,8 +84,9 @@
 }
 
 - (void)testAddButtonCallsCreateNewProfileMethod
-{	
+{
 	XCTAssertEqual([testVC.addButton action], @selector(createNewProfile:));
 	XCTAssertEqualObjects([testVC.addButton target], testVC);
 }
+
 @end

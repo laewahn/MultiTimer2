@@ -11,6 +11,7 @@
 #import "AppDelegate.h"
 #import "TimerOverviewViewController.h"
 #import "FetchedResultsDataSource.h"
+#import "CreateProfileViewController.h"
 
 @interface MultiTimer2IntegrationTests : XCTestCase {
 	AppDelegate* appDelegate;
@@ -78,7 +79,7 @@
 	[overviewViewController performSelectorOnMainThread:[addButton action] withObject:addButton waitUntilDone:YES];
 	
 	UIViewController* createProfileViewController = [overviewViewController presentedViewController];
-//	XCTAssertEqual([createProfileViewController class], [CreateProfileViewController class]);
+	XCTAssertEqual([createProfileViewController class], [CreateProfileViewController class]);
 }
 
 @end

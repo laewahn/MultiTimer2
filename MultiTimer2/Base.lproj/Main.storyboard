@@ -19,6 +19,24 @@
             </objects>
             <point key="canvasLocation" x="-1" y="64"/>
         </scene>
+        <!--Create Profile View Controller-->
+        <scene sceneID="VIO-DX-wl2">
+            <objects>
+                <viewController storyboardIdentifier="CreateProfileViewController" id="Mi7-31-3y7" customClass="CreateProfileViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="UL3-Tr-hXk"/>
+                        <viewControllerLayoutGuide type="bottom" id="61N-zD-bXf"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="RUb-df-sGj">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="jg8-iL-QOs" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="459" y="-611"/>
+        </scene>
         <!--Timer Overview View Controller - Master-->
         <scene sceneID="VgW-fR-Quf">
             <objects>
