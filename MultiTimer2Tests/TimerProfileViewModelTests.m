@@ -58,6 +58,13 @@
 	XCTAssertEqualObjects([testViewModel duration], @"02:13");
 }
 
+- (void)testTimerProfileViewModelReturnsCorrectlyformattedDurationforMoreThanOneHour
+{
+    testViewModel = [[TimerProfileViewModel alloc] initWithTimerProfile:[self someTimerProfileWithDuration:3660]];
+	
+	XCTAssertEqualObjects([testViewModel duration], @"1:01:00");
+}
+
 
 # pragma mark Fixtures generation
 

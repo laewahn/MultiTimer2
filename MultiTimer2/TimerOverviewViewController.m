@@ -53,4 +53,12 @@
 	[someCell.detailTextLabel setText:[tpViewModel duration]];
 }
 
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+	if ([segue.identifier isEqualToString:@"CreateTimerProfileSegue"]) {
+		CreateProfileViewController* createVC = [segue destinationViewController];
+		[createVC setTimerProfileStore:[self timerProfileStore]];
+	}
+}
+
 @end

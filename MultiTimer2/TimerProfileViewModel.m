@@ -38,10 +38,17 @@
 {
 	NSInteger durationInSeconds = floor([self.timerProfile duration]);
 	
-	NSInteger seconds = durationInSeconds % 60;
+	NSInteger seconds = durationInSeconds;
 	NSInteger minutes = durationInSeconds / 60;
+	NSInteger hours = minutes/60;
+	
+	NSString* timeString = [NSString stringWithFormat:@"%02d:%02d", minutes % 60, seconds % 60];
+	
+	if (hours != 0) {
+		timeString = [NSString stringWithFormat:@"%d:%@", hours, timeString];
+	}
 
-	return [NSString stringWithFormat:@"%02d:%02d", minutes, seconds];
+	return timeString;
 }
 
 @end

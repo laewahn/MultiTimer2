@@ -104,7 +104,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jg8-iL-QOs" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="459" y="-611"/>
+            <point key="canvasLocation" x="894" y="-637"/>
         </scene>
         <!--Timer Overview View Controller - Master-->
         <scene sceneID="VgW-fR-Quf">
@@ -153,7 +153,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="NSr-oN-14h">
                             <connections>
                                 <action selector="createNewProfile:" destination="pGg-6v-bdr" id="Nns-5u-y7q"/>
-                                <segue destination="Mi7-31-3y7" kind="modal" id="9It-Cj-S6M"/>
+                                <segue destination="Mi7-31-3y7" kind="modal" identifier="CreateTimerProfileSegue" id="9It-Cj-S6M"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>

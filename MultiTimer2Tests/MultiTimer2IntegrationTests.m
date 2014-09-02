@@ -89,6 +89,7 @@
 	[[overviewViewController addButton] simulateTap];
 	
 	CreateProfileViewController* createProfileViewController = (CreateProfileViewController *)[overviewViewController presentedViewController];
+	XCTAssertNotNil([createProfileViewController timerProfileStore]);
 	
 	[[createProfileViewController.view findTextfieldWithPlaceHolderText:@"Profile Name"] setText:@"Green Tea"];
 	[[createProfileViewController.view findCountdownPickerView] setCountDownDuration:3660];
@@ -98,6 +99,11 @@
 	
 	NSArray* cells = [overviewViewController.tableView visibleCells];
 	XCTAssertEqual([cells count], 2);
+	
+	NSIndexPath* firstCellIndexPath = [NSIndexPath indexPathForItem:1 inSection:0];
+	UITableViewCell* firstCell = [overviewViewController.tableView cellForRowAtIndexPath:firstCellIndexPath];
+	XCTAssertEqualObjects([firstCell.textLabel text], @"Green Tea");
+	XCTAssertEqualObjects([firstCell.detailTextLabel text], @"1:01:00");
 }
 
 @end
