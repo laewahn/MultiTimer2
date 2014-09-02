@@ -75,5 +75,15 @@
 	XCTAssertEqualObjects([someCell.detailTextLabel text], @"00:10");
 }
 
+- (void)testOverviewViewControllerHasAddButton
+{
+    UIBarButtonItem* addButton = [testVC addButton];
+	XCTAssertNotNil(addButton);
+}
 
+- (void)testAddButtonCallsCreateNewProfileMethod
+{	
+	XCTAssertEqual([testVC.addButton action], @selector(createNewProfile:));
+	XCTAssertEqualObjects([testVC.addButton target], testVC);
+}
 @end

@@ -62,7 +62,16 @@
                             <outlet property="dataSource" destination="tcD-kw-Fe8" id="2vR-Bv-V0Y"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Master" id="tQt-TN-PWz"/>
+                    <navigationItem key="navigationItem" title="Master" id="tQt-TN-PWz">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="NSr-oN-14h">
+                            <connections>
+                                <action selector="createNewProfile:" destination="pGg-6v-bdr" id="Nns-5u-y7q"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="addButton" destination="NSr-oN-14h" id="eMF-bX-54k"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6Cn-md-YlS" sceneMemberID="firstResponder"/>
                 <customObject id="tcD-kw-Fe8" userLabel="FetchedResultsDataSource" customClass="FetchedResultsDataSource"/>
