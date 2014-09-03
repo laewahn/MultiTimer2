@@ -8,6 +8,8 @@
 
 #import "DetailViewController.h"
 
+#import "TimerProfile.h"
+
 @interface DetailViewController ()
 @end
 
@@ -16,6 +18,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+	[self setTitle:[self.profile name]];
 }
 
 @end

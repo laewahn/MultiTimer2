@@ -12,6 +12,7 @@
 #import "TimerProfileStore.h"
 
 #import "CreateProfileViewController.h"
+#import "DetailViewController.h"
 
 @interface TimerOverviewViewController ()
 @end
@@ -54,6 +55,15 @@
 	if ([segue.identifier isEqualToString:@"CreateTimerProfileSegue"]) {
 		CreateProfileViewController* createVC = [segue destinationViewController];
 		[createVC setTimerProfileStore:[self timerProfileStore]];
+	}
+	
+	if ([segue.identifier isEqualToString:@"showDetail"]) {
+		DetailViewController* detailVC = [segue destinationViewController];
+		
+		NSIndexPath* selectionIndexPath = [self.tableView indexPathForSelectedRow];
+		TimerProfile* selectedProfile = [self.timerProfileStore.timerProfilesFetchedResultsController objectAtIndexPath:selectionIndexPath];
+		
+		[detailVC setProfile:selectedProfile];
 	}
 }
 

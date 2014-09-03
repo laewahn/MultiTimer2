@@ -8,8 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
+@class TimerProfile;
+
 @interface DetailViewController : UIViewController
 
+@property (nonatomic, strong) TimerProfile* profile;
 @property (weak, nonatomic) IBOutlet UILabel *detailDescriptionLabel;
 
 @end

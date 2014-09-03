@@ -7,8 +7,8 @@
 👍 The user can delete a timer
 
 === Timer functionality ===
-* The user can select a timer
-* A timer is initialized with its duration
+👍 The user can select a timer
+	* A timer is initialized with its duration
 * The user can start the timer
 	* When the timer is started, it starts to count down the time
 * When the timer is running, the user can pause or stop the timer

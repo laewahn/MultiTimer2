@@ -14,6 +14,7 @@
 #import "TimerOverviewViewController.h"
 #import "FetchedResultsDataSource.h"
 #import "CreateProfileViewController.h"
+#import "DetailViewController.h"
 
 @interface MultiTimer2IntegrationTests : XCTestCase {
 	AppDelegate* appDelegate;
@@ -119,6 +120,17 @@
 	
 	NSArray* cellsAfterCancel = [overviewViewController.tableView visibleCells];
 	XCTAssertEqualObjects(cellsBeforeCancel, cellsAfterCancel);
+}
+
+- (void)testWhenTheUserSelectsATimerProfileTheDetailViewForTheTimerIsShown
+{
+	[overviewViewController.tableView selectRowAtIndexPath:[NSIndexPath indexPathForItem:0 inSection:0] animated:YES scrollPosition:UITableViewScrollPositionMiddle];
+	[overviewViewController performSegueWithIdentifier:@"showDetail" sender:[overviewViewController tableView]];
+	[[NSRunLoop mainRunLoop] runUntilDate:[NSDate dateWithTimeIntervalSinceNow:1]];
+	
+	UIViewController* presentedViewController = [overviewViewController.navigationController topViewController];
+	XCTAssertEqual([presentedViewController class], [DetailViewController class]);
+	XCTAssertEqualObjects([presentedViewController title], @"Black Tea");
 }
 
 @end
