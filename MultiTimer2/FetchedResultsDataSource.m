@@ -42,6 +42,14 @@
 	return cellToConfigure;
 }
 
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+	if (editingStyle == UITableViewCellEditingStyleDelete) {
+		NSManagedObject* objectToDelete = [self.fetchedResultsController objectAtIndexPath:indexPath];
+		[objectToDelete.managedObjectContext deleteObject:objectToDelete];
+	}
+}
+
 - (void)controllerWillChangeContent:(NSFetchedResultsController *)controller
 {
 	[self.tableView beginUpdates];
@@ -57,6 +65,11 @@
 	if (type == NSFetchedResultsChangeInsert) {
 		[self.tableView insertRowsAtIndexPaths:@[newIndexPath] withRowAnimation:UITableViewRowAnimationFade];
 	}
+	
+	if (type == NSFetchedResultsChangeDelete) {
+		[self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+	}
+	
 }
 
 @end

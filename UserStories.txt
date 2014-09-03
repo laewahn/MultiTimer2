@@ -4,7 +4,7 @@
 	👍 The user can select the duration of a timer
 	👍 The user can select a name for the timer
 	👍 The user can cancel adding a new timer
-* The user can delete a timer
+👍 The user can delete a timer
 
 === Timer functionality ===
 * The user can select a timer
