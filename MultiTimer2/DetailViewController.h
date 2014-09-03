@@ -13,6 +13,7 @@
 @interface DetailViewController : UIViewController
 
 @property (nonatomic, strong) TimerProfile* profile;
-@property (weak, nonatomic) IBOutlet UILabel *detailDescriptionLabel;
+
+@property (weak, nonatomic) IBOutlet UIButton* startPauseButton;
 
 @end

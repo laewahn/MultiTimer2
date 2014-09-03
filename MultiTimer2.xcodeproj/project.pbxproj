@@ -17,6 +17,7 @@
 		9528240E19B5D5C7007E5F7C /* CreateProfileViewControllerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9528240D19B5D5C7007E5F7C /* CreateProfileViewControllerTests.m */; };
 		9528241119B6309F007E5F7C /* UIBarButtonItem+UserInputSimulation.m in Sources */ = {isa = PBXBuildFile; fileRef = 9528241019B6309F007E5F7C /* UIBarButtonItem+UserInputSimulation.m */; };
 		9528241419B63128007E5F7C /* UIView+FindingViews.m in Sources */ = {isa = PBXBuildFile; fileRef = 9528241319B63128007E5F7C /* UIView+FindingViews.m */; };
+		9528241B19B75A1E007E5F7C /* DetailViewControllerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9528241A19B75A1E007E5F7C /* DetailViewControllerTests.m */; };
 		95B6229A19ABA0A900BB2708 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95B6229919ABA0A900BB2708 /* Foundation.framework */; };
 		95B6229C19ABA0A900BB2708 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95B6229B19ABA0A900BB2708 /* CoreGraphics.framework */; };
 		95B6229E19ABA0A900BB2708 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95B6229D19ABA0A900BB2708 /* UIKit.framework */; };
@@ -70,6 +71,7 @@
 		9528241019B6309F007E5F7C /* UIBarButtonItem+UserInputSimulation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIBarButtonItem+UserInputSimulation.m"; sourceTree = "<group>"; };
 		9528241219B63128007E5F7C /* UIView+FindingViews.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+FindingViews.h"; sourceTree = "<group>"; };
 		9528241319B63128007E5F7C /* UIView+FindingViews.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+FindingViews.m"; sourceTree = "<group>"; };
+		9528241A19B75A1E007E5F7C /* DetailViewControllerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailViewControllerTests.m; sourceTree = "<group>"; };
 		95B6229619ABA0A900BB2708 /* MultiTimer2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MultiTimer2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		95B6229919ABA0A900BB2708 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		95B6229B19ABA0A900BB2708 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -223,6 +225,7 @@
 				9528241019B6309F007E5F7C /* UIBarButtonItem+UserInputSimulation.m */,
 				9528241219B63128007E5F7C /* UIView+FindingViews.h */,
 				9528241319B63128007E5F7C /* UIView+FindingViews.m */,
+				9528241A19B75A1E007E5F7C /* DetailViewControllerTests.m */,
 			);
 			path = MultiTimer2Tests;
 			sourceTree = "<group>";
@@ -411,6 +414,7 @@
 				95B622D819ABA89A00BB2708 /* TimerProfileTests.m in Sources */,
 				952823FE19AD167B007E5F7C /* TimerProfileStoreTests.m in Sources */,
 				9528241419B63128007E5F7C /* UIView+FindingViews.m in Sources */,
+				9528241B19B75A1E007E5F7C /* DetailViewControllerTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
