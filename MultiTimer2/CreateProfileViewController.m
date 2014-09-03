@@ -16,6 +16,7 @@
 {
 	[super viewWillAppear:animated];
 	
+	[self.profileNameTextField setDelegate:self];
 	[self.profileNameTextField becomeFirstResponder];
 }
 
@@ -29,6 +30,11 @@
 	[self dismissViewControllerAnimated:YES completion:nil];
 }
 
+- (IBAction)textFieldFinished:(id)sender
+{
+	[self createNewTimerProfile];
+}
+
 - (void)createNewTimerProfile
 {
 	NSString* newProfileName = [self.profileNameTextField text];
@@ -38,5 +44,7 @@
 	
 	[self dismissViewControllerAnimated:YES completion:nil];
 }
+
+
 
 @end

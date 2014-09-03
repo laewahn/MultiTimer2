@@ -10,7 +10,7 @@
 
 @class TimerProfileStore;
 
-@interface CreateProfileViewController : UIViewController
+@interface CreateProfileViewController : UIViewController<UITextFieldDelegate>
 
 @property(nonatomic, strong) IBOutlet UITextField* profileNameTextField;
 @property(nonatomic, strong) IBOutlet UIDatePicker* profileDurationPicker;
@@ -22,5 +22,6 @@
 
 - (IBAction)doneButtonPressed:(id)sender;
 - (IBAction)cancelButtonPressed:(id)sender;
+- (IBAction)textFieldFinished:(id)sender;
 
 @end
