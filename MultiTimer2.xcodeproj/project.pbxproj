@@ -18,6 +18,8 @@
 		9528241119B6309F007E5F7C /* UIBarButtonItem+UserInputSimulation.m in Sources */ = {isa = PBXBuildFile; fileRef = 9528241019B6309F007E5F7C /* UIBarButtonItem+UserInputSimulation.m */; };
 		9528241419B63128007E5F7C /* UIView+FindingViews.m in Sources */ = {isa = PBXBuildFile; fileRef = 9528241319B63128007E5F7C /* UIView+FindingViews.m */; };
 		9528241B19B75A1E007E5F7C /* DetailViewControllerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9528241A19B75A1E007E5F7C /* DetailViewControllerTests.m */; };
+		9528241D19C5B2EE007E5F7C /* CountdownNotificationManagerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9528241C19C5B2EE007E5F7C /* CountdownNotificationManagerTests.m */; };
+		9528242019C5B35B007E5F7C /* CountdownNotificationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9528241F19C5B35B007E5F7C /* CountdownNotificationManager.m */; };
 		95B6229A19ABA0A900BB2708 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95B6229919ABA0A900BB2708 /* Foundation.framework */; };
 		95B6229C19ABA0A900BB2708 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95B6229B19ABA0A900BB2708 /* CoreGraphics.framework */; };
 		95B6229E19ABA0A900BB2708 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95B6229D19ABA0A900BB2708 /* UIKit.framework */; };
@@ -72,6 +74,9 @@
 		9528241219B63128007E5F7C /* UIView+FindingViews.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+FindingViews.h"; sourceTree = "<group>"; };
 		9528241319B63128007E5F7C /* UIView+FindingViews.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+FindingViews.m"; sourceTree = "<group>"; };
 		9528241A19B75A1E007E5F7C /* DetailViewControllerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailViewControllerTests.m; sourceTree = "<group>"; };
+		9528241C19C5B2EE007E5F7C /* CountdownNotificationManagerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CountdownNotificationManagerTests.m; sourceTree = "<group>"; };
+		9528241E19C5B35B007E5F7C /* CountdownNotificationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CountdownNotificationManager.h; sourceTree = "<group>"; };
+		9528241F19C5B35B007E5F7C /* CountdownNotificationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CountdownNotificationManager.m; sourceTree = "<group>"; };
 		95B6229619ABA0A900BB2708 /* MultiTimer2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MultiTimer2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		95B6229919ABA0A900BB2708 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		95B6229B19ABA0A900BB2708 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -191,6 +196,8 @@
 				9528240019AD16B1007E5F7C /* TimerProfileStore.m */,
 				9528240A19B5BB3B007E5F7C /* CreateProfileViewController.h */,
 				9528240B19B5BB3B007E5F7C /* CreateProfileViewController.m */,
+				9528241E19C5B35B007E5F7C /* CountdownNotificationManager.h */,
+				9528241F19C5B35B007E5F7C /* CountdownNotificationManager.m */,
 			);
 			path = MultiTimer2;
 			sourceTree = "<group>";
@@ -235,6 +242,7 @@
 			children = (
 				95B622C919ABA0A900BB2708 /* MultiTimer2Tests-Info.plist */,
 				95B622CA19ABA0A900BB2708 /* InfoPlist.strings */,
+				9528241C19C5B2EE007E5F7C /* CountdownNotificationManagerTests.m */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -393,6 +401,7 @@
 				95B622DB19ABA8FB00BB2708 /* TimerProfile.m in Sources */,
 				95B622AC19ABA0A900BB2708 /* AppDelegate.m in Sources */,
 				95B622EE19ABCEF300BB2708 /* FetchedResultsDataSource.m in Sources */,
+				9528242019C5B35B007E5F7C /* CountdownNotificationManager.m in Sources */,
 				9528240119AD16B1007E5F7C /* TimerProfileStore.m in Sources */,
 				95B622A819ABA0A900BB2708 /* main.m in Sources */,
 				95B622E119ABB1F600BB2708 /* TimerProfileViewModel.m in Sources */,
@@ -414,6 +423,7 @@
 				95B622D819ABA89A00BB2708 /* TimerProfileTests.m in Sources */,
 				952823FE19AD167B007E5F7C /* TimerProfileStoreTests.m in Sources */,
 				9528241419B63128007E5F7C /* UIView+FindingViews.m in Sources */,
+				9528241D19C5B2EE007E5F7C /* CountdownNotificationManagerTests.m in Sources */,
 				9528241B19B75A1E007E5F7C /* DetailViewControllerTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

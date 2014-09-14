@@ -14,6 +14,9 @@
 
 - (instancetype) initWithTimerProfile:(TimerProfile *)timerProfile;
 
+- (void) startCountdown;
+- (void) stopCountdown;
+
 @property(readonly) TimerProfile* timerProfile;
 
 @property(readonly) NSString* name;

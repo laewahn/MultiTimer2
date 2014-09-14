@@ -29,6 +29,16 @@
 	return self;
 }
 
+- (void) startCountdown
+{
+	[self.timerProfile startCountdown];
+}
+
+- (void) stopCountdown
+{
+	[self.timerProfile stopCountdown];
+}
+
 - (NSString *)name
 {
 	return [self.timerProfile name];
@@ -36,7 +46,9 @@
 
 - (NSString *)duration
 {
-	NSInteger seconds = floor([self.timerProfile duration]);
+	NSTimeInterval durationToDisplay = [self.timerProfile isRunning] ? [self.timerProfile remainingTime] : [self.timerProfile duration];
+
+	NSInteger seconds = floor(durationToDisplay);
 	NSInteger minutes = seconds / 60;
 	NSInteger hours = minutes/60;
 	

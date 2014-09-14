@@ -7,6 +7,8 @@
 //
 
 #import <XCTest/XCTest.h>
+#import <OCMock/OCMock.h>
+
 #import "XCTest+CoreDataTestStack.h"
 
 #import "TimerProfileViewModel.h"
@@ -14,11 +16,19 @@
 
 @interface TimerProfileViewModelTests : XCTestCase {
 	TimerProfileViewModel* testViewModel;
+	
+	TimerProfile* mockProfile;
 }
 
 @end
 
 @implementation TimerProfileViewModelTests
+
+- (void)setUp
+{
+	mockProfile = OCMClassMock([TimerProfile class]);
+	testViewModel = [[TimerProfileViewModel alloc] initWithTimerProfile:mockProfile];
+}
 
 - (void)testTimerProfileViewModelCanBeInitializedWithTimerProfile
 {
@@ -65,12 +75,44 @@
 	XCTAssertEqualObjects([testViewModel duration], @"1:01:00");
 }
 
+- (void)testTimerCanBeStarted
+{
+    testViewModel = [[TimerProfileViewModel alloc] initWithTimerProfile:[self someTimerProfile]];
+	
+	XCTAssertNoThrow([testViewModel startCountdown]);
+}
+
+- (void)testWhenStartCountdownIsCalled_itStartsTheCountdown
+{
+	[testViewModel startCountdown];
+	
+	OCMVerify([mockProfile startCountdown]);
+}
+
+- (void)testWhenStopCountdownIsCalled_itStopsTheCountdown
+{
+	[testViewModel stopCountdown];
+	
+	OCMVerify([mockProfile stopCountdown]);
+}
+
+- (void)testOnViewModel_WhenTheTimerProfileCountdownIsRunning_ItShowsTheRemainingTime
+{
+	TimerProfile* someProfile = [self someTimerProfile];
+	[someProfile setRemainingTime:7];
+	[someProfile setIsRunning:YES];
+	
+	testViewModel = [[TimerProfileViewModel alloc] initWithTimerProfile:someProfile];
+	
+	XCTAssertEqualObjects([testViewModel duration], @"00:07");
+}
+
 
 # pragma mark Fixtures generation
 
 - (TimerProfile *)someTimerProfile
 {
-	return [TimerProfile createWithManagedObjectContext:[self managedObjectTestContext]];
+	return [self someTimerProfileWithName:@"Test"];
 }
 
 - (TimerProfile *)someTimerProfileWithName:(NSString *)name

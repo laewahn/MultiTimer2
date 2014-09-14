@@ -9,13 +9,21 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
+@class CountdownNotificationManager;
 
 @interface TimerProfile : NSManagedObject
 
-+ (instancetype) createWithManagedObjectContext:(NSManagedObjectContext *)context;
 + (instancetype) createWithName:(NSString *)profileName duration:(NSTimeInterval)profileDuration managedObjectContext:(NSManagedObjectContext *)context;
+
+- (void)startCountdown;
+- (void)stopCountdown;
 
 @property (nonatomic, retain) NSString* name;
 @property (nonatomic) double duration;
+
+@property (nonatomic) BOOL isRunning;
+@property (nonatomic) NSTimeInterval remainingTime;
+
+@property (nonatomic, strong) CountdownNotificationManager* notificationManager;
 
 @end
