@@ -39,6 +39,11 @@
 	return @"TimerProfile";
 }
 
+- (NSURL *)managedObjectIDAsURI
+{
+	return [self.objectID URIRepresentation];
+}
+
 - (void)awakeFromInsert
 {
 	[self setUpDefaultValues];

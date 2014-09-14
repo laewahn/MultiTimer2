@@ -16,4 +16,7 @@
 
 - (void)cancelScheduledNotification;
 
+@property(nonatomic, strong) UIApplication* application;
+@property(nonatomic, strong) UILocalNotification* notification;
+
 @end

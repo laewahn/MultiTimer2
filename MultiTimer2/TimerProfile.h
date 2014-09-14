@@ -19,6 +19,7 @@
 - (void)stopCountdown;
 - (void)pauseCountdown;
 
+@property (nonatomic, readonly) NSURL* managedObjectIDAsURI;
 @property (nonatomic, retain) NSString* name;
 @property (nonatomic) double duration;
 
