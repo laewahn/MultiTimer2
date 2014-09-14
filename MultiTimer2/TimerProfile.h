@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
-@class CountdownNotificationManager;
+@class CountdownNotificationScheduler;
 
 @interface TimerProfile : NSManagedObject
 
@@ -17,6 +17,7 @@
 
 - (void)startCountdown;
 - (void)stopCountdown;
+- (void)pauseCountdown;
 
 @property (nonatomic, retain) NSString* name;
 @property (nonatomic) double duration;
@@ -24,6 +25,6 @@
 @property (nonatomic) BOOL isRunning;
 @property (nonatomic) NSTimeInterval remainingTime;
 
-@property (nonatomic, strong) CountdownNotificationManager* notificationManager;
+@property (nonatomic, strong) CountdownNotificationScheduler* notificationScheduler;
 
 @end

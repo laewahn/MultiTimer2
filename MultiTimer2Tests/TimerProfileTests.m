@@ -12,11 +12,12 @@
 #import "XCTest+CoreDataTestStack.h"
 
 #import "TimerProfile.h"
-#import "CountdownNotificationManager.h"
+#import "CountdownNotificationScheduler.h"
 
 @interface TimerProfileTests : XCTestCase {
 	NSManagedObjectContext* someManagedObjectContext;
 	TimerProfile* testProfile;
+	CountdownNotificationScheduler* mockNotificationScheduler;
 	
 	NSString* someProfileName;
 	NSTimeInterval someProfileDuration;
@@ -34,22 +35,32 @@
 	someProfileDuration = 10;
 	
 	testProfile = [TimerProfile createWithName:someProfileName duration:someProfileDuration managedObjectContext:someManagedObjectContext];
+	
+	mockNotificationScheduler = OCMClassMock([CountdownNotificationScheduler class]);
+	[testProfile setNotificationScheduler:mockNotificationScheduler];
 }
 
 - (void)testTimerProfileCanBeCreatedWithNameDurationAndManagedObjectContext
 {
+	testProfile = [TimerProfile createWithName:someProfileName duration:someProfileDuration managedObjectContext:someManagedObjectContext];
+
 	XCTAssertNotNil(testProfile);
 	XCTAssertEqualObjects([testProfile managedObjectContext], someManagedObjectContext, @"Should know the managed object context.");
 	XCTAssertEqualObjects([testProfile name], someProfileName, @"Name should be set.");
 	XCTAssertEqual([testProfile duration], someProfileDuration, @"Duration should be set.");
 }
 
-- (void)testOnTimerProfile_WhenStartCountdownIsCalled_TheRemainingTimeIsSetToTheProfilesTime
+- (void)testOnTimerProfileCreation_ItHasACountdownNotificationScheduler
 {
-	NSTimeInterval initialTime = 300;
-    testProfile = [TimerProfile createWithName:someProfileName duration:initialTime managedObjectContext:someManagedObjectContext];
-	
-	[testProfile startCountdown];
+	testProfile = [TimerProfile createWithName:someProfileName duration:someProfileDuration managedObjectContext:someManagedObjectContext];
+
+    XCTAssertNotNil([testProfile notificationScheduler]);
+}
+
+- (void)testOnTimerProfileFetch_TheRemainingTimeIsSetToTheProfilesTime
+{
+	[testProfile awakeFromFetch];
+	NSTimeInterval initialTime = someProfileDuration;
 	
 	XCTAssertEqual([testProfile remainingTime], initialTime);
 }
@@ -61,38 +72,58 @@
 	XCTAssertTrue([testProfile isRunning]);
 }
 
-- (void)testOnTimerProfile_WhenStopCountdownIsCalled_TheIsRunningPropertyIsSetToFalse
+- (void)testOnTimerProfileWithRunningCountdown_WhenStopCountdownIsCalled_TheIsRunningPropertyIsSetToFalseAndTheRemainingTimeIsReset
 {
 	[testProfile startCountdown];
+	[testProfile setRemainingTime:7];
     
 	[testProfile stopCountdown];
 	
 	XCTAssertFalse([testProfile isRunning]);
+	XCTAssertEqual([testProfile remainingTime], [testProfile duration]);
 }
 
-- (void)testOnTimerProfileCreation_ItHasACountdownNotificationManager
+- (void)testOnTimerProfileWithRunningCountdown_WhenCountdownIsPaused_TheRunningPropertyIsSetToTrue
 {
-    XCTAssertNotNil([testProfile notificationManager]);
+	[testProfile startCountdown];
+	
+	[testProfile pauseCountdown];
+	
+	XCTAssertFalse([testProfile isRunning]);
+}
+
+- (void)testOnTimerProfileWithPausedCountdown_WhenCountdownIsStarted_TheRemainingTimeIsSetToTheTimeWhenItWasPaused
+{
+    [testProfile startCountdown];
+	[testProfile setRemainingTime:3];
+	[testProfile pauseCountdown];
+	
+	NSTimeInterval timeAfterPause = [testProfile remainingTime];
+	[testProfile startCountdown];
+	
+	XCTAssertEqual([testProfile remainingTime], timeAfterPause);
 }
 
 - (void)testOnTimerProfile_WhenStartCountdownIsCalled_ItSchedulesANotificationForTheDateWhenTheCountdownFinishes
 {
-	CountdownNotificationManager* mockNotificationManager = OCMClassMock([CountdownNotificationManager class]);
-	[testProfile setNotificationManager:mockNotificationManager];
-		
 	[testProfile startCountdown];
 	
-	OCMVerify([mockNotificationManager scheduleCountdownExpiredNoficationIn:[testProfile duration] secondsForTimer:testProfile]);
+	OCMVerify([mockNotificationScheduler scheduleCountdownExpiredNoficationIn:[testProfile duration] secondsForTimer:testProfile]);
 }
 
 - (void)testOnTimerProfile_WhenStopCountdownIsCalled_ItCancelsItsNotification
 {
-    CountdownNotificationManager* mockNotificationManager = OCMClassMock([CountdownNotificationManager class]);
-	[testProfile setNotificationManager:mockNotificationManager];
-	
 	[testProfile stopCountdown];
 	
-	OCMVerify([mockNotificationManager cancelScheduledNotification]);
+	OCMVerify([mockNotificationScheduler cancelScheduledNotification]);
 }
+
+- (void)testOnTimerProfile_WhenPausingTheCountdown_ItCancelsItsNotification
+{
+    [testProfile pauseCountdown];
+	
+	OCMVerify([mockNotificationScheduler cancelScheduledNotification]);
+}
+
 
 @end

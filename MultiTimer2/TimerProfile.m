@@ -8,7 +8,7 @@
 
 #import "TimerProfile.h"
 
-#import "CountdownNotificationManager.h"
+#import "CountdownNotificationScheduler.h"
 
 @implementation TimerProfile
 
@@ -18,15 +18,13 @@
 @synthesize isRunning;
 @synthesize remainingTime = _remainingTime;
 
-@synthesize notificationManager;
+@synthesize notificationScheduler;
 
 + (instancetype) createWithName:(NSString *)profileName duration:(NSTimeInterval)profileDuration managedObjectContext:(NSManagedObjectContext *)context
 {
 	TimerProfile* newProfile = [self createWithManagedObjectContext:context];
 	[newProfile setName:profileName];
 	[newProfile setDuration:profileDuration];
-	
-	[newProfile setNotificationManager:[[CountdownNotificationManager alloc] init]];
 	
 	return newProfile;
 }
@@ -41,19 +39,42 @@
 	return @"TimerProfile";
 }
 
+- (void)awakeFromInsert
+{
+	[self setUpDefaultValues];
+}
+
+- (void)awakeFromFetch
+{
+	[self setUpDefaultValues];
+}
+
+- (void)setUpDefaultValues
+{
+	[self setRemainingTime:[self duration]];
+	[self setNotificationScheduler:[[CountdownNotificationScheduler alloc] init]];
+}
+
 - (void)startCountdown
 {
-	_remainingTime = [self duration];
 	[self setIsRunning:YES];
 	
-	[self.notificationManager scheduleCountdownExpiredNoficationIn:[self duration] secondsForTimer:self];
+	[self.notificationScheduler scheduleCountdownExpiredNoficationIn:[self duration] secondsForTimer:self];
 }
 
 - (void)stopCountdown
 {
 	[self setIsRunning:NO];
+	[self setRemainingTime:[self duration]];
 	
-	[self.notificationManager cancelScheduledNotification];
+	[self.notificationScheduler cancelScheduledNotification];
+}
+
+- (void)pauseCountdown
+{
+	[self setIsRunning:NO];
+	
+	[self.notificationScheduler cancelScheduledNotification];
 }
 
 @end

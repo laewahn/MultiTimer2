@@ -1,5 +1,5 @@
 //
-//  CountdownNotificationManager.h
+//  CountdownNotificationScheduler.h
 //  MultiTimer2
 //
 //  Created by Dennis Lewandowski on 14/09/14.
@@ -10,7 +10,7 @@
 
 @class TimerProfile;
 
-@interface CountdownNotificationManager : NSObject
+@interface CountdownNotificationScheduler : NSObject
 
 - (void)scheduleCountdownExpiredNoficationIn:(NSTimeInterval)timeInterval secondsForTimer:(TimerProfile *)timer;
 
