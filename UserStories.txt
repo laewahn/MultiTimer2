@@ -8,15 +8,15 @@
 
 === Timer functionality ===
 👍 The user can select a timer
-	* A timer is initialized with its duration
-* The user can start the timer
-	* When the timer is started, it starts to count down the time
-* When the timer is running, the user can pause or stop the timer
-	* When the user pauses the timer, the timer no longer counts down
-		* The user can select to continue or reset the timer
-		* Continue continues the countdown
-		* Reset resets the timer to the initial duration
-	* When the user stops the timer, it is paused and reset
+	👍 A timer is initialized with its duration
+👍 The user can start the timer
+	👍 When the timer is started, it starts to count down the time
+👍 When the timer is running, the user can pause or stop the timer
+	👍 When the user pauses the timer, the timer no longer counts down
+		👍 The user can select to resume or reset the timer
+		👍 Resume continues the countdown
+		👍 Reset resets the timer to the initial duration
+	👍 When the user stops the timer, it is paused and reset
 * When a timer reaches 0, it is paused and an alert is posted together with a sound
 * When the alert is dismissed, the timer is resetted
 
