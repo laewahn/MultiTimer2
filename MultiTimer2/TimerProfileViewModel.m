@@ -10,7 +10,7 @@
 
 #import "TimerProfile.h"
 
-static void * TimerProfileRemainingTimeContext = &TimerProfileRemainingTimeContext;
+void * TimerProfileRemainingTimeContext = &TimerProfileRemainingTimeContext;
 
 @interface TimerProfileViewModel() {
 	TimerProfile* _timerProfile;
@@ -66,6 +66,11 @@ static void * TimerProfileRemainingTimeContext = &TimerProfileRemainingTimeConte
 	}
 
 	return timeString;
+}
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
+{
+	
 }
 
 @end

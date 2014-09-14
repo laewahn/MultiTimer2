@@ -52,7 +52,7 @@
 	[testScheduler setApplication:mockApplication];
 	
 	stubProfile = OCMClassMock([TimerProfile class]);
-	OCMStub([stubProfile managedObjectIDAsURI]).andReturn(@"something");
+	OCMStub([stubProfile managedObjectIDAsURI]).andReturn([NSURL URLWithString:@"something..."]);
 }
 
 - (void)testOnCountdownNotificationScheduler_ItCanKnowTheApplication
@@ -82,7 +82,7 @@
 	
 	UILocalNotification* scheduledNotification = [testScheduler notification];
 	
-	XCTAssertEqualObjects([scheduledNotification userInfo][@"timerProfileURI"], [stubProfile managedObjectIDAsURI]);
+	XCTAssertEqualObjects([scheduledNotification userInfo][@"timerProfileURI"], [stubProfile.managedObjectIDAsURI absoluteString]);
 	XCTAssertEqualWithAccuracy([scheduledNotification.fireDate timeIntervalSinceDate:dateWhenCalled], 10, 0.001);
 }
 

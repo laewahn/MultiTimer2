@@ -116,6 +116,15 @@
 	[(id)mockProfile verify];
 }
 
+- (void)testOnViewModel_ItHandlesKVOCalls
+{
+	NSDictionary* modelChange = @{
+								  NSKeyValueChangeNewKey : @1
+								  };
+	
+    XCTAssertNoThrow([testViewModel observeValueForKeyPath:@"remainingTime" ofObject:testViewModel change:modelChange context:TimerProfileRemainingTimeContext]);
+}
+
 
 # pragma mark Fixtures generation
 

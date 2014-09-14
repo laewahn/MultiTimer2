@@ -10,6 +10,8 @@
 
 @class TimerProfile;
 
+extern void * TimerProfileRemainingTimeContext;
+
 @interface TimerProfileViewModel : NSObject
 
 - (instancetype) initWithTimerProfile:(TimerProfile *)timerProfile;

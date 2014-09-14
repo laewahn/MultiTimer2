@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-typedef BOOL(^ViewFilterBlock)(UIView *);
+typedef BOOL(^ViewFilterBlock)(id);
 
 @interface UIView (FindingViews)
 

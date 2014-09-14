@@ -63,7 +63,8 @@
 		NSIndexPath* selectionIndexPath = [self.tableView indexPathForSelectedRow];
 		TimerProfile* selectedProfile = [self.timerProfileStore.timerProfilesFetchedResultsController objectAtIndexPath:selectionIndexPath];
 		
-		[detailVC setProfile:selectedProfile];
+		TimerProfileViewModel* viewModel = [[TimerProfileViewModel alloc] initWithTimerProfile:selectedProfile];
+		[detailVC setTimerProfileViewModel:viewModel];
 	}
 }
 

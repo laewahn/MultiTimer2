@@ -26,7 +26,8 @@
 
 - (void)scheduleCountdownExpiredNoficationIn:(NSTimeInterval)timeInterval secondsForTimer:(TimerProfile *)timer
 {
-	[self.notification setUserInfo:@{ @"timerProfileURI" : [timer managedObjectIDAsURI]}];
+	NSDictionary* userInfo = @{ @"timerProfileURI" : [timer.managedObjectIDAsURI absoluteString]};
+	[self.notification setUserInfo:userInfo];
 	[self.notification setFireDate:[NSDate dateWithTimeIntervalSinceNow:timeInterval]];
 	
 	[self.application scheduleLocalNotification:[self notification]];

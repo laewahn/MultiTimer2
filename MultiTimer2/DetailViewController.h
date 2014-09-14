@@ -8,11 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
-@class TimerProfile;
+@class TimerProfileViewModel;
 
 @interface DetailViewController : UIViewController
 
-@property (nonatomic, strong) TimerProfile* profile;
+@property (nonatomic, strong) TimerProfileViewModel* timerProfileViewModel;
 
 @property (weak, nonatomic) IBOutlet UIButton* startPauseButton;
 
