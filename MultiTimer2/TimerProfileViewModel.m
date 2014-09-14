@@ -26,7 +26,8 @@ void * TimerProfileRemainingTimeContext = &TimerProfileRemainingTimeContext;
 	if (self != nil) {
 		_timerProfile = timerProfile;
 		[_timerProfile addObserver:self forKeyPath:@"remainingTime" options:NSKeyValueObservingOptionInitial | NSKeyValueObservingOptionNew context:TimerProfileRemainingTimeContext];
-		[self updateState];
+		[_timerProfile addObserver:self forKeyPath:@"running" options:NSKeyValueObservingOptionInitial | NSKeyValueObservingOptionNew context:TimerProfileRemainingTimeContext];
+
 	}
 	
 	return self;
@@ -35,6 +36,7 @@ void * TimerProfileRemainingTimeContext = &TimerProfileRemainingTimeContext;
 - (void)dealloc
 {
 	[_timerProfile removeObserver:self forKeyPath:@"remainingTime"];
+	[_timerProfile removeObserver:self forKeyPath:@"running"];
 }
 
 - (void) updateState
@@ -49,13 +51,16 @@ void * TimerProfileRemainingTimeContext = &TimerProfileRemainingTimeContext;
 - (void) startCountdown
 {
 	[self.timerProfile startCountdown];
-	[self updateState];
 }
 
 - (void) stopCountdown
 {
 	[self.timerProfile stopCountdown];
-	[self updateState];
+}
+
+- (void) pauseCountdown
+{
+	[self.timerProfile pauseCountdown];
 }
 
 - (NSString *)name
@@ -65,7 +70,7 @@ void * TimerProfileRemainingTimeContext = &TimerProfileRemainingTimeContext;
 
 - (NSString *)duration
 {
-	NSTimeInterval durationToDisplay = [self.timerProfile isRunning] ? [self.timerProfile remainingTime] : [self.timerProfile duration];
+	NSTimeInterval durationToDisplay = [self.timerProfile remainingTime];
 
 	NSInteger seconds = floor(durationToDisplay);
 	NSInteger minutes = seconds / 60;

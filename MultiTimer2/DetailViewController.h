@@ -10,6 +10,8 @@
 
 @class TimerProfileViewModel;
 
+extern void * TimerProfileViewControllerChangeContext;
+
 @interface DetailViewController : UIViewController
 
 @property (nonatomic, strong) TimerProfileViewModel* timerProfileViewModel;
@@ -19,5 +21,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *durationLabel;
 
 - (IBAction)startPauseButtonPressed:(id)sender;
+- (IBAction)stopResetButtonPressed:(id)sender;
 
 @end

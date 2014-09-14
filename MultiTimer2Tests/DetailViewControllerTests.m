@@ -127,4 +127,64 @@
 	XCTAssertTrue([stopResetButton isEnabled]);
 }
 
+- (void)testOnDetailViewControllerWithTimerProfileStopped_WhenPressingStart_ItStartsTheCountdown
+{
+	OCMStub([mockViewModel countdownState]).andReturn(TimerProfileViewModelStateStopped);
+	[testVC setTimerProfileViewModel:mockViewModel];
+	[testVC observeValueForKeyPath:@"countdownState" ofObject:mockViewModel change:nil context:TimerProfileViewControllerChangeContext];
+	UIButton* startPauseButton = [testVC.view findButtonWithTitle:@"Start"];
+	
+	[startPauseButton sendActionsForControlEvents:UIControlEventTouchUpInside];
+	
+	OCMVerify([mockViewModel startCountdown]);
+}
+
+- (void)testOnDetailViewControllerWithTimerProfileRunning_WhenPressingPause_ItPausesTheCountdown
+{
+	OCMStub([mockViewModel countdownState]).andReturn(TimerProfileViewModelStateRunning);
+	[testVC setTimerProfileViewModel:mockViewModel];
+	[testVC observeValueForKeyPath:@"countdownState" ofObject:mockViewModel change:nil context:TimerProfileViewControllerChangeContext];
+	UIButton* startPauseButton = [testVC.view findButtonWithTitle:@"Pause"];
+	
+	[startPauseButton sendActionsForControlEvents:UIControlEventTouchUpInside];
+	
+	OCMVerify([mockViewModel pauseCountdown]);
+}
+
+- (void)testOnDetailViewControllerWithTimerProfilePaused_WhenPressingResume_ItStartsTheCountdown
+{
+	OCMStub([mockViewModel countdownState]).andReturn(TimerProfileViewModelStatePaused);
+	[testVC setTimerProfileViewModel:mockViewModel];
+	[testVC observeValueForKeyPath:@"countdownState" ofObject:mockViewModel change:nil context:TimerProfileViewControllerChangeContext];
+	UIButton* startPauseButton = [testVC.view findButtonWithTitle:@"Resume"];
+	
+	[startPauseButton sendActionsForControlEvents:UIControlEventTouchUpInside];
+	
+	OCMVerify([mockViewModel startCountdown]);
+}
+
+- (void)testOnDetailViewControllerWithTimerProfileRunning_WhenPressingStop_ItStopsTheCountdown
+{
+	OCMStub([mockViewModel countdownState]).andReturn(TimerProfileViewModelStateRunning);
+	[testVC setTimerProfileViewModel:mockViewModel];
+	[testVC observeValueForKeyPath:@"countdownState" ofObject:mockViewModel change:nil context:TimerProfileViewControllerChangeContext];
+	UIButton* startPauseButton = [testVC.view findButtonWithTitle:@"Stop"];
+	
+	[startPauseButton sendActionsForControlEvents:UIControlEventTouchUpInside];
+	
+	OCMVerify([mockViewModel stopCountdown]);
+}
+
+- (void)testOnDetailViewControllerWithTimerProfilePaused_WhenPressingReset_ItStopsTheCountdown
+{
+	OCMStub([mockViewModel countdownState]).andReturn(TimerProfileViewModelStatePaused);
+	[testVC setTimerProfileViewModel:mockViewModel];
+	[testVC observeValueForKeyPath:@"countdownState" ofObject:mockViewModel change:nil context:TimerProfileViewControllerChangeContext];
+	UIButton* startPauseButton = [testVC.view findButtonWithTitle:@"Reset"];
+	
+	[startPauseButton sendActionsForControlEvents:UIControlEventTouchUpInside];
+	
+	OCMVerify([mockViewModel stopCountdown]);
+}
+
 @end

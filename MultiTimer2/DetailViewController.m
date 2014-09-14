@@ -35,6 +35,11 @@ void * TimerProfileViewControllerChangeContext = &TimerProfileViewControllerChan
 	[_timerProfileViewModel addObserver:self forKeyPath:@"countdownState" options:NSKeyValueObservingOptionInitial | NSKeyValueObservingOptionNew context:TimerProfileViewControllerChangeContext];
 }
 
+- (void)viewDidDisappear:(BOOL)animated
+{
+	[self setTimerProfileViewModel:nil];
+}
+
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
 	if (context == TimerProfileViewControllerChangeContext) {
@@ -63,7 +68,16 @@ void * TimerProfileViewControllerChangeContext = &TimerProfileViewControllerChan
 
 - (IBAction)startPauseButtonPressed:(id)sender
 {
-	[self.timerProfileViewModel startCountdown];
+	if ([self.timerProfileViewModel countdownState] == TimerProfileViewModelStateStopped || [self.timerProfileViewModel countdownState] == TimerProfileViewModelStatePaused) {
+		[self.timerProfileViewModel startCountdown];
+	} else {
+		[self.timerProfileViewModel pauseCountdown];
+	}
+}
+
+- (IBAction)stopResetButtonPressed:(id)sender
+{
+	[self.timerProfileViewModel stopCountdown];
 }
 
 @end

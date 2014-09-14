@@ -24,6 +24,7 @@ extern void * TimerProfileRemainingTimeContext;
 
 - (void) startCountdown;
 - (void) stopCountdown;
+- (void) pauseCountdown;
 
 @property(readonly) TimerProfile* timerProfile;
 

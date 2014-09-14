@@ -90,6 +90,14 @@
 	OCMVerify([mockProfile startCountdown]);
 }
 
+- (void)testWhenPauseCountdownIsCalled_ItPausesTheCountdown
+{
+	testViewModel = [[TimerProfileViewModel alloc] initWithTimerProfile:mockProfile];
+	[testViewModel pauseCountdown];
+	
+	OCMVerify([mockProfile pauseCountdown]);
+}
+
 - (void)testWhenStopCountdownIsCalled_itStopsTheCountdown
 {
 	testViewModel = [[TimerProfileViewModel alloc] initWithTimerProfile:mockProfile];
@@ -102,16 +110,17 @@
 {
 	TimerProfile* someProfile = [self someTimerProfile];
 	[someProfile setRemainingTime:7];
-	[someProfile setIsRunning:YES];
+	[someProfile setRunning:YES];
 	
 	testViewModel = [[TimerProfileViewModel alloc] initWithTimerProfile:someProfile];
 	
 	XCTAssertEqualObjects([testViewModel duration], @"00:07");
 }
 
-- (void)testOnViewModelInitialization_ItAddsItselfAsObserverForTheTimerProfilesRemainingTime
+- (void)testOnViewModelInitialization_ItAddsItselfAsObserverForTheTimerProfilesState
 {
 	[[[(id)mockProfile expect] ignoringNonObjectArgs] addObserver:OCMOCK_ANY forKeyPath:@"remainingTime" options:0 context:[OCMArg anyPointer]];
+	[[[(id)mockProfile expect] ignoringNonObjectArgs] addObserver:OCMOCK_ANY forKeyPath:@"running" options:0 context:[OCMArg anyPointer]];
     
 	testViewModel = [[TimerProfileViewModel alloc] initWithTimerProfile:mockProfile];
 	
@@ -136,7 +145,7 @@
 {
 	TimerProfile* someTimerProfile = [self someTimerProfile];
 	[someTimerProfile setRemainingTime:[someTimerProfile duration]];
-	[someTimerProfile setIsRunning:NO];
+	[someTimerProfile setRunning:NO];
 	
 	testViewModel = [[TimerProfileViewModel alloc] initWithTimerProfile:someTimerProfile];
 	
@@ -147,7 +156,7 @@
 {
 	TimerProfile* someTimerProfile = [self someTimerProfile];
 	[someTimerProfile setRemainingTime:[someTimerProfile duration] - 1];
-	[someTimerProfile setIsRunning:YES];
+	[someTimerProfile setRunning:YES];
 	
 	testViewModel = [[TimerProfileViewModel alloc] initWithTimerProfile:someTimerProfile];
 	
@@ -158,7 +167,7 @@
 {
 	TimerProfile* someTimerProfile = [self someTimerProfile];
 	[someTimerProfile setRemainingTime:[someTimerProfile duration] - 1];
-	[someTimerProfile setIsRunning:NO];
+	[someTimerProfile setRunning:NO];
 	
 	testViewModel = [[TimerProfileViewModel alloc] initWithTimerProfile:someTimerProfile];
 	

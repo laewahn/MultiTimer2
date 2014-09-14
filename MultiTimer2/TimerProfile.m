@@ -15,7 +15,7 @@
 @dynamic name;
 @dynamic duration;
 
-@synthesize isRunning;
+@synthesize running;
 @synthesize remainingTime = _remainingTime;
 @synthesize countdownTimer;
 
@@ -75,9 +75,10 @@
 
 - (void)startCountdown
 {
-	[self setIsRunning:YES];
+	[self setRunning:YES];
 	
-	[self.notificationScheduler scheduleCountdownExpiredNoficationIn:[self duration] secondsForTimer:self];
+	[self.notificationScheduler scheduleCountdownExpiredNoficationIn:[self remainingTime] secondsForTimer:self];
+	[self setCountdownTimer:[NSTimer timerWithTimeInterval:1.0 target:self selector:@selector(updateRemainingTime) userInfo:nil repeats:YES]];
 	[[NSRunLoop mainRunLoop] addTimer:[self countdownTimer] forMode:NSDefaultRunLoopMode];
 }
 
@@ -89,7 +90,8 @@
 
 - (void)pauseCountdown
 {
-	[self setIsRunning:NO];
+	[self setRunning:NO];
+	
 	[self.notificationScheduler cancelScheduledNotification];
 	[self.countdownTimer invalidate];
 }

@@ -23,7 +23,7 @@
 @property (nonatomic, retain) NSString* name;
 @property (nonatomic) double duration;
 
-@property (nonatomic) BOOL isRunning;
+@property (nonatomic, getter = isRunning) BOOL running;
 @property (nonatomic) NSTimeInterval remainingTime;
 @property (nonatomic, strong) NSTimer* countdownTimer;
 
