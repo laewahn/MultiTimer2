@@ -27,7 +27,7 @@
 - (void)setUp
 {
 	mockProfile = OCMClassMock([TimerProfile class]);
-	testViewModel = [[TimerProfileViewModel alloc] initWithTimerProfile:mockProfile];
+	testViewModel = [[TimerProfileViewModel alloc] initWithTimerProfile:[self someTimerProfile]];
 }
 
 - (void)testTimerProfileViewModelCanBeInitializedWithTimerProfile
@@ -84,6 +84,7 @@
 
 - (void)testWhenStartCountdownIsCalled_itStartsTheCountdown
 {
+	testViewModel = [[TimerProfileViewModel alloc] initWithTimerProfile:mockProfile];
 	[testViewModel startCountdown];
 	
 	OCMVerify([mockProfile startCountdown]);
@@ -91,6 +92,7 @@
 
 - (void)testWhenStopCountdownIsCalled_itStopsTheCountdown
 {
+	testViewModel = [[TimerProfileViewModel alloc] initWithTimerProfile:mockProfile];
 	[testViewModel stopCountdown];
 	
 	OCMVerify([mockProfile stopCountdown]);
@@ -130,6 +132,38 @@
     XCTAssertNoThrow([testViewModel countdownState]);
 }
 
+- (void)testOnViewModelCreationWithTimerProfileNotRunningAndRemainingTimeIsDuration_TheStateIsStopped
+{
+	TimerProfile* someTimerProfile = [self someTimerProfile];
+	[someTimerProfile setRemainingTime:[someTimerProfile duration]];
+	[someTimerProfile setIsRunning:NO];
+	
+	testViewModel = [[TimerProfileViewModel alloc] initWithTimerProfile:someTimerProfile];
+	
+	XCTAssertEqual([testViewModel countdownState], TimerProfileViewModelStateStopped);
+}
+
+- (void)testOnViewModelCreationWithTimerProfileRunning_TheStateIsRunning
+{
+	TimerProfile* someTimerProfile = [self someTimerProfile];
+	[someTimerProfile setRemainingTime:[someTimerProfile duration] - 1];
+	[someTimerProfile setIsRunning:YES];
+	
+	testViewModel = [[TimerProfileViewModel alloc] initWithTimerProfile:someTimerProfile];
+	
+	XCTAssertEqual([testViewModel countdownState], TimerProfileViewModelStateRunning);
+}
+
+- (void)testOnViewModelCreationWithTimerProfileNotRunningAndRemainingTimeNotEqualDuration_TheStateIsPaused
+{
+	TimerProfile* someTimerProfile = [self someTimerProfile];
+	[someTimerProfile setRemainingTime:[someTimerProfile duration] - 1];
+	[someTimerProfile setIsRunning:NO];
+	
+	testViewModel = [[TimerProfileViewModel alloc] initWithTimerProfile:someTimerProfile];
+	
+	XCTAssertEqual([testViewModel countdownState], TimerProfileViewModelStatePaused);
+}
 
 
 # pragma mark Fixtures generation

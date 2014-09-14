@@ -26,6 +26,7 @@ void * TimerProfileRemainingTimeContext = &TimerProfileRemainingTimeContext;
 	if (self != nil) {
 		_timerProfile = timerProfile;
 		[_timerProfile addObserver:self forKeyPath:@"remainingTime" options:NSKeyValueObservingOptionInitial | NSKeyValueObservingOptionNew context:TimerProfileRemainingTimeContext];
+		[self updateState];
 	}
 	
 	return self;
@@ -36,14 +37,25 @@ void * TimerProfileRemainingTimeContext = &TimerProfileRemainingTimeContext;
 	[_timerProfile removeObserver:self forKeyPath:@"remainingTime"];
 }
 
+- (void) updateState
+{
+	if ([_timerProfile isRunning]) {
+		_countdownState = TimerProfileViewModelStateRunning;
+	} else {
+		_countdownState = [_timerProfile remainingTime] == [_timerProfile duration] ? TimerProfileViewModelStateStopped : TimerProfileViewModelStatePaused;
+	}
+}
+
 - (void) startCountdown
 {
 	[self.timerProfile startCountdown];
+	[self updateState];
 }
 
 - (void) stopCountdown
 {
 	[self.timerProfile stopCountdown];
+	[self updateState];
 }
 
 - (NSString *)name
@@ -71,7 +83,12 @@ void * TimerProfileRemainingTimeContext = &TimerProfileRemainingTimeContext;
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
 	[self willChangeValueForKey:@"duration"];
+	[self willChangeValueForKey:@"countdownState"];
+	
+	[self updateState];
+	
 	[self didChangeValueForKey:@"duration"];
+	[self didChangeValueForKey:@"countdownState"];
 }
 
 @end
