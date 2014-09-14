@@ -10,6 +10,7 @@
 
 #import "TimerProfile.h"
 
+static void * TimerProfileRemainingTimeContext = &TimerProfileRemainingTimeContext;
 
 @interface TimerProfileViewModel() {
 	TimerProfile* _timerProfile;
@@ -24,9 +25,15 @@
 	
 	if (self != nil) {
 		_timerProfile = timerProfile;
+		[_timerProfile addObserver:self forKeyPath:@"remainingTime" options:NSKeyValueObservingOptionInitial | NSKeyValueObservingOptionNew context:TimerProfileRemainingTimeContext];
 	}
 	
 	return self;
+}
+
+- (void)dealloc
+{
+	[_timerProfile removeObserver:self forKeyPath:@"remainingTime"];
 }
 
 - (void) startCountdown

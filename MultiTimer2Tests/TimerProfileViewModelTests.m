@@ -107,6 +107,15 @@
 	XCTAssertEqualObjects([testViewModel duration], @"00:07");
 }
 
+- (void)testOnViewModelInitialization_ItAddsItselfAsObserverForTheTimerProfilesRemainingTime
+{
+	[[[(id)mockProfile expect] ignoringNonObjectArgs] addObserver:OCMOCK_ANY forKeyPath:@"remainingTime" options:0 context:[OCMArg anyPointer]];
+    
+	testViewModel = [[TimerProfileViewModel alloc] initWithTimerProfile:mockProfile];
+	
+	[(id)mockProfile verify];
+}
+
 
 # pragma mark Fixtures generation
 
