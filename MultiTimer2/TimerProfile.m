@@ -17,6 +17,7 @@
 
 @synthesize isRunning;
 @synthesize remainingTime = _remainingTime;
+@synthesize countdownTimer;
 
 @synthesize notificationScheduler;
 
@@ -58,6 +59,14 @@
 {
 	[self setRemainingTime:[self duration]];
 	[self setNotificationScheduler:[[CountdownNotificationScheduler alloc] init]];
+
+	NSTimer* aCountdownTimer = [NSTimer timerWithTimeInterval:1.0 target:self selector:@selector(updateRemainingTime) userInfo:nil repeats:YES];
+	[self setCountdownTimer:aCountdownTimer];
+}
+
+- (void)updateRemainingTime
+{
+	[self setRemainingTime:[self remainingTime] - 1];
 }
 
 - (void)startCountdown
@@ -65,21 +74,20 @@
 	[self setIsRunning:YES];
 	
 	[self.notificationScheduler scheduleCountdownExpiredNoficationIn:[self duration] secondsForTimer:self];
+	[[NSRunLoop mainRunLoop] addTimer:[self countdownTimer] forMode:NSDefaultRunLoopMode];
 }
 
 - (void)stopCountdown
 {
-	[self setIsRunning:NO];
+	[self pauseCountdown];
 	[self setRemainingTime:[self duration]];
-	
-	[self.notificationScheduler cancelScheduledNotification];
 }
 
 - (void)pauseCountdown
 {
 	[self setIsRunning:NO];
-	
 	[self.notificationScheduler cancelScheduledNotification];
+	[self.countdownTimer invalidate];
 }
 
 @end

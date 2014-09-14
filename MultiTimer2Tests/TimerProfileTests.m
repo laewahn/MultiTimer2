@@ -125,5 +125,48 @@
 	OCMVerify([mockNotificationScheduler cancelScheduledNotification]);
 }
 
+- (void)testOnTimerProfileCreation_ItHasACountdownTimer
+{
+    XCTAssertNotNil([testProfile countdownTimer]);
+	XCTAssertEqual([testProfile.countdownTimer timeInterval], 1);
+}
+
+- (void)testOnTimerProfile_WhenTheCountdownTimerFires_TheRemainingTimeDecreasesByOne
+{
+	NSTimeInterval remainingTimeBeforeCountdownInvocation = [testProfile remainingTime];
+    [testProfile.countdownTimer fire];
+	
+	XCTAssertEqual([testProfile remainingTime], remainingTimeBeforeCountdownInvocation - 1);
+}
+
+- (void)testOnTimerProfile_WhenStartingTheCountdown_ItAddsTheCountdownToTheRunloop
+{
+    NSRunLoop* partialMainRunloop = OCMPartialMock([NSRunLoop mainRunLoop]);
+	
+	[testProfile startCountdown];
+	
+	OCMVerify([partialMainRunloop addTimer:[testProfile countdownTimer] forMode:NSDefaultRunLoopMode]);
+}
+
+- (void)testOnTimerProfile_WhenStoppingTheCountdown_ItInvalidatesTheCountdown {
+	
+    NSTimer* mockTimer = OCMClassMock([NSTimer class]);
+	[testProfile setCountdownTimer:mockTimer];
+	
+	[testProfile stopCountdown];
+	
+	OCMVerify([mockTimer invalidate]);
+}
+
+- (void)testOnTimerProfile_WhenPausingTheCountdown_ItInvalidatesTheCountdown
+{
+    NSTimer* mockTimer = OCMClassMock([NSTimer class]);
+	[testProfile setCountdownTimer:mockTimer];
+	
+	[testProfile pauseCountdown];
+	
+	OCMVerify([mockTimer invalidate]);
+}
+
 
 @end

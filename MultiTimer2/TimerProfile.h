@@ -25,6 +25,7 @@
 
 @property (nonatomic) BOOL isRunning;
 @property (nonatomic) NSTimeInterval remainingTime;
+@property (nonatomic, strong) NSTimer* countdownTimer;
 
 @property (nonatomic, strong) CountdownNotificationScheduler* notificationScheduler;
 
