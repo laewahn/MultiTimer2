@@ -27,6 +27,8 @@
 	[newProfile setName:profileName];
 	[newProfile setDuration:profileDuration];
 	
+	[context save:nil];
+	
 	return newProfile;
 }
 
@@ -66,7 +68,9 @@
 
 - (void)updateRemainingTime
 {
+	[self willChangeValueForKey:@"remainingTime"];
 	[self setRemainingTime:[self remainingTime] - 1];
+	[self didChangeValueForKey:@"remainingTime"];
 }
 
 - (void)startCountdown

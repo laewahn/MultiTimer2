@@ -21,6 +21,8 @@
 	
 	NSManagedObjectModel* model = [[NSManagedObjectModel alloc] initWithContentsOfURL:modelURL];
 	NSPersistentStoreCoordinator* storeCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:model];
+	[storeCoordinator addPersistentStoreWithType:NSInMemoryStoreType configuration:nil URL:nil options:nil error:nil];
+	
 	
 	[testManagedObjectContext setPersistentStoreCoordinator:storeCoordinator];
 	

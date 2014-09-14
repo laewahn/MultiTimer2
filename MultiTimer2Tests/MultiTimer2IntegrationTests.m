@@ -36,6 +36,16 @@
 {
 	[appDelegate.managedObjectContext reset];
 	
+	NSBundle* testBundle = [NSBundle bundleForClass:[self class]];
+	NSURL* urlForFixtureDatabase = [testBundle URLForResource:@"MultiTimer2Fixtures" withExtension:@"sqlite"];
+	
+	NSURL* fixturesCopyURL = [urlForFixtureDatabase URLByAppendingPathExtension:@"Copy"];
+	[[NSFileManager defaultManager] removeItemAtURL:fixturesCopyURL error:nil];
+	
+	NSError* copyError;
+	BOOL copySuccess = [[NSFileManager defaultManager] copyItemAtURL:urlForFixtureDatabase toURL:fixturesCopyURL error:&copyError];
+	NSAssert(copySuccess, @"Copying fixtures failed with error: %@", copyError);
+	
 	NSPersistentStoreCoordinator* storeCoordinator = [appDelegate.managedObjectContext persistentStoreCoordinator];
 	for (NSPersistentStore* store in [storeCoordinator persistentStores]) {
 		NSError* removeStoreError;
@@ -43,14 +53,11 @@
 		
 		NSAssert(removeStoreError == nil, @"Removing store: %@ failed with error: %@", store, removeStoreError);
 	}
-	
-	NSBundle* testBundle = [NSBundle bundleForClass:[self class]];
-	NSURL* urlForFixtureDatabase = [testBundle URLForResource:@"MultiTimer2Fixtures" withExtension:@"sqlite"];
-	
+		
 	NSError* addStoreError;
 	NSPersistentStore* fixtureStore = [storeCoordinator addPersistentStoreWithType:NSSQLiteStoreType
 																	 configuration:nil
-																			   URL:urlForFixtureDatabase
+																			   URL:fixturesCopyURL
 																		   options:nil
 																			 error:&addStoreError];
 	NSAssert(addStoreError == nil, @"Adding store: %@ failed with error: %@", fixtureStore, addStoreError);
@@ -128,9 +135,16 @@
 	[overviewViewController performSegueWithIdentifier:@"showDetail" sender:[overviewViewController tableView]];
 	[[NSRunLoop mainRunLoop] runUntilDate:[NSDate dateWithTimeIntervalSinceNow:1]];
 	
-	UIViewController* presentedViewController = [overviewViewController.navigationController topViewController];
-	XCTAssertEqual([presentedViewController class], [DetailViewController class]);
-	XCTAssertEqualObjects([presentedViewController title], @"Black Tea");
+	DetailViewController* detailViewController = (DetailViewController *)[overviewViewController.navigationController topViewController];
+	XCTAssertEqual([detailViewController class], [DetailViewController class]);
+	XCTAssertEqualObjects([detailViewController title], @"Black Tea");
+	
+	UILabel* durationLabel = (UILabel *)[detailViewController.view findViewWithClass:[UILabel class] additionalFilter:^BOOL(UILabel* label) {
+		return [label.accessibilityLabel isEqualToString:@"Duration Label"];
+	}];
+	
+	XCTAssertNotNil(durationLabel);
+	XCTAssertEqualObjects([durationLabel text], @"03:00");
 }
 
 @end
