@@ -15,6 +15,8 @@
 
 @interface DetailViewControllerTests : XCTestCase {
 	DetailViewController* testVC;
+	
+	TimerProfileViewModel* someViewModel;
 	TimerProfileViewModel* mockViewModel;
 }
 @end
@@ -30,13 +32,15 @@
 	[testVC view];
 	
 	mockViewModel = OCMClassMock([TimerProfileViewModel class]);
+	
+	someViewModel = [[TimerProfileViewModel alloc] init];
+	[testVC setTimerProfileViewModel:someViewModel];
+	
 }
 
 - (void)testDetailViewControllerHasStartButton
 {
-	UIButton* startButton = (UIButton *)[testVC.view findViewWithClass:[UIButton class] additionalFilter:^BOOL(UIButton *button) {
-		return [button.titleLabel.text isEqualToString:@"Start"];
-	}];
+	UIButton* startButton = [testVC.view findButtonWithTitle:@"Start"];
 	
 	XCTAssertNotNil(startButton);
 }
@@ -51,6 +55,8 @@
 {
 	[[[(id)mockViewModel expect] ignoringNonObjectArgs] addObserver:OCMOCK_ANY forKeyPath:@"duration" options:0 context:[OCMArg anyPointer]];
 	
+	[[[(id)mockViewModel expect] ignoringNonObjectArgs] addObserver:OCMOCK_ANY forKeyPath:@"countdownState" options:0 context:[OCMArg anyPointer]];
+	
 	[testVC setTimerProfileViewModel:mockViewModel];
 
 	[(id)mockViewModel verify];
@@ -60,6 +66,7 @@
 {
     [testVC setTimerProfileViewModel:mockViewModel];
 	[[(id)mockViewModel expect] removeObserver:testVC forKeyPath:@"duration"];
+	[[(id)mockViewModel expect] removeObserver:testVC forKeyPath:@"countdownState"];
 	
 	[testVC setTimerProfileViewModel:nil];
 	
@@ -73,6 +80,51 @@
 								  };
 	
     XCTAssertNoThrow([testVC observeValueForKeyPath:@"duration" ofObject:mockViewModel change:someChanges context:TimerProfileRemainingTimeContext]);
+}
+
+- (void)testOnDetailViewControllerWithTimerProfileViewModel_WhenStartButtonIsPressed_ItStartsTheCountdown
+{
+	[testVC setTimerProfileViewModel:mockViewModel];
+    UIButton* startButton = [testVC.view findButtonWithTitle:@"Start"];
+	
+	[startButton sendActionsForControlEvents:UIControlEventTouchUpInside];
+	
+	OCMVerify([mockViewModel startCountdown]);
+}
+
+- (void)testOnDetailViewControllerWithTimerProfileStopped_ItShowsTheStartButtonAndDisablesTheStopButton
+{
+	[someViewModel setCountdownState:TimerProfileViewModelStateStopped];
+	
+	UIButton* startPauseButton = [testVC.view findButtonWithTitle:@"Start"];
+	XCTAssertNotNil(startPauseButton);
+	
+	UIButton* stopResetButton = [testVC.view findButtonWithTitle:@"Stop"];
+	XCTAssertNotNil(stopResetButton);
+	XCTAssertFalse([stopResetButton isEnabled]);
+}
+
+- (void)testOnDetailViewControllerWithTimerProfileRunning_ItShowsThePauseButtonAndEnablesTheStopButton
+{
+	[someViewModel setCountdownState:TimerProfileViewModelStateRunning];
+	
+	UIButton* startPauseButton = [testVC.view findButtonWithTitle:@"Pause"];
+	XCTAssertNotNil(startPauseButton);
+	
+	UIButton* stopResetButton = [testVC.view findButtonWithTitle:@"Stop"];
+	XCTAssertTrue([stopResetButton isEnabled]);
+}
+
+- (void)testOnDetailViewControllerWithTimerProfilePaused_ItShowsTheResumeButtonAndSetsTheResetButtonEnabled
+{
+	[someViewModel setCountdownState:TimerProfileViewModelStatePaused];
+	
+	UIButton* startPauseButton = [testVC.view findButtonWithTitle:@"Resume"];
+	XCTAssertNotNil(startPauseButton);
+	
+	UIButton* stopResetButton = [testVC.view findButtonWithTitle:@"Reset"];
+	XCTAssertNotNil(stopResetButton);
+	XCTAssertTrue([stopResetButton isEnabled]);
 }
 
 @end

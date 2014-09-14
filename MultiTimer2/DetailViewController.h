@@ -15,5 +15,9 @@
 @property (nonatomic, strong) TimerProfileViewModel* timerProfileViewModel;
 
 @property (weak, nonatomic) IBOutlet UIButton* startPauseButton;
+@property (weak, nonatomic) IBOutlet UIButton *stopResetButton;
+@property (weak, nonatomic) IBOutlet UILabel *durationLabel;
+
+- (IBAction)startPauseButtonPressed:(id)sender;
 
 @end

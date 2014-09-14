@@ -12,6 +12,7 @@ typedef BOOL(^ViewFilterBlock)(id);
 
 @interface UIView (FindingViews)
 
+- (UIButton *)findButtonWithTitle:(NSString *)title;
 - (UITextField *)findTextfieldWithPlaceHolderText:(NSString *)someText;
 - (UIDatePicker *)findCountdownPickerView;
 

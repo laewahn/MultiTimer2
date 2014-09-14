@@ -10,6 +10,12 @@
 
 @class TimerProfile;
 
+typedef enum TimerProfileViewModelState {
+	TimerProfileViewModelStateStopped,
+	TimerProfileViewModelStateRunning,
+	TimerProfileViewModelStatePaused
+} TimerProfileViewModelState;
+
 extern void * TimerProfileRemainingTimeContext;
 
 @interface TimerProfileViewModel : NSObject
@@ -23,5 +29,6 @@ extern void * TimerProfileRemainingTimeContext;
 
 @property(readonly) NSString* name;
 @property(readonly) NSString* duration;
+@property(nonatomic, assign) TimerProfileViewModelState countdownState;
 
 @end

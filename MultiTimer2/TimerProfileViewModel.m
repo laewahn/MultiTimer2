@@ -70,7 +70,8 @@ void * TimerProfileRemainingTimeContext = &TimerProfileRemainingTimeContext;
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
-	
+	[self willChangeValueForKey:@"duration"];
+	[self didChangeValueForKey:@"duration"];
 }
 
 @end

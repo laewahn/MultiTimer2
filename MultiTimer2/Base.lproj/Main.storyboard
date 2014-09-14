@@ -187,19 +187,47 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="I5D-in-oDm">
-                                <rect key="frame" x="137" y="110" width="33" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="I5D-in-oDm">
+                                <rect key="frame" x="144" y="110" width="33" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Start">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="startPauseButtonPressed:" destination="Ah7-4n-0Wa" eventType="touchUpInside" id="R5b-Gq-3E2"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U7Z-Gc-vTl">
+                                <rect key="frame" x="139" y="81" width="42" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <accessibility key="accessibilityConfiguration" label="Duration Label"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yIn-Au-Lcz">
+                                <rect key="frame" x="144" y="148" width="33" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Stop">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="I5D-in-oDm" firstAttribute="top" secondItem="U7Z-Gc-vTl" secondAttribute="bottom" constant="8" id="4LK-KJ-VLU"/>
+                            <constraint firstItem="yIn-Au-Lcz" firstAttribute="top" secondItem="I5D-in-oDm" secondAttribute="bottom" constant="8" id="6AL-NU-wlz"/>
+                            <constraint firstAttribute="centerX" secondItem="yIn-Au-Lcz" secondAttribute="centerX" id="G7L-dM-56e"/>
+                            <constraint firstAttribute="centerX" secondItem="I5D-in-oDm" secondAttribute="centerX" id="jkC-uD-KWn"/>
+                            <constraint firstItem="U7Z-Gc-vTl" firstAttribute="top" secondItem="cIm-e0-J51" secondAttribute="bottom" constant="17" id="lKb-sc-dwJ"/>
+                            <constraint firstAttribute="centerX" secondItem="U7Z-Gc-vTl" secondAttribute="centerX" id="thE-43-OsV"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Detail" id="cra-N8-TIN"/>
                     <connections>
+                        <outlet property="durationLabel" destination="U7Z-Gc-vTl" id="WRo-HN-bRx"/>
                         <outlet property="startPauseButton" destination="I5D-in-oDm" id="WPr-8K-2qm"/>
+                        <outlet property="stopResetButton" destination="yIn-Au-Lcz" id="KrM-WT-HbN"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lrm-kH-fPn" sceneMemberID="firstResponder"/>

@@ -10,6 +10,13 @@
 
 @implementation UIView (FindingViews)
 
+- (UIButton *)findButtonWithTitle:(NSString *)title
+{
+	return (UIButton *)[self findViewWithClass:[UIButton class] additionalFilter:^BOOL(UIButton *button) {
+		return [button.titleLabel.text isEqualToString:title];
+	}];
+}
+
 - (UITextField *)findTextfieldWithPlaceHolderText:(NSString *)someText
 {
 	ViewFilterBlock filterForTextFieldWithPlaceHolder = ^BOOL(UIView *theView) {

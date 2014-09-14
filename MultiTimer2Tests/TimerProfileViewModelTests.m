@@ -125,6 +125,12 @@
     XCTAssertNoThrow([testViewModel observeValueForKeyPath:@"remainingTime" ofObject:testViewModel change:modelChange context:TimerProfileRemainingTimeContext]);
 }
 
+- (void)testOnViewModel_ItHasDifferentStates
+{
+    XCTAssertNoThrow([testViewModel countdownState]);
+}
+
+
 
 # pragma mark Fixtures generation
 
