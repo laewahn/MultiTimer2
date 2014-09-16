@@ -8,6 +8,7 @@
 
 #import <XCTest/XCTest.h>
 #import <OCMock/OCMock.h>
+#import "XCTest+CoreDataTestStack.h"
 
 #import "CountdownNotificationScheduler.h"
 
@@ -38,6 +39,7 @@
 	CountdownNotificationScheduler* testScheduler;
 
 	TimerProfile* stubProfile;
+	NSManagedObjectContext* testContext;
 	UIApplication* mockApplication;
 }
 @end
@@ -51,8 +53,8 @@
 	mockApplication = OCMClassMock([UIApplication class]);
 	[testScheduler setApplication:mockApplication];
 	
-	stubProfile = OCMClassMock([TimerProfile class]);
-	OCMStub([stubProfile managedObjectIDAsURI]).andReturn([NSURL URLWithString:@"something..."]);
+	testContext = [self managedObjectTestContext];
+	stubProfile = [TimerProfile createWithName:@"SomeProfile" duration:10 managedObjectContext:testContext];
 }
 
 - (void)testOnCountdownNotificationScheduler_ItCanKnowTheApplication
@@ -83,7 +85,11 @@
 	UILocalNotification* scheduledNotification = [testScheduler notification];
 	
 	XCTAssertEqualObjects([scheduledNotification userInfo][@"timerProfileURI"], [stubProfile.managedObjectIDAsURI absoluteString]);
+	XCTAssertEqualObjects([scheduledNotification timeZone], [NSTimeZone localTimeZone]);
+	XCTAssertEqualObjects([scheduledNotification alertBody], [stubProfile name]);
+	XCTAssertEqualObjects([scheduledNotification alertAction], @"Show");
 	XCTAssertEqualWithAccuracy([scheduledNotification.fireDate timeIntervalSinceDate:dateWhenCalled], 10, 0.001);
+	XCTAssertNotNil([scheduledNotification soundName]);
 }
 
 - (void)testOnCountdownNotificationSchedulerWithScheduledNotification_WhenCancellingTheNotification_TheNotificationIsRemovedFromTheApplication

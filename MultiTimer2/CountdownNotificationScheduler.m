@@ -29,6 +29,9 @@
 	NSDictionary* userInfo = @{ @"timerProfileURI" : [timer.managedObjectIDAsURI absoluteString]};
 	[self.notification setUserInfo:userInfo];
 	[self.notification setFireDate:[NSDate dateWithTimeIntervalSinceNow:timeInterval]];
+	[self.notification setTimeZone:[NSTimeZone localTimeZone]];
+	[self.notification setAlertBody:[timer name]];
+	[self.notification setAlertAction:@"Show"];
 	
 	[self.application scheduleLocalNotification:[self notification]];
 }
