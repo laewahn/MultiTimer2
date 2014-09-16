@@ -44,4 +44,10 @@
 	XCTAssertEqualObjects([store managedObjectContext] , [appDelegate managedObjectContext]);
 }
 
+- (void)testOnAppDelegate_ItCanReceiveLocalNotifications
+{
+	UILocalNotification* someNotification = [[UILocalNotification alloc] init];
+    XCTAssertNoThrow([appDelegate application:[UIApplication sharedApplication] didReceiveLocalNotification: someNotification]);
+}
+
 @end

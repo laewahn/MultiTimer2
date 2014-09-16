@@ -29,6 +29,11 @@
     return YES;
 }
 
+- (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification
+{
+	
+}
+
 - (NSManagedObjectContext *)managedObjectContext
 {
 	if(_managedObjectContext == nil) {
