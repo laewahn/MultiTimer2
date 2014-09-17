@@ -7,13 +7,17 @@
 //
 
 #import <XCTest/XCTest.h>
+#import <OCMock/OCMock.h>
+#import "XCTest+CoreDataTestStack.h"
 
 #import "AppDelegate.h"
 
 #import "TimerOverviewViewController.h"
 #import "TimerProfileStore.h"
+#import "TimerProfile.h"
 
 @interface AppDelegateTests : XCTestCase {
+	UILocalNotification* someNotification;
 	AppDelegate* appDelegate;
 }
 
@@ -24,6 +28,7 @@
 - (void)setUp
 {
 	appDelegate = [[UIApplication sharedApplication] delegate];
+	someNotification = [[UILocalNotification alloc] init];
 }
 
 - (void)testAppDelegateSetsUpCoreDataStack
@@ -44,10 +49,27 @@
 	XCTAssertEqualObjects([store managedObjectContext] , [appDelegate managedObjectContext]);
 }
 
-- (void)testOnAppDelegate_ItCanReceiveLocalNotifications
+- (void)testOnAppDelegate_WhenReceivingLocalNotification_ItFindsTheTimerProfileAndPausesTheCountdown
 {
-	UILocalNotification* someNotification = [[UILocalNotification alloc] init];
-    XCTAssertNoThrow([appDelegate application:[UIApplication sharedApplication] didReceiveLocalNotification: someNotification]);
+	NSManagedObjectContext* testContext = [self managedObjectTestContext];
+	TimerProfile* someProfile = [TimerProfile createWithName:@"Some Timer" duration:10 managedObjectContext:testContext];
+	[appDelegate setManagedObjectContext:testContext];
+	
+	NSError* saveError;
+	BOOL saveSuccess = [testContext save:&saveError];
+	XCTAssertTrue(saveSuccess, @"Saving failed with error: %@", saveError);
+	
+	[someNotification setUserInfo:@{ @"timerProfileURI" : [someProfile.managedObjectIDAsURI absoluteString]}];
+	TimerProfile* partialTimer = OCMPartialMock(someProfile);
+	
+	[appDelegate application:[UIApplication sharedApplication] didReceiveLocalNotification:someNotification];
+	
+	OCMVerify([partialTimer pauseCountdown]);
+}
+
+- (void)testOnAppDelegate_WhenReceivingLocalNotification_ItPostsAnAlertForTheNotification
+{
+    XCTFail(@"NYI");
 }
 
 @end

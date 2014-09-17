@@ -10,6 +10,7 @@
 
 #import "TimerOverviewViewController.h"
 #import "TimerProfileStore.h"
+#import "TimerProfile.h"
 
 @implementation AppDelegate
 
@@ -31,7 +32,15 @@
 
 - (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification
 {
-	
+	if ([application applicationState] == UIApplicationStateActive) {
+		NSURL* expiredTimerURL = [NSURL URLWithString:[notification.userInfo valueForKey:@"timerProfileURI"]];
+		NSManagedObjectID* expiredTimerID = [self.managedObjectContext.persistentStoreCoordinator managedObjectIDForURIRepresentation:expiredTimerURL];
+		
+		NSError* restoreTimerError;
+		TimerProfile* expiredTimer = (TimerProfile *)[self.managedObjectContext existingObjectWithID:expiredTimerID error:&restoreTimerError];
+		
+		[expiredTimer pauseCountdown];
+	}
 }
 
 - (NSManagedObjectContext *)managedObjectContext

@@ -11,7 +11,7 @@
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
-@property (readonly) NSManagedObjectContext* managedObjectContext;
+@property (strong, nonatomic) NSManagedObjectContext* managedObjectContext;
 
 - (NSURL *)applicationDocumentsDirectory;
 
