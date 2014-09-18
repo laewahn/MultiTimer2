@@ -14,6 +14,8 @@
 #import "TimerProfileViewModel.h"
 #import "TimerProfile.h"
 
+#import "CountdownNotificationScheduler.h"
+
 @interface TimerProfileViewModelTests : XCTestCase {
 	TimerProfileViewModel* testViewModel;
 	
@@ -174,6 +176,16 @@
 	XCTAssertEqual([testViewModel countdownState], TimerProfileViewModelStatePaused);
 }
 
+- (void)testOnViewModelCreation_WhenRemainingTimeIsZero_TheStateIsExpired
+{
+    TimerProfile* someProfile = [self someTimerProfile];
+	[someProfile setRemainingTime:0];
+	
+	testViewModel = [[TimerProfileViewModel alloc] initWithTimerProfile:someProfile];
+	
+	XCTAssertEqual([testViewModel countdownState], TimerProfileViewModelStateExpired);
+}
+
 
 # pragma mark Fixtures generation
 
@@ -184,12 +196,16 @@
 
 - (TimerProfile *)someTimerProfileWithName:(NSString *)name
 {
-	return [TimerProfile createWithName:name duration:10 managedObjectContext:[self managedObjectTestContext]];
+	TimerProfile* newTimer = [TimerProfile createWithName:name duration:10 managedObjectContext:[self managedObjectTestContext]];
+	[newTimer setNotificationScheduler:OCMClassMock([CountdownNotificationScheduler class])];
+	return newTimer;
 }
 
 - (TimerProfile *)someTimerProfileWithDuration:(NSTimeInterval)duration
 {
-	return [TimerProfile createWithName:@"Test" duration:duration managedObjectContext:[self managedObjectTestContext]];
+	TimerProfile* newTimer = [TimerProfile createWithName:@"Test" duration:duration managedObjectContext:[self managedObjectTestContext]];
+	[newTimer setNotificationScheduler:OCMClassMock([CountdownNotificationScheduler class])];
+	return newTimer;
 }
 
 @end

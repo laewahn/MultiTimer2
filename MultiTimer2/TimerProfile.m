@@ -17,15 +17,16 @@
 
 @synthesize running;
 @synthesize remainingTime = _remainingTime;
-@synthesize countdownTimer;
+@synthesize countdownTimer = _countdownTimer;
 
-@synthesize notificationScheduler;
+@synthesize notificationScheduler = _notificationScheduler;
 
 + (instancetype) createWithName:(NSString *)profileName duration:(NSTimeInterval)profileDuration managedObjectContext:(NSManagedObjectContext *)context
 {
 	TimerProfile* newProfile = [self createWithManagedObjectContext:context];
 	[newProfile setName:profileName];
 	[newProfile setDuration:profileDuration];
+	[newProfile setRemainingTime:profileDuration];
 	
 	[context save:nil];
 	
@@ -47,23 +48,27 @@
 	return [self.objectID URIRepresentation];
 }
 
-- (void)awakeFromInsert
-{
-	[self setUpDefaultValues];
-}
-
 - (void)awakeFromFetch
 {
-	[self setUpDefaultValues];
+	[self setRemainingTime:[self duration]];
 }
 
-- (void)setUpDefaultValues
+- (CountdownNotificationScheduler *)notificationScheduler
 {
-	[self setRemainingTime:[self duration]];
-	[self setNotificationScheduler:[[CountdownNotificationScheduler alloc] init]];
+	if (_notificationScheduler == nil) {
+		_notificationScheduler = [[CountdownNotificationScheduler alloc] init];
+	}
+	
+	return _notificationScheduler;
+}
 
-	NSTimer* aCountdownTimer = [NSTimer timerWithTimeInterval:1.0 target:self selector:@selector(updateRemainingTime) userInfo:nil repeats:YES];
-	[self setCountdownTimer:aCountdownTimer];
+- (NSTimer *)countdownTimer
+{
+	if (_countdownTimer == nil) {
+		_countdownTimer = [NSTimer timerWithTimeInterval:1.0 target:self selector:@selector(updateRemainingTime) userInfo:nil repeats:YES];
+	}
+	
+	return _countdownTimer;
 }
 
 - (void)updateRemainingTime
@@ -75,10 +80,13 @@
 
 - (void)startCountdown
 {
+	if ([self remainingTime] == 0) {
+		[self setRemainingTime:[self duration]];
+	}
+	
 	[self setRunning:YES];
 	
 	[self.notificationScheduler scheduleCountdownExpiredNoficationIn:[self remainingTime] secondsForTimer:self];
-	[self setCountdownTimer:[NSTimer timerWithTimeInterval:1.0 target:self selector:@selector(updateRemainingTime) userInfo:nil repeats:YES]];
 	[[NSRunLoop mainRunLoop] addTimer:[self countdownTimer] forMode:NSDefaultRunLoopMode];
 }
 
@@ -94,6 +102,7 @@
 	
 	[self.notificationScheduler cancelScheduledNotification];
 	[self.countdownTimer invalidate];
+	[self setCountdownTimer:nil];
 }
 
 @end

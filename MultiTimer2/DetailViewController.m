@@ -52,6 +52,7 @@ void * TimerProfileViewControllerChangeContext = &TimerProfileViewControllerChan
 	[self.durationLabel setText:[self.timerProfileViewModel duration]];
 	
 	if ([self.timerProfileViewModel countdownState] == TimerProfileViewModelStateStopped) {
+		[self.startPauseButton setEnabled:YES];
 		[self.startPauseButton setTitle:@"Start" forState:UIControlStateNormal];
 		[self.stopResetButton setTitle:@"Stop" forState:UIControlStateNormal];
 		[self.stopResetButton setEnabled:NO];
@@ -63,6 +64,10 @@ void * TimerProfileViewControllerChangeContext = &TimerProfileViewControllerChan
 		[self.startPauseButton setTitle:@"Resume" forState:UIControlStateNormal];
 		[self.stopResetButton setTitle:@"Reset" forState:UIControlStateNormal];
 		[self.stopResetButton setEnabled:YES];
+	} else if ([self.timerProfileViewModel countdownState] == TimerProfileViewModelStateExpired) {
+		[self.startPauseButton setTitle:@"Pause" forState:UIControlStateNormal];
+		[self.stopResetButton setTitle:@"Reset" forState:UIControlStateNormal];
+		[self.startPauseButton setEnabled:NO];
 	}
 }
 

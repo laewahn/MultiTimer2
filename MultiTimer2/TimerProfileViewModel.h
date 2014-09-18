@@ -13,7 +13,8 @@
 typedef enum TimerProfileViewModelState {
 	TimerProfileViewModelStateStopped,
 	TimerProfileViewModelStateRunning,
-	TimerProfileViewModelStatePaused
+	TimerProfileViewModelStatePaused,
+	TimerProfileViewModelStateExpired
 } TimerProfileViewModelState;
 
 extern void * TimerProfileRemainingTimeContext;

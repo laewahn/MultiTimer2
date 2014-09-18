@@ -44,7 +44,13 @@ void * TimerProfileRemainingTimeContext = &TimerProfileRemainingTimeContext;
 	if ([_timerProfile isRunning]) {
 		_countdownState = TimerProfileViewModelStateRunning;
 	} else {
-		_countdownState = [_timerProfile remainingTime] == [_timerProfile duration] ? TimerProfileViewModelStateStopped : TimerProfileViewModelStatePaused;
+		if ([_timerProfile remainingTime] == [_timerProfile duration]) {
+			_countdownState = TimerProfileViewModelStateStopped;
+		} else if ([_timerProfile remainingTime] == 0) {
+			_countdownState = TimerProfileViewModelStateExpired;
+		} else {
+			_countdownState = TimerProfileViewModelStatePaused;
+		}
 	}
 }
 

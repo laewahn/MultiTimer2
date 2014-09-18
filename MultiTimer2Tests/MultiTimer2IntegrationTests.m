@@ -11,6 +11,7 @@
 #import "UIView+FindingViews.h"
 
 #import "AppDelegate.h"
+#import "TimerProfileStore.h"
 #import "TimerOverviewViewController.h"
 #import "FetchedResultsDataSource.h"
 #import "CreateProfileViewController.h"
@@ -70,6 +71,14 @@
 {
     UIApplication* app = [UIApplication sharedApplication];
 	XCTAssertNotNil(app);
+}
+
+- (void)testAppDelegateSetsTimerProfileStoreOnOverviewViewControllerWithManagedObjectContext
+{
+    TimerOverviewViewController* overviewViewController = (TimerOverviewViewController *)[(UINavigationController *)appDelegate.window.rootViewController topViewController];
+	
+	TimerProfileStore* store = [overviewViewController timerProfileStore];
+	XCTAssertEqualObjects([store managedObjectContext] , [appDelegate managedObjectContext]);
 }
 
 - (void)testWhenTheAppStartsTheUserIsPresentedAListOfTimers

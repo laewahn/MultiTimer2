@@ -13,7 +13,6 @@
 #import "AppDelegate.h"
 
 #import "TimerOverviewViewController.h"
-#import "TimerProfileStore.h"
 #import "TimerProfile.h"
 
 @interface AppDelegateTests : XCTestCase {
@@ -27,7 +26,7 @@
 
 - (void)setUp
 {
-	appDelegate = [[UIApplication sharedApplication] delegate];
+	appDelegate = [[AppDelegate alloc] init];
 	someNotification = [[UILocalNotification alloc] init];
 }
 
@@ -39,14 +38,6 @@
 	XCTAssertEqual([appContext concurrencyType], NSMainQueueConcurrencyType);
 	XCTAssertNotNil([appContext persistentStoreCoordinator]);
 	XCTAssertNotEqual([appContext.persistentStoreCoordinator.persistentStores count], 0);
-}
-
-- (void)testAppDelegateSetsTimerProfileStoreOnOverviewViewControllerWithManagedObjectContext
-{
-    TimerOverviewViewController* overviewViewController = (TimerOverviewViewController *)[(UINavigationController *)appDelegate.window.rootViewController topViewController];
-	
-	TimerProfileStore* store = [overviewViewController timerProfileStore];
-	XCTAssertEqualObjects([store managedObjectContext] , [appDelegate managedObjectContext]);
 }
 
 - (void)testOnAppDelegate_WhenReceivingLocalNotification_ItFindsTheTimerProfileAndPausesTheCountdown
@@ -69,7 +60,7 @@
 
 - (void)testOnAppDelegate_WhenReceivingLocalNotification_ItPostsAnAlertForTheNotification
 {
-    XCTFail(@"NYI");
+	XCTAssertNotNil([appDelegate timerAlert]);
 }
 
 @end
