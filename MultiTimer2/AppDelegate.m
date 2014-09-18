@@ -39,8 +39,25 @@
 		NSError* restoreTimerError;
 		TimerProfile* expiredTimer = (TimerProfile *)[self.managedObjectContext existingObjectWithID:expiredTimerID error:&restoreTimerError];
 		
-		[expiredTimer pauseCountdown];
+		[self handleExpiredTimer:expiredTimer];
 	}
+}
+
+- (void)handleExpiredTimer:(TimerProfile *)timer
+{
+	[timer pauseCountdown];
+	
+	[self.timerAlert setTitle:[timer name]];
+	[self.timerAlert show];
+}
+
+- (UIAlertView *)timerAlert
+{
+	if (_timerAlert == nil) {
+		_timerAlert = [[UIAlertView alloc] initWithTitle:nil message:@"Timer expired." delegate:self cancelButtonTitle:@"Okay" otherButtonTitles:nil];
+	}
+	
+	return _timerAlert;
 }
 
 - (NSManagedObjectContext *)managedObjectContext

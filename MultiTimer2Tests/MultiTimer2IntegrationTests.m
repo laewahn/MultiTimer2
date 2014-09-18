@@ -75,8 +75,6 @@
 
 - (void)testAppDelegateSetsTimerProfileStoreOnOverviewViewControllerWithManagedObjectContext
 {
-    TimerOverviewViewController* overviewViewController = (TimerOverviewViewController *)[(UINavigationController *)appDelegate.window.rootViewController topViewController];
-	
 	TimerProfileStore* store = [overviewViewController timerProfileStore];
 	XCTAssertEqualObjects([store managedObjectContext] , [appDelegate managedObjectContext]);
 }

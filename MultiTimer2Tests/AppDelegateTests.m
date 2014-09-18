@@ -15,6 +15,7 @@
 #import "TimerOverviewViewController.h"
 #import "TimerProfile.h"
 
+
 @interface AppDelegateTests : XCTestCase {
 	UILocalNotification* someNotification;
 	AppDelegate* appDelegate;
@@ -40,7 +41,7 @@
 	XCTAssertNotEqual([appContext.persistentStoreCoordinator.persistentStores count], 0);
 }
 
-- (void)testOnAppDelegate_WhenReceivingLocalNotification_ItFindsTheTimerProfileAndPausesTheCountdown
+- (void)testOnAppDelegate_WhenReceivingLocalNotification_ItFindsTheTimerProfileAndHandlesIt
 {
 	NSManagedObjectContext* testContext = [self managedObjectTestContext];
 	TimerProfile* someProfile = [TimerProfile createWithName:@"Some Timer" duration:10 managedObjectContext:testContext];
@@ -51,16 +52,40 @@
 	XCTAssertTrue(saveSuccess, @"Saving failed with error: %@", saveError);
 	
 	[someNotification setUserInfo:@{ @"timerProfileURI" : [someProfile.managedObjectIDAsURI absoluteString]}];
-	TimerProfile* partialTimer = OCMPartialMock(someProfile);
+	AppDelegate* partialAppDelegate = OCMPartialMock(appDelegate);
+	
 	
 	[appDelegate application:[UIApplication sharedApplication] didReceiveLocalNotification:someNotification];
 	
-	OCMVerify([partialTimer pauseCountdown]);
+	OCMVerify([partialAppDelegate handleExpiredTimer:someProfile]);
 }
 
 - (void)testOnAppDelegate_WhenReceivingLocalNotification_ItPostsAnAlertForTheNotification
 {
 	XCTAssertNotNil([appDelegate timerAlert]);
+	
+	UIAlertView* mockAlert = OCMClassMock([UIAlertView class]);
+	[appDelegate setTimerAlert:mockAlert];
+	
+	NSManagedObjectContext* testContext = [self managedObjectTestContext];
+	TimerProfile* someProfile = [TimerProfile createWithName:@"Some Timer" duration:10 managedObjectContext:testContext];
+	[appDelegate setManagedObjectContext:testContext];
+	
+	NSError* saveError;
+	BOOL saveSuccess = [testContext save:&saveError];
+	XCTAssertTrue(saveSuccess, @"Saving failed with error: %@", saveError);
+	
+	[someNotification setUserInfo:@{ @"timerProfileURI" : [someProfile.managedObjectIDAsURI absoluteString]}];
+	
+	[appDelegate application:[UIApplication sharedApplication] didReceiveLocalNotification:someNotification];
+	
+	OCMVerify([mockAlert setTitle:@"Some Timer"]);
+	OCMVerify([mockAlert show]);
+}
+
+- (void)testOnAppDelegate_WhenTheAlertIsDismissed_ItResetsTheCountdown
+{
+    XCTAssertTrue([appDelegate conformsToProtocol:@protocol(UIAlertViewDelegate)]);
 }
 
 @end
