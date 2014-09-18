@@ -27,7 +27,7 @@
 
 - (void)setUp
 {
-	appDelegate = [[UIApplication sharedApplication] delegate];
+	appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
 	overviewViewController = (TimerOverviewViewController *)[(UINavigationController *)appDelegate.window.rootViewController topViewController];
 	
 	[self replaceTheSQLiteStoreWithTheFixtureStore];
