@@ -17,8 +17,8 @@
 		👍 Resume continues the countdown
 		👍 Reset resets the timer to the initial duration
 	👍 When the user stops the timer, it is paused and reset
-* When a timer reaches 0, it is paused and an alert is posted together with a sound
-* When the alert is dismissed, the timer is resetted
+👍/* When a timer reaches 0, it is paused and an alert is posted together with a sound
+👍 When the alert is dismissed, the timer is reset
 
 === Timer overview ===
 * When the user navigates to the overview, it shows the updated remaining duration for started timers
@@ -29,5 +29,5 @@
 	* The user can stop timers in the overview
 
 === Background timers ===
-* When the application is sent to background, timers that reach 0 post notifications
+👍 When the application is sent to background, timers that reach 0 post notifications
 * When the application returns from background, running timers are updated to their new duration
