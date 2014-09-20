@@ -10,6 +10,13 @@
 
 @implementation UIView (FindingViews)
 
+- (UILabel *)findLabelWithText:(NSString *)someText
+{
+	return (UILabel *)[self findViewWithClass:[UILabel class] additionalFilter:^BOOL(UILabel* label) {
+		return [label.text isEqualToString:someText];
+	}];
+}
+
 - (UIButton *)findButtonWithTitle:(NSString *)title
 {
 	return (UIButton *)[self findViewWithClass:[UIButton class] additionalFilter:^BOOL(UIButton *button) {

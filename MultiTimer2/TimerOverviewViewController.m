@@ -13,6 +13,7 @@
 
 #import "CreateProfileViewController.h"
 #import "DetailViewController.h"
+#import "TimerProfileTableViewCell.h"
 
 @interface TimerOverviewViewController ()
 @end
@@ -44,10 +45,10 @@
 
 - (void)configureCell:(UITableViewCell *)someCell withObject:(id)someObject
 {
-	TimerProfileViewModel* tpViewModel = [[TimerProfileViewModel alloc] initWithTimerProfile:someObject];
+	NSAssert([someCell isKindOfClass:[TimerProfileTableViewCell class]], @"The cell can only be a timer profile cell.");
 	
-	[someCell.textLabel setText:[tpViewModel name]];
-	[someCell.detailTextLabel setText:[tpViewModel duration]];
+	TimerProfileViewModel* tpViewModel = [[TimerProfileViewModel alloc] initWithTimerProfile:someObject];
+	[(TimerProfileTableViewCell *)someCell setViewModel:tpViewModel];
 }
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender

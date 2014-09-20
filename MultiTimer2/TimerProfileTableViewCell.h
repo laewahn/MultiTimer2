@@ -14,4 +14,7 @@
 
 @property(nonatomic, strong) TimerProfileViewModel* viewModel;
 
+@property (weak, nonatomic) IBOutlet UILabel *nameLabel;
+@property (weak, nonatomic) IBOutlet UILabel *durationLabel;
+
 @end

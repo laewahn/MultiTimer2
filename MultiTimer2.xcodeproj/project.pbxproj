@@ -21,7 +21,6 @@
 		9528241D19C5B2EE007E5F7C /* CountdownNotificationSchedulerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9528241C19C5B2EE007E5F7C /* CountdownNotificationSchedulerTests.m */; };
 		9528242019C5B35B007E5F7C /* CountdownNotificationScheduler.m in Sources */ = {isa = PBXBuildFile; fileRef = 9528241F19C5B35B007E5F7C /* CountdownNotificationScheduler.m */; };
 		9528242619C6B116007E5F7C /* TimerProfileTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9528242419C6B116007E5F7C /* TimerProfileTableViewCell.m */; };
-		9528242719C6B116007E5F7C /* TimerProfileTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9528242519C6B116007E5F7C /* TimerProfileTableViewCell.xib */; };
 		9528242919C6B12D007E5F7C /* TimerProfileTableViewCellTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9528242819C6B12D007E5F7C /* TimerProfileTableViewCellTests.m */; };
 		956649A319CAA9BA00DA97EC /* TimerAlertTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 956649A219CAA9BA00DA97EC /* TimerAlertTests.m */; };
 		956649A619CAAA1B00DA97EC /* TimerAlert.m in Sources */ = {isa = PBXBuildFile; fileRef = 956649A519CAAA1B00DA97EC /* TimerAlert.m */; };
@@ -84,7 +83,6 @@
 		9528241F19C5B35B007E5F7C /* CountdownNotificationScheduler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CountdownNotificationScheduler.m; sourceTree = "<group>"; };
 		9528242319C6B116007E5F7C /* TimerProfileTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimerProfileTableViewCell.h; sourceTree = "<group>"; };
 		9528242419C6B116007E5F7C /* TimerProfileTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimerProfileTableViewCell.m; sourceTree = "<group>"; };
-		9528242519C6B116007E5F7C /* TimerProfileTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TimerProfileTableViewCell.xib; sourceTree = "<group>"; };
 		9528242819C6B12D007E5F7C /* TimerProfileTableViewCellTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimerProfileTableViewCellTests.m; sourceTree = "<group>"; };
 		956649A219CAA9BA00DA97EC /* TimerAlertTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimerAlertTests.m; sourceTree = "<group>"; };
 		956649A419CAAA1B00DA97EC /* TimerAlert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimerAlert.h; sourceTree = "<group>"; };
@@ -195,7 +193,6 @@
 				95B622B419ABA0A900BB2708 /* TimerOverviewViewController.m */,
 				9528242319C6B116007E5F7C /* TimerProfileTableViewCell.h */,
 				9528242419C6B116007E5F7C /* TimerProfileTableViewCell.m */,
-				9528242519C6B116007E5F7C /* TimerProfileTableViewCell.xib */,
 				95B622B619ABA0A900BB2708 /* DetailViewController.h */,
 				95B622B719ABA0A900BB2708 /* DetailViewController.m */,
 				95B622B919ABA0A900BB2708 /* Images.xcassets */,
@@ -348,7 +345,6 @@
 				95B622BA19ABA0A900BB2708 /* Images.xcassets in Resources */,
 				95B622A619ABA0A900BB2708 /* InfoPlist.strings in Resources */,
 				95B622AF19ABA0A900BB2708 /* Main.storyboard in Resources */,
-				9528242719C6B116007E5F7C /* TimerProfileTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

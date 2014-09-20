@@ -12,9 +12,16 @@
 #import "TimerProfileTableViewCell.h"
 #import "TimerProfileViewModel.h"
 
+#import "XCTest+CoreDataTestStack.h"
+#import "TimerProfile.h"
+
 @interface TimerProfileTableViewCellTests : XCTestCase {
 	TimerProfileTableViewCell* testCell;
 	TimerProfileViewModel* mockViewModel;
+	TimerProfileViewModel* realViewModel;
+	
+	NSManagedObjectContext* context;
+	TimerProfile* someProfile;
 }
 @end
 
@@ -22,21 +29,28 @@
 
 - (void)setUp
 {
-	testCell = [[TimerProfileTableViewCell alloc] init];
+	NSBundle* mainBundle = [NSBundle bundleForClass:[TimerProfileTableViewCell class]];
+	NSArray* nibContents =[mainBundle loadNibNamed:@"TimerProfileTableViewCell" owner:testCell options:nil];
+	
+	testCell = [nibContents firstObject];
+	
 	mockViewModel = OCMClassMock([TimerProfileViewModel class]);
+	
+	context = [self managedObjectTestContext];
+	someProfile = [TimerProfile createWithName:@"Some Profile" duration:10 managedObjectContext:context];
+	realViewModel = [[TimerProfileViewModel alloc] initWithTimerProfile:someProfile];
 }
 
 - (void)testOnTimerProfileTableViewCell_ItCanHaveATimerProfileViewModel
 {
-	TimerProfileViewModel* someViewModel= [[TimerProfileViewModel alloc] init];
-	
-	[testCell setViewModel:someViewModel];
-	XCTAssertEqualObjects([testCell viewModel], someViewModel);
+	[testCell setViewModel:realViewModel];
+	XCTAssertEqualObjects([testCell viewModel], realViewModel);
 }
 
 - (void)testOnTimerProfileTableViewCell_WhenSettingTheViewModel_ItRegistersAsObserver
 {
 	[[[(id)mockViewModel expect] ignoringNonObjectArgs] addObserver:testCell forKeyPath:@"duration" options:0 context:[OCMArg anyPointer]];
+	[[[(id)mockViewModel expect] ignoringNonObjectArgs] addObserver:testCell forKeyPath:@"name" options:0 context:[OCMArg anyPointer]];
 	
 	[testCell setViewModel:mockViewModel];
 	
@@ -45,9 +59,11 @@
 
 - (void)testOnTimerProfileTableViewCellWithViewModel_WhenSettingANewViewModel_ItRemovesAsObserverFromTheOldViewModel
 {
-	[[(id)mockViewModel expect] removeObserver:testCell forKeyPath:@"duration"];
 	[testCell setViewModel:mockViewModel];
-	
+
+	[[(id)mockViewModel expect] removeObserver:testCell forKeyPath:@"duration"];
+	[[(id)mockViewModel expect] removeObserver:testCell forKeyPath:@"name"];
+
 	[testCell setViewModel:nil];
 	
 	[(id)mockViewModel verify];
@@ -62,19 +78,28 @@
     XCTAssertNoThrow([testCell observeValueForKeyPath:@"duration" ofObject:mockViewModel change:someChange context:TimerProfileRemainingTimeContext]);
 }
 
-- (void)testOnTimerProfileTableViewCell_WhenTheDurationUpdates_ItUpdatesTheDurationLabel
-{
-    XCTFail(@"NYI");
-}
-
 - (void)testOnTimerProfileTableViewCell_WhenTheDurationIsInitialized_ItUpdatesTheDurationLabel
 {
-    XCTFail(@"NYI");
+	[testCell setViewModel:realViewModel];
+	
+	XCTAssertEqualObjects([testCell.durationLabel text], @"00:10");
+}
+
+- (void)testOnTimerProfileTableViewCell_WhenTheDurationUpdates_ItUpdatesTheDurationLabel
+{
+	[testCell setViewModel:realViewModel];
+
+	XCTAssertEqualObjects([testCell.durationLabel text], @"00:10");
+	
+	[someProfile setRemainingTime:5];
+	XCTAssertEqualObjects([testCell.durationLabel text], @"00:05");
 }
 
 - (void)testOnTimerProfileTableViewCell_WhenTheViewModelIsSet_TheNameLabelIsSet
 {
-    XCTFail(@"NYI");
+	[testCell setViewModel:realViewModel];
+	
+	XCTAssertEqualObjects([testCell.nameLabel text], @"Some Profile");
 }
 
 @end

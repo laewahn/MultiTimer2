@@ -86,8 +86,9 @@
 
 	NSIndexPath* firstCellIndexPath = [NSIndexPath indexPathForItem:0 inSection:0];
 	UITableViewCell* firstCell = [overviewViewController.tableView cellForRowAtIndexPath:firstCellIndexPath];
-	XCTAssertEqualObjects([firstCell.textLabel text], @"Black Tea");
-	XCTAssertEqualObjects([firstCell.detailTextLabel text], @"03:00");
+	
+	XCTAssertNotNil([firstCell.contentView findLabelWithText:@"Black Tea"]);
+	XCTAssertNotNil([firstCell.contentView findLabelWithText:@"03:00"]);
 }
 
 - (void)testWhenTheUserPressesTheAddButtonTheCreateTimerProfileViewIsPresented
@@ -117,8 +118,8 @@
 	
 	NSIndexPath* firstCellIndexPath = [NSIndexPath indexPathForItem:1 inSection:0];
 	UITableViewCell* firstCell = [overviewViewController.tableView cellForRowAtIndexPath:firstCellIndexPath];
-	XCTAssertEqualObjects([firstCell.textLabel text], @"Green Tea");
-	XCTAssertEqualObjects([firstCell.detailTextLabel text], @"1:01:00");
+	XCTAssertNotNil([firstCell.contentView findLabelWithText:@"Green Tea"]);
+	XCTAssertNotNil([firstCell.contentView findLabelWithText:@"1:01:00"]);
 }
 
 - (void)testWhenTheUserCancelsCreatingNewTimerProfileNoNewProfileIsInTheTable
@@ -145,7 +146,7 @@
 	DetailViewController* detailViewController = (DetailViewController *)[overviewViewController.navigationController topViewController];
 	XCTAssertEqual([detailViewController class], [DetailViewController class]);
 	XCTAssertEqualObjects([detailViewController title], @"Black Tea");
-	
+
 	UILabel* durationLabel = (UILabel *)[detailViewController.view findViewWithClass:[UILabel class] additionalFilter:^BOOL(UILabel* label) {
 		return [label.accessibilityLabel isEqualToString:@"Duration Label"];
 	}];

@@ -17,6 +17,7 @@
 #import "TimerProfileStore.h"
 #import "TimerProfile.h"
 #import "CreateProfileViewController.h"
+#import "TimerProfileTableViewCell.h"
 
 @interface TimerOverviewViewControllerTests : XCTestCase {
 	TimerOverviewViewController* testVC;
@@ -69,17 +70,24 @@
 	OCMVerify([mockTableView reloadData]);
 }
 
+- (void)testOnOverviewViewControllerTableView_ItCreatesTimerProfileTableViewCells
+{
+    UITableViewCell* someCell = [testVC.tableView dequeueReusableCellWithIdentifier:@"Cell"];
+	XCTAssertTrue([someCell isKindOfClass:[TimerProfileTableViewCell class]]);
+}
+
 - (void)testOverviewViewControllerConfiguresCells
 {
-	UITableViewCell* someCell = [testVC.tableView dequeueReusableCellWithIdentifier:@"Cell"];
+	NSBundle* mainBundle = [NSBundle bundleForClass:[TimerOverviewViewController class]];
+	TimerProfileTableViewCell* someCell = [[mainBundle loadNibNamed:@"TimerProfileTableViewCell" owner:self options:nil] firstObject];
 	
 	NSString* profileName = @"The final countdown.";
 	TimerProfile* someProfile = [testStore createTimerProfileWithName:profileName duration:10];
 	
 	[testVC configureCell:someCell withObject:someProfile];
 	
-	XCTAssertEqualObjects([someCell.textLabel text], profileName);
-	XCTAssertEqualObjects([someCell.detailTextLabel text], @"00:10");
+	XCTAssertEqualObjects([someCell.nameLabel text], profileName);
+	XCTAssertEqualObjects([someCell.durationLabel text], @"00:10");
 }
 
 - (void)testOverviewViewControllerHasAddButton
