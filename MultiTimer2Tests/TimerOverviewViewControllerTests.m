@@ -22,6 +22,8 @@
 @interface TimerOverviewViewControllerTests : XCTestCase {
 	TimerOverviewViewController* testVC;
 	TimerProfileStore* testStore;
+	
+	TimerProfile* someProfile;
 }
 @end
 
@@ -37,6 +39,8 @@
 	testStore = [[TimerProfileStore alloc] init];
 	[testStore setManagedObjectContext:[self managedObjectTestContext]];
 	[testVC setTimerProfileStore:testStore];
+	
+	someProfile = [testStore createTimerProfileWithName:@"Some Profile" duration:10];
 }
 
 - (void)testTableViewHasFetchedResultsDataSourceAfterLoading
@@ -78,15 +82,14 @@
 
 - (void)testOnOverviewController_WhenAskedToDeleteStoppedTimer_ItReturnsYES
 {
-    TimerProfile* someProfile = [testStore createTimerProfileWithName:@"Some Profile" duration:10];
+	[someProfile setRunning:NO];
 	
 	XCTAssertTrue([testVC canDeleteObject:someProfile]);
 }
 
 - (void)testOnOverviewViewController_WhenAskedToDeleteRunningTimer_ItReturnsNO
 {
-    TimerProfile* someProfile = [testStore createTimerProfileWithName:@"Some Profile" duration:10];
-	[someProfile startCountdown];
+	[someProfile setRunning:YES];
 	
 	XCTAssertFalse([testVC canDeleteObject:someProfile]);
 }
@@ -96,7 +99,7 @@
 	TimerProfileTableViewCell* someCell = [testVC.tableView dequeueReusableCellWithIdentifier:@"Cell"];
 	
 	NSString* profileName = @"The final countdown.";
-	TimerProfile* someProfile = [testStore createTimerProfileWithName:profileName duration:10];
+	someProfile = [testStore createTimerProfileWithName:profileName duration:10];
 	
 	[testVC configureCell:someCell withObject:someProfile];
 	

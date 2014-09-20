@@ -24,6 +24,12 @@
     // Configure the view for the selected state
 }
 
+- (void)dealloc
+{
+	[_viewModel removeObserver:self forKeyPath:@"duration"];
+	[_viewModel removeObserver:self forKeyPath:@"name"];
+}
+
 - (void)setViewModel:(TimerProfileViewModel *)viewModel
 {
 	[_viewModel removeObserver:self forKeyPath:@"duration"];

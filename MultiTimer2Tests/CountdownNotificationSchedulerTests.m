@@ -57,6 +57,11 @@
 	stubProfile = [TimerProfile createWithName:@"SomeProfile" duration:10 managedObjectContext:testContext];
 }
 
+- (void)tearDown
+{
+	[testScheduler cancelScheduledNotification];
+}
+
 - (void)testOnCountdownNotificationScheduler_ItCanKnowTheApplication
 {
 	[testScheduler setApplication:[UIApplication sharedApplication]];

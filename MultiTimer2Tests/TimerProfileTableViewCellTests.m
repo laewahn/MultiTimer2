@@ -45,6 +45,11 @@
 	realViewModel = [[TimerProfileViewModel alloc] initWithTimerProfile:someProfile];
 }
 
+- (void)tearDown
+{
+	[testCell setViewModel:nil];
+}
+
 - (void)testOnTimerProfileTableViewCell_ItCanHaveATimerProfileViewModel
 {
 	[testCell setViewModel:realViewModel];
