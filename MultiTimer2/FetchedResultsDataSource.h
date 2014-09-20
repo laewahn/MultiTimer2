@@ -10,6 +10,7 @@
 
 @protocol FetchedResultsDataSourceDelegate <NSObject>
 - (void) configureCell:(UITableViewCell *)someCell withObject:(id)someObject;
+- (BOOL) canDeleteObject:(id)someObject;
 @end
 
 @interface FetchedResultsDataSource : NSObject<UITableViewDataSource, NSFetchedResultsControllerDelegate>

@@ -50,6 +50,12 @@
 	}
 }
 
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
+{
+	id objectForDeletion = [self.fetchedResultsController objectAtIndexPath:indexPath];
+	return [self.delegate canDeleteObject:objectForDeletion];
+}
+
 - (void)controllerWillChangeContent:(NSFetchedResultsController *)controller
 {
 	[self.tableView beginUpdates];

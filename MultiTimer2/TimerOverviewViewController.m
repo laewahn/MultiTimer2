@@ -10,6 +10,7 @@
 
 #import "TimerProfileViewModel.h"
 #import "TimerProfileStore.h"
+#import "TimerProfile.h"
 
 #import "CreateProfileViewController.h"
 #import "DetailViewController.h"
@@ -49,6 +50,11 @@
 	
 	TimerProfileViewModel* tpViewModel = [[TimerProfileViewModel alloc] initWithTimerProfile:someObject];
 	[(TimerProfileTableViewCell *)someCell setViewModel:tpViewModel];
+}
+
+- (BOOL)canDeleteObject:(id)someObject
+{
+	return ![(TimerProfile *)someObject isRunning];
 }
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender

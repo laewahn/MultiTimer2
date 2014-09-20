@@ -22,8 +22,8 @@
 
 === Timer overview ===
 👍 When the user navigates to the overview, it shows the updated remaining duration for started timers
-* Timers that run can not be deleted
-* The timers count down in real time
+👍 Timers that run can not be deleted
+👍 The timers count down in real time
 * The user can start timers in the overview
 	* The user can pause timers in the overview
 * The user can reset timers in the overview

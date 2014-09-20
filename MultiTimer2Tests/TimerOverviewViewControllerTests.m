@@ -76,10 +76,24 @@
 	XCTAssertTrue([someCell isKindOfClass:[TimerProfileTableViewCell class]]);
 }
 
+- (void)testOnOverviewController_WhenAskedToDeleteStoppedTimer_ItReturnsYES
+{
+    TimerProfile* someProfile = [testStore createTimerProfileWithName:@"Some Profile" duration:10];
+	
+	XCTAssertTrue([testVC canDeleteObject:someProfile]);
+}
+
+- (void)testOnOverviewViewController_WhenAskedToDeleteRunningTimer_ItReturnsNO
+{
+    TimerProfile* someProfile = [testStore createTimerProfileWithName:@"Some Profile" duration:10];
+	[someProfile startCountdown];
+	
+	XCTAssertFalse([testVC canDeleteObject:someProfile]);
+}
+
 - (void)testOverviewViewControllerConfiguresCells
 {
-	NSBundle* mainBundle = [NSBundle bundleForClass:[TimerOverviewViewController class]];
-	TimerProfileTableViewCell* someCell = [[mainBundle loadNibNamed:@"TimerProfileTableViewCell" owner:self options:nil] firstObject];
+	TimerProfileTableViewCell* someCell = [testVC.tableView dequeueReusableCellWithIdentifier:@"Cell"];
 	
 	NSString* profileName = @"The final countdown.";
 	TimerProfile* someProfile = [testStore createTimerProfileWithName:profileName duration:10];

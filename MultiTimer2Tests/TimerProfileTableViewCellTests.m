@@ -20,6 +20,9 @@
 	TimerProfileViewModel* mockViewModel;
 	TimerProfileViewModel* realViewModel;
 	
+	UILabel* nameLabel;
+	UILabel* durationLabel;
+	
 	NSManagedObjectContext* context;
 	TimerProfile* someProfile;
 }
@@ -29,11 +32,12 @@
 
 - (void)setUp
 {
-	NSBundle* mainBundle = [NSBundle bundleForClass:[TimerProfileTableViewCell class]];
-	NSArray* nibContents =[mainBundle loadNibNamed:@"TimerProfileTableViewCell" owner:testCell options:nil];
-	
-	testCell = [nibContents firstObject];
-	
+	testCell = [[TimerProfileTableViewCell alloc] init];
+	nameLabel = [UILabel new];
+	durationLabel = [UILabel new];
+	[testCell setNameLabel:nameLabel];
+	[testCell setDurationLabel:durationLabel];
+		
 	mockViewModel = OCMClassMock([TimerProfileViewModel class]);
 	
 	context = [self managedObjectTestContext];

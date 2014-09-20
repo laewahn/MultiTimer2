@@ -132,6 +132,21 @@ static NSString* const kTestReuseIdentifier = @"TestCell";
 	OCMVerify([delegateMock configureCell:someCell withObject:expectedObject]);
 }
 
+- (void)testDataSourceAsksDelegateForDeletion
+{
+	NSArray* objectsInSection = [[sections firstObject] objects];
+	NSString* expectedObject = [objectsInSection firstObject];
+	
+	OCMStub([testDataSource.fetchedResultsController objectAtIndexPath:pathForTestRow]).andReturn(expectedObject);
+	
+	id<FetchedResultsDataSourceDelegate> delegateMock = OCMProtocolMock(@protocol(FetchedResultsDataSourceDelegate));
+	[testDataSource setDelegate:delegateMock];
+	
+	[testDataSource tableView:stubTableView canEditRowAtIndexPath:pathForTestRow];
+	
+	OCMVerify([delegateMock canDeleteObject:expectedObject]);
+}
+
 - (UITableView *)stubTableViewDequeueingCell:(UITableViewCell *)aCell forReuseIdentifier:(NSString *)reuseIdentifier
 {
 	UITableView* tableViewStub = OCMClassMock([UITableView class]);
