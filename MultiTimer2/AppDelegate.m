@@ -56,6 +56,14 @@
 	for (TimerProfile* expiredTimer in [self.timerProfileStore fetchExpiredTimerProfiles]) {
 		[expiredTimer stopCountdown];
 	}
+	
+	for (TimerProfile* profile in [self.timerProfileStore fetchTimerProfiles]) {
+		if ([profile isRunning]) {
+			NSDate* now = [NSDate date];
+			NSTimeInterval updatedRemainingTime = [profile.expirationDate timeIntervalSinceDate:now];
+			[profile setRemainingTime:updatedRemainingTime];
+		}
+	}
 }
 
 - (UIAlertView *)timerAlert
