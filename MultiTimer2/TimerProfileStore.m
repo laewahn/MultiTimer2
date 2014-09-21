@@ -24,6 +24,19 @@
 	return [self.managedObjectContext executeFetchRequest:[self fetchRequest]error:nil];
 }
 
+- (NSArray *)fetchExpiredTimerProfiles
+{
+	NSFetchRequest* expiredTimerFetchRequest = [self fetchRequest];
+	NSPredicate* expiredTimerPredicate = [NSPredicate predicateWithFormat:@"expirationDate < %@", [NSDate date]];
+	[expiredTimerFetchRequest setPredicate:expiredTimerPredicate];
+	
+	NSError* fetchError;
+	NSArray* fetchedProfiles = [self.managedObjectContext executeFetchRequest:expiredTimerFetchRequest error:&fetchError];
+	NSAssert(fetchedProfiles != nil, @"Fetching expired profiles failed with error: %@", fetchError);
+	
+	return fetchedProfiles;
+}
+
 - (NSFetchedResultsController *) timerProfilesFetchedResultsController
 {
 	if (_timerProfilesFetchedResultsController == nil) {

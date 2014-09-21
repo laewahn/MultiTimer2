@@ -31,6 +31,7 @@
 
 	someContext = [self managedObjectTestContext];
 	testStore = [[TimerProfileStore alloc] init];
+	[testStore setManagedObjectContext:someContext];
 }
 
 - (void)testStoreCanHaveManagedObjectContext
@@ -41,8 +42,6 @@
 
 - (void)testStoreCanCreateTimerProfiles
 {
-	[testStore setManagedObjectContext:someContext];
-	
 	TimerProfile* newProfile = [testStore createTimerProfileWithName:someProfileName duration:someProfileDuration];
 	
 	XCTAssertNotNil(newProfile);
@@ -62,8 +61,6 @@
 
 - (void)testStoreHasFetchedResultsController
 {
-	[testStore setManagedObjectContext:someContext];
-	
 	NSFetchedResultsController* frc = [testStore timerProfilesFetchedResultsController];
 	
 	XCTAssertNotNil(frc);
@@ -98,6 +95,28 @@
 	NSFetchedResultsController* secondFrc = [testStore timerProfilesFetchedResultsController];
 	
 	XCTAssertEqualObjects(firstFrc, secondFrc);
+}
+
+- (void)testOnTimerProfileStore_ItCanFetchExpiredTimers
+{
+    TimerProfile* expiredProfile = [testStore createTimerProfileWithName:@"Expired" duration:-10];
+	TimerProfile* anotherExpiredProfile = [testStore createTimerProfileWithName:@"Also expired" duration:-15];
+	TimerProfile* notExpiredProfile = [testStore createTimerProfileWithName:@"Not expired" duration:10];
+	NSArray* allTimers = @[expiredProfile, notExpiredProfile, anotherExpiredProfile];
+	for (TimerProfile* timer in allTimers) {
+		[timer startCountdown];
+	}
+	
+	NSArray* fetchedExpiredTimers = [testStore fetchExpiredTimerProfiles];
+
+	NSArray* expiredTimers = @[expiredProfile, anotherExpiredProfile];
+	XCTAssertNotNil(fetchedExpiredTimers);
+	XCTAssertEqualObjects(fetchedExpiredTimers, expiredTimers);
+	XCTAssertFalse([fetchedExpiredTimers containsObject:notExpiredProfile]);
+	
+	for (TimerProfile* timer in allTimers) {
+		[timer stopCountdown];
+	}
 }
 
 @end
