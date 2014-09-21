@@ -75,7 +75,12 @@
 - (void)updateRemainingTime
 {
 	[self willChangeValueForKey:@"remainingTime"];
+	
 	[self setRemainingTime:[self remainingTime] - 1];
+	if ([self remainingTime] == 0) {
+		[self pauseCountdown];
+	}
+	
 	[self didChangeValueForKey:@"remainingTime"];
 }
 

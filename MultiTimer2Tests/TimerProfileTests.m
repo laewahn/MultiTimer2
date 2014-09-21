@@ -189,6 +189,17 @@
 	XCTAssertEqual([testProfile remainingTime], remainingTimeBeforeCountdownInvocation - 1);
 }
 
+- (void)testOnTimerProfile_WhenTheCountdownReachesZero_ItPausesTheTimer
+{
+	[testProfile setRunning:YES];
+    [testProfile setRemainingTime:1];
+	
+	[testProfile.countdownTimer fire];
+	
+	XCTAssertFalse([testProfile isRunning]);
+	XCTAssertNil([testProfile expirationDate]);
+}
+
 - (void)testOnTimerProfile_WhenStartingTheCountdown_ItAddsTheCountdownToTheRunloop
 {
     NSRunLoop* partialMainRunloop = OCMPartialMock([NSRunLoop mainRunLoop]);
