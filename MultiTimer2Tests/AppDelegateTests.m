@@ -20,6 +20,9 @@
 @interface AppDelegateTests : XCTestCase {
 	UILocalNotification* someNotification;
 	AppDelegate* testAppDelegate;
+	
+	NSManagedObjectContext* testContext;
+	TimerProfile* someProfile;
 }
 
 @end
@@ -30,10 +33,17 @@
 {
 	testAppDelegate = [[AppDelegate alloc] init];
 	someNotification = [[UILocalNotification alloc] init];
+	
+	testContext = [self managedObjectTestContext];
+	[testAppDelegate setManagedObjectContext:testContext];
+	
+	someProfile = [TimerProfile createWithName:@"Some Timer" duration:10 managedObjectContext:testContext];
+	[someNotification setUserInfo:@{ @"timerProfileURI" : [someProfile.managedObjectIDAsURI absoluteString]}];
 }
 
 - (void)testAppDelegateSetsUpCoreDataStack
 {
+	[testAppDelegate setManagedObjectContext:nil];
 	NSManagedObjectContext* appContext = [testAppDelegate managedObjectContext];
 	
 	XCTAssertNotNil(appContext);
@@ -50,18 +60,8 @@
 
 - (void)testOnAppDelegate_WhenReceivingLocalNotification_ItFindsTheTimerProfileAndHandlesIt
 {
-	NSManagedObjectContext* testContext = [self managedObjectTestContext];
-	TimerProfile* someProfile = [TimerProfile createWithName:@"Some Timer" duration:10 managedObjectContext:testContext];
-	[testAppDelegate setManagedObjectContext:testContext];
-	
-	NSError* saveError;
-	BOOL saveSuccess = [testContext save:&saveError];
-	XCTAssertTrue(saveSuccess, @"Saving failed with error: %@", saveError);
-	
-	[someNotification setUserInfo:@{ @"timerProfileURI" : [someProfile.managedObjectIDAsURI absoluteString]}];
 	AppDelegate* partialAppDelegate = OCMPartialMock(testAppDelegate);
-	
-	
+
 	[testAppDelegate application:[UIApplication sharedApplication] didReceiveLocalNotification:someNotification];
 	
 	OCMVerify([partialAppDelegate handleExpiredTimer:someProfile]);
@@ -73,16 +73,6 @@
 	
 	TimerAlert* mockAlert = OCMClassMock([TimerAlert class]);
 	[testAppDelegate setTimerAlert:mockAlert];
-	
-	NSManagedObjectContext* testContext = [self managedObjectTestContext];
-	TimerProfile* someProfile = [TimerProfile createWithName:@"Some Timer" duration:10 managedObjectContext:testContext];
-	[testAppDelegate setManagedObjectContext:testContext];
-	
-	NSError* saveError;
-	BOOL saveSuccess = [testContext save:&saveError];
-	XCTAssertTrue(saveSuccess, @"Saving failed with error: %@", saveError);
-	
-	[someNotification setUserInfo:@{ @"timerProfileURI" : [someProfile.managedObjectIDAsURI absoluteString]}];
 	
 	[testAppDelegate application:[UIApplication sharedApplication] didReceiveLocalNotification:someNotification];
 	
@@ -118,7 +108,6 @@
 
 - (void)testOnAppDelegate_WhenAppBecomesActive_ItUpdatesAllRunningTimers
 {
-	[testAppDelegate setManagedObjectContext:[self managedObjectTestContext]];
     TimerProfile* runningTimer = [[testAppDelegate timerProfileStore] createTimerProfileWithName:@"Running" duration:10];
 	[runningTimer startCountdown];
 	[runningTimer setRemainingTime:20];
