@@ -13,12 +13,13 @@
 #import "AppDelegate.h"
 
 #import "TimerOverviewViewController.h"
+#import "TimerProfileStore.h"
 #import "TimerProfile.h"
 
 
 @interface AppDelegateTests : XCTestCase {
 	UILocalNotification* someNotification;
-	AppDelegate* appDelegate;
+	AppDelegate* testAppDelegate;
 }
 
 @end
@@ -27,13 +28,13 @@
 
 - (void)setUp
 {
-	appDelegate = [[AppDelegate alloc] init];
+	testAppDelegate = [[AppDelegate alloc] init];
 	someNotification = [[UILocalNotification alloc] init];
 }
 
 - (void)testAppDelegateSetsUpCoreDataStack
 {
-	NSManagedObjectContext* appContext = [appDelegate managedObjectContext];
+	NSManagedObjectContext* appContext = [testAppDelegate managedObjectContext];
 	
 	XCTAssertNotNil(appContext);
 	XCTAssertEqual([appContext concurrencyType], NSMainQueueConcurrencyType);
@@ -41,35 +42,41 @@
 	XCTAssertNotEqual([appContext.persistentStoreCoordinator.persistentStores count], 0);
 }
 
+- (void)testOnAppdelegate_ItHasSomeTimerProfileStore
+{
+    XCTAssertNotNil([testAppDelegate timerProfileStore]);
+	XCTAssertEqualObjects([testAppDelegate.timerProfileStore managedObjectContext], [testAppDelegate managedObjectContext]);
+}
+
 - (void)testOnAppDelegate_WhenReceivingLocalNotification_ItFindsTheTimerProfileAndHandlesIt
 {
 	NSManagedObjectContext* testContext = [self managedObjectTestContext];
 	TimerProfile* someProfile = [TimerProfile createWithName:@"Some Timer" duration:10 managedObjectContext:testContext];
-	[appDelegate setManagedObjectContext:testContext];
+	[testAppDelegate setManagedObjectContext:testContext];
 	
 	NSError* saveError;
 	BOOL saveSuccess = [testContext save:&saveError];
 	XCTAssertTrue(saveSuccess, @"Saving failed with error: %@", saveError);
 	
 	[someNotification setUserInfo:@{ @"timerProfileURI" : [someProfile.managedObjectIDAsURI absoluteString]}];
-	AppDelegate* partialAppDelegate = OCMPartialMock(appDelegate);
+	AppDelegate* partialAppDelegate = OCMPartialMock(testAppDelegate);
 	
 	
-	[appDelegate application:[UIApplication sharedApplication] didReceiveLocalNotification:someNotification];
+	[testAppDelegate application:[UIApplication sharedApplication] didReceiveLocalNotification:someNotification];
 	
 	OCMVerify([partialAppDelegate handleExpiredTimer:someProfile]);
 }
 
 - (void)testOnAppDelegate_WhenReceivingLocalNotification_ItPostsAnAlertForTheNotification
 {
-	XCTAssertNotNil([appDelegate timerAlert]);
+	XCTAssertNotNil([testAppDelegate timerAlert]);
 	
 	UIAlertView* mockAlert = OCMClassMock([UIAlertView class]);
-	[appDelegate setTimerAlert:mockAlert];
+	[testAppDelegate setTimerAlert:mockAlert];
 	
 	NSManagedObjectContext* testContext = [self managedObjectTestContext];
 	TimerProfile* someProfile = [TimerProfile createWithName:@"Some Timer" duration:10 managedObjectContext:testContext];
-	[appDelegate setManagedObjectContext:testContext];
+	[testAppDelegate setManagedObjectContext:testContext];
 	
 	NSError* saveError;
 	BOOL saveSuccess = [testContext save:&saveError];
@@ -77,7 +84,7 @@
 	
 	[someNotification setUserInfo:@{ @"timerProfileURI" : [someProfile.managedObjectIDAsURI absoluteString]}];
 	
-	[appDelegate application:[UIApplication sharedApplication] didReceiveLocalNotification:someNotification];
+	[testAppDelegate application:[UIApplication sharedApplication] didReceiveLocalNotification:someNotification];
 	
 	OCMVerify([mockAlert setTitle:@"Some Timer"]);
 	OCMVerify([mockAlert show]);
@@ -85,7 +92,19 @@
 
 - (void)testOnAppDelegate_WhenTheAlertIsDismissed_ItResetsTheCountdown
 {
-    XCTAssertTrue([appDelegate conformsToProtocol:@protocol(UIAlertViewDelegate)]);
+    XCTAssertTrue([testAppDelegate conformsToProtocol:@protocol(UIAlertViewDelegate)]);
+}
+
+- (void)testOnAppDelegate_WhenAppBecomesActive_ItStopsAllExpiredTimers
+{
+	TimerProfile* mockExpiredProfile = OCMClassMock([TimerProfile class]);
+    TimerProfileStore* stubStore = OCMClassMock([TimerProfileStore class]);
+	OCMStub([stubStore fetchExpiredTimerProfiles]).andReturn(@[mockExpiredProfile]);
+	[testAppDelegate setTimerProfileStore:stubStore];
+
+	[testAppDelegate applicationDidBecomeActive:nil];
+	
+	OCMVerify([mockExpiredProfile stopCountdown]);
 }
 
 @end

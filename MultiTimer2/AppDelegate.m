@@ -51,6 +51,13 @@
 	[self.timerAlert show];
 }
 
+- (void)applicationDidBecomeActive:(UIApplication *)application
+{
+	for (TimerProfile* expiredTimer in [self.timerProfileStore fetchExpiredTimerProfiles]) {
+		[expiredTimer stopCountdown];
+	}
+}
+
 - (UIAlertView *)timerAlert
 {
 	if (_timerAlert == nil) {
@@ -58,6 +65,16 @@
 	}
 	
 	return _timerAlert;
+}
+
+- (TimerProfileStore *)timerProfileStore
+{
+	if (_timerProfileStore == nil) {
+		_timerProfileStore = [[TimerProfileStore alloc] init];
+		[_timerProfileStore setManagedObjectContext:[self managedObjectContext]];
+	}
+	
+	return _timerProfileStore;
 }
 
 - (NSManagedObjectContext *)managedObjectContext
@@ -100,11 +117,6 @@
 - (void)applicationWillEnterForeground:(UIApplication *)application
 {
 	// Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
-}
-
-- (void)applicationDidBecomeActive:(UIApplication *)application
-{
-	// Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application
