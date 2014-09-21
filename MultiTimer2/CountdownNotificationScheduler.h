@@ -13,6 +13,7 @@
 @interface CountdownNotificationScheduler : NSObject
 
 - (void)scheduleCountdownExpiredNotificationIn:(NSTimeInterval)timeInterval secondsForTimer:(TimerProfile *)timer;
+- (void)scheduleCountdownExpiredNotificationOnDate:(NSDate *)theDate forTimer:(TimerProfile *)timer;
 
 - (void)cancelScheduledNotification;
 

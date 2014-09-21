@@ -97,6 +97,23 @@
 	XCTAssertNotNil([scheduledNotification soundName]);
 }
 
+- (void)testOnCountdownNotificationSchedulerWithScheduledNotification_TheNotifiacationCanBeScheduledForSomeDate
+{
+    NSDate* someDate = [NSDate dateWithTimeIntervalSinceNow:10];
+	[testScheduler scheduleCountdownExpiredNotificationOnDate:someDate forTimer:stubProfile];
+
+	UILocalNotification* scheduledNotification = [testScheduler notification];
+	
+	XCTAssertEqualObjects([scheduledNotification userInfo][@"timerProfileURI"], [stubProfile.managedObjectIDAsURI absoluteString]);
+	XCTAssertEqualObjects([scheduledNotification timeZone], [NSTimeZone localTimeZone]);
+	XCTAssertEqualObjects([scheduledNotification alertBody], [stubProfile name]);
+	XCTAssertEqualObjects([scheduledNotification alertAction], @"Show");
+	XCTAssertEqualObjects([scheduledNotification fireDate], someDate);
+	XCTAssertNotNil([scheduledNotification soundName]);
+	
+	OCMVerify([mockApplication scheduleLocalNotification:[testScheduler notification]]);
+}
+
 - (void)testOnCountdownNotificationSchedulerWithScheduledNotification_WhenCancellingTheNotification_TheNotificationIsRemovedFromTheApplication
 {
 	[testScheduler scheduleCountdownExpiredNotificationIn:10 secondsForTimer:stubProfile];

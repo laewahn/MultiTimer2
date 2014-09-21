@@ -26,15 +26,23 @@
 
 - (void)scheduleCountdownExpiredNotificationIn:(NSTimeInterval)timeInterval secondsForTimer:(TimerProfile *)timer
 {
+	NSDate* calculatedFireDate = [NSDate dateWithTimeIntervalSinceNow:timeInterval];
+	[self scheduleCountdownExpiredNotificationOnDate:calculatedFireDate forTimer:timer];
+}
+
+- (void)scheduleCountdownExpiredNotificationOnDate:(NSDate *)theDate forTimer:(TimerProfile *)timer
+{
 	NSDictionary* userInfo = @{ @"timerProfileURI" : [timer.managedObjectIDAsURI absoluteString]};
 	[self.notification setUserInfo:userInfo];
-	[self.notification setFireDate:[NSDate dateWithTimeIntervalSinceNow:timeInterval]];
+	[self.notification setFireDate:theDate];
 	[self.notification setTimeZone:[NSTimeZone localTimeZone]];
 	[self.notification setAlertBody:[timer name]];
 	[self.notification setAlertAction:@"Show"];
+	[self.notification setSoundName:@"AlarmSound"];
 	
 	[self.application scheduleLocalNotification:[self notification]];
 }
+
 
 - (void)cancelScheduledNotification
 {

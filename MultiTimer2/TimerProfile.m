@@ -14,6 +14,7 @@
 
 @dynamic name;
 @dynamic duration;
+@dynamic expirationDate;
 
 @synthesize running;
 @synthesize remainingTime = _remainingTime;
@@ -86,6 +87,7 @@
 	
 	[self setRunning:YES];
 	
+	[self setExpirationDate:[NSDate dateWithTimeIntervalSinceNow:[self remainingTime]]];
 	[self.notificationScheduler scheduleCountdownExpiredNotificationIn:[self remainingTime] secondsForTimer:self];
 	[[NSRunLoop mainRunLoop] addTimer:[self countdownTimer] forMode:NSDefaultRunLoopMode];
 }
@@ -99,7 +101,8 @@
 - (void)pauseCountdown
 {
 	[self setRunning:NO];
-	
+
+	[self setExpirationDate:nil];
 	[self.notificationScheduler cancelScheduledNotification];
 	[self.countdownTimer invalidate];
 	[self setCountdownTimer:nil];

@@ -22,6 +22,7 @@
 @property (nonatomic, readonly) NSURL* managedObjectIDAsURI;
 @property (nonatomic, retain) NSString* name;
 @property (nonatomic) double duration;
+@property (nonatomic, retain) NSDate* expirationDate;
 
 @property (nonatomic, getter = isRunning) BOOL running;
 @property (nonatomic) NSTimeInterval remainingTime;
