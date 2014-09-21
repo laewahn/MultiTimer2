@@ -19,18 +19,18 @@
 	return [TimerProfile createWithName:name duration:duration managedObjectContext:[self managedObjectContext]];
 }
 
-- (NSArray *)fetchTimerProfiles
+- (NSSet *)fetchTimerProfiles
 {
-	return [self fetchProfilesWithRequest:[self allProfilesFetchRequest]];
+	return [NSSet setWithArray:[self fetchProfilesWithRequest:[self allProfilesFetchRequest]]];
 }
 
-- (NSArray *)fetchExpiredTimerProfiles
+- (NSSet *)fetchExpiredTimerProfiles
 {
 	NSFetchRequest* expiredTimerFetchRequest = [self allProfilesFetchRequest];
 	NSPredicate* expiredTimerPredicate = [NSPredicate predicateWithFormat:@"expirationDate < %@", [NSDate date]];
 	[expiredTimerFetchRequest setPredicate:expiredTimerPredicate];
 	
-	return [self fetchProfilesWithRequest:expiredTimerFetchRequest];
+	return [NSSet setWithArray:[self fetchProfilesWithRequest:expiredTimerFetchRequest]];
 }
 
 - (NSArray *)fetchProfilesWithRequest:(NSFetchRequest *)request

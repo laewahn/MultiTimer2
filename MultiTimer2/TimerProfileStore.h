@@ -14,8 +14,8 @@
 
 - (TimerProfile *)createTimerProfileWithName:(NSString *)name duration:(NSTimeInterval)duration;
 
-- (NSArray *)fetchTimerProfiles;
-- (NSArray *)fetchExpiredTimerProfiles;
+- (NSSet *)fetchTimerProfiles;
+- (NSSet *)fetchExpiredTimerProfiles;
 
 @property(nonatomic, readonly) NSFetchedResultsController*  timerProfilesFetchedResultsController;
 @property(nonatomic, strong) NSManagedObjectContext* managedObjectContext;

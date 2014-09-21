@@ -53,10 +53,10 @@
 {
 	[testStore setManagedObjectContext:[self managedObjectTestContextWithTimerProfileNamed:someProfileName duration:someProfileDuration]];
 	
-	NSArray* fetchedItems = [testStore fetchTimerProfiles];
+	NSSet* fetchedItems = [testStore fetchTimerProfiles];
 	XCTAssertEqual([fetchedItems count], 1);
 	
-	[self assertObject:[fetchedItems firstObject] isTimerProfileWithName:someProfileName duration:someProfileDuration];
+	[self assertObject:[fetchedItems anyObject] isTimerProfileWithName:someProfileName duration:someProfileDuration];
 }
 
 - (void)testStoreHasFetchedResultsController
@@ -107,9 +107,9 @@
 		[timer startCountdown];
 	}
 	
-	NSArray* fetchedExpiredTimers = [testStore fetchExpiredTimerProfiles];
+	NSSet* fetchedExpiredTimers = [testStore fetchExpiredTimerProfiles];
 
-	NSArray* expiredTimers = @[expiredProfile, anotherExpiredProfile];
+	NSSet* expiredTimers = [NSSet setWithArray:@[expiredProfile, anotherExpiredProfile]];
 	XCTAssertNotNil(fetchedExpiredTimers);
 	XCTAssertEqualObjects(fetchedExpiredTimers, expiredTimers);
 	XCTAssertFalse([fetchedExpiredTimers containsObject:notExpiredProfile]);

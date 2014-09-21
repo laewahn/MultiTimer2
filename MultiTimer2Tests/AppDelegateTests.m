@@ -109,6 +109,7 @@
 
 - (void)testOnAppDelegate_WhenAppBecomesActive_ItUpdatesAllRunningTimers
 {
+	[testAppDelegate setManagedObjectContext:[self managedObjectTestContext]];
     TimerProfile* runningTimer = [[testAppDelegate timerProfileStore] createTimerProfileWithName:@"Running" duration:10];
 	[runningTimer startCountdown];
 	[runningTimer setRemainingTime:20];
@@ -119,7 +120,7 @@
 	
 	[testAppDelegate applicationDidBecomeActive:nil];
 	
-	XCTAssertEqualWithAccuracy([runningTimer remainingTime], 10, 0.01);
+	XCTAssertEqualWithAccuracy([runningTimer remainingTime], 10, 0.1);
 	XCTAssertEqual([notRunningTimer remainingTime], 30);
 }
 
