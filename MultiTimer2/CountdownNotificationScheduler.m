@@ -24,7 +24,7 @@
     return self;
 }
 
-- (void)scheduleCountdownExpiredNoficationIn:(NSTimeInterval)timeInterval secondsForTimer:(TimerProfile *)timer
+- (void)scheduleCountdownExpiredNotificationIn:(NSTimeInterval)timeInterval secondsForTimer:(TimerProfile *)timer
 {
 	NSDictionary* userInfo = @{ @"timerProfileURI" : [timer.managedObjectIDAsURI absoluteString]};
 	[self.notification setUserInfo:userInfo];

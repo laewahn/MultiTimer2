@@ -108,7 +108,7 @@
 {
 	[testProfile startCountdown];
 	
-	OCMVerify([mockNotificationScheduler scheduleCountdownExpiredNoficationIn:[testProfile duration] secondsForTimer:testProfile]);
+	OCMVerify([mockNotificationScheduler scheduleCountdownExpiredNotificationIn:[testProfile duration] secondsForTimer:testProfile]);
 }
 
 - (void)testOnTimerProfile_WhenStopCountdownIsCalled_ItCancelsItsNotification

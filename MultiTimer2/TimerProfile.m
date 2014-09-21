@@ -86,7 +86,7 @@
 	
 	[self setRunning:YES];
 	
-	[self.notificationScheduler scheduleCountdownExpiredNoficationIn:[self remainingTime] secondsForTimer:self];
+	[self.notificationScheduler scheduleCountdownExpiredNotificationIn:[self remainingTime] secondsForTimer:self];
 	[[NSRunLoop mainRunLoop] addTimer:[self countdownTimer] forMode:NSDefaultRunLoopMode];
 }
 

@@ -77,7 +77,7 @@
 
 - (void)testOnCountdownNotificationScheduler_WhenSchedulingANotification_ItsSchedulesANotificationOnTheApplication
 {
-	[testScheduler scheduleCountdownExpiredNoficationIn:10 secondsForTimer:stubProfile];
+	[testScheduler scheduleCountdownExpiredNotificationIn:10 secondsForTimer:stubProfile];
 	
 	OCMVerify([mockApplication scheduleLocalNotification:[testScheduler notification]]);
 }
@@ -85,7 +85,7 @@
 - (void)testOnCountdownNotificationSchedulerWithScheduledNotification_TheNotificationIsScheduledForTheTimerProfile
 {
 	NSDate* dateWhenCalled = [NSDate date];
-	[testScheduler scheduleCountdownExpiredNoficationIn:10 secondsForTimer:stubProfile];
+	[testScheduler scheduleCountdownExpiredNotificationIn:10 secondsForTimer:stubProfile];
 	
 	UILocalNotification* scheduledNotification = [testScheduler notification];
 	
@@ -99,7 +99,7 @@
 
 - (void)testOnCountdownNotificationSchedulerWithScheduledNotification_WhenCancellingTheNotification_TheNotificationIsRemovedFromTheApplication
 {
-	[testScheduler scheduleCountdownExpiredNoficationIn:10 secondsForTimer:stubProfile];
+	[testScheduler scheduleCountdownExpiredNotificationIn:10 secondsForTimer:stubProfile];
 	
 	[testScheduler cancelScheduledNotification];
 	
