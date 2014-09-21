@@ -15,7 +15,7 @@
 #import "TimerOverviewViewController.h"
 #import "TimerProfileStore.h"
 #import "TimerProfile.h"
-
+#import "TimerAlert.h"
 
 @interface AppDelegateTests : XCTestCase {
 	UILocalNotification* someNotification;
@@ -71,7 +71,7 @@
 {
 	XCTAssertNotNil([testAppDelegate timerAlert]);
 	
-	UIAlertView* mockAlert = OCMClassMock([UIAlertView class]);
+	TimerAlert* mockAlert = OCMClassMock([TimerAlert class]);
 	[testAppDelegate setTimerAlert:mockAlert];
 	
 	NSManagedObjectContext* testContext = [self managedObjectTestContext];
@@ -88,11 +88,20 @@
 	
 	OCMVerify([mockAlert setTitle:@"Some Timer"]);
 	OCMVerify([mockAlert show]);
+	OCMVerify([mockAlert setTimer:someProfile]);
 }
 
 - (void)testOnAppDelegate_WhenTheAlertIsDismissed_ItResetsTheCountdown
 {
     XCTAssertTrue([testAppDelegate conformsToProtocol:@protocol(UIAlertViewDelegate)]);
+	
+	TimerProfile* mockProfile = OCMClassMock([TimerProfile class]);
+	TimerAlert* alert = [[TimerAlert alloc] init];
+	[alert setTimer:mockProfile];
+	
+	[testAppDelegate alertView:alert clickedButtonAtIndex:0];
+	
+	OCMVerify([mockProfile stopCountdown]);
 }
 
 - (void)testOnAppDelegate_WhenAppBecomesActive_ItStopsAllExpiredTimers

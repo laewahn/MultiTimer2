@@ -10,13 +10,4 @@
 
 @implementation TimerAlert
 
-- (UIAlertView *)alertView
-{
-	if (_alertView == nil) {
-		_alertView = [[UIAlertView alloc] init];
-	}
-	
-	return _alertView;
-}
-
 @end

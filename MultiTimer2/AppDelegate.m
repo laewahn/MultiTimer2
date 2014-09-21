@@ -11,6 +11,7 @@
 #import "TimerOverviewViewController.h"
 #import "TimerProfileStore.h"
 #import "TimerProfile.h"
+#import "TimerAlert.h"
 
 @implementation AppDelegate
 
@@ -20,10 +21,7 @@
 {
 	// Override point for customization after application launch.
 	UINavigationController* navigationController = (UINavigationController *)[self.window rootViewController];
-	
-//	TimerProfileStore* store = [[TimerProfileStore alloc] init];
-//	[store setManagedObjectContext:[self managedObjectContext]];
-	
+		
 	TimerOverviewViewController* overviewVC = (TimerOverviewViewController *)[navigationController topViewController];
 	[overviewVC setTimerProfileStore:[self timerProfileStore]];
 	
@@ -49,6 +47,7 @@
 	
 	[self.timerAlert setTitle:[timer name]];
 	[self.timerAlert show];
+	[self.timerAlert setTimer:timer];
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application
@@ -66,10 +65,10 @@
 	}
 }
 
-- (UIAlertView *)timerAlert
+- (TimerAlert *)timerAlert
 {
 	if (_timerAlert == nil) {
-		_timerAlert = [[UIAlertView alloc] initWithTitle:nil message:@"Timer expired." delegate:self cancelButtonTitle:@"Okay" otherButtonTitles:nil];
+		_timerAlert = [[TimerAlert alloc] initWithTitle:nil message:@"Timer expired." delegate:self cancelButtonTitle:@"Okay" otherButtonTitles:nil];
 	}
 	
 	return _timerAlert;
@@ -108,6 +107,11 @@
 	
 	
 	return _managedObjectContext;
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+	[[(TimerAlert *)alertView timer] stopCountdown];
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application

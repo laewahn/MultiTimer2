@@ -8,8 +8,10 @@
 
 #import <Foundation/Foundation.h>
 
-@interface TimerAlert : NSObject
+@class TimerProfile;
 
-@property(nonatomic, strong) UIAlertView* alertView;
+@interface TimerAlert : UIAlertView
+
+@property(nonatomic, strong) TimerProfile* timer;
 
 @end

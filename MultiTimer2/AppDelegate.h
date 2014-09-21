@@ -10,6 +10,7 @@
 
 @class TimerProfile;
 @class TimerProfileStore;
+@class TimerAlert;
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate, UIAlertViewDelegate>
 
@@ -17,7 +18,7 @@
 @property (strong, nonatomic) NSManagedObjectContext* managedObjectContext;
 @property (strong, nonatomic) TimerProfileStore* timerProfileStore;
 
-@property (strong, nonatomic) UIAlertView* timerAlert;
+@property (strong, nonatomic) TimerAlert* timerAlert;
 
 - (void)handleExpiredTimer:(TimerProfile *)timer;
 - (NSURL *)applicationDocumentsDirectory;
