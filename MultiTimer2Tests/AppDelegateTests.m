@@ -120,6 +120,8 @@
 	
 	XCTAssertEqualWithAccuracy([runningTimer remainingTime], 10, 0.1);
 	XCTAssertEqual([notRunningTimer remainingTime], 30);
+	
+	[runningTimer stopCountdown];
 }
 
 @end
