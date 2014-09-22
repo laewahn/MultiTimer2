@@ -31,4 +31,8 @@
 
 === Background timers ===
 👍 When the application is sent to background, timers that reach 0 post notifications
-* When the application returns from background, running timers are updated to their new duration
+👍 When the application returns from background, running timers are updated to their new duration
+
+
+=== Known Bugs ====
+* Detail View sometimes deactivates all buttons
