@@ -17,7 +17,7 @@ static NSString* const kTestReuseIdentifier = @"TestCell";
 
 @interface FetchedResultsDataSourceTests : XCTestCase {
 	FetchedResultsDataSource* testDataSource;
-	id stubFetchedResultsController;
+	NSFetchedResultsController* stubFetchedResultsController;
 	
 	NSArray* sections;
 	NSIndexPath* pathForTestRow;
@@ -35,7 +35,7 @@ static NSString* const kTestReuseIdentifier = @"TestCell";
 	testDataSource = [[FetchedResultsDataSource alloc] init];
 	
 	id<NSFetchedResultsSectionInfo> stubSectionWithOneRow = OCMProtocolMock(@protocol(NSFetchedResultsSectionInfo));
-	OCMStub([stubSectionWithOneRow objects]).andReturn(@[@"one"]);
+	[[(id)stubSectionWithOneRow stub] andReturn:@[@"one"]];
 	sections = [NSArray arrayWithObject:stubSectionWithOneRow];
 
 	pathForTestRow = [NSIndexPath indexPathForItem:0 inSection:0];

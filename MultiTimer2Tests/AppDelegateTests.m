@@ -98,7 +98,7 @@
 {
 	TimerProfile* mockExpiredProfile = OCMClassMock([TimerProfile class]);
     TimerProfileStore* stubStore = OCMClassMock([TimerProfileStore class]);
-	OCMStub([stubStore fetchExpiredTimerProfiles]).andReturn(@[mockExpiredProfile]);
+	OCMStub([stubStore fetchExpiredTimerProfiles]).andReturn([NSSet setWithObject:mockExpiredProfile]);
 	[testAppDelegate setTimerProfileStore:stubStore];
 
 	[testAppDelegate applicationDidBecomeActive:nil];
