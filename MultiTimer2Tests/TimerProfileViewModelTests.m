@@ -20,6 +20,7 @@
 	TimerProfileViewModel* testViewModel;
 	
 	TimerProfile* mockProfile;
+	NSManagedObjectContext* context;
 }
 
 @end
@@ -28,6 +29,7 @@
 
 - (void)setUp
 {
+	context = [self managedObjectTestContext];
 	mockProfile = OCMClassMock([TimerProfile class]);
 	testViewModel = [[TimerProfileViewModel alloc] initWithTimerProfile:[self someTimerProfile]];
 }
@@ -196,14 +198,14 @@
 
 - (TimerProfile *)someTimerProfileWithName:(NSString *)name
 {
-	TimerProfile* newTimer = [TimerProfile createWithName:name duration:10 managedObjectContext:[self managedObjectTestContext]];
+	TimerProfile* newTimer = [TimerProfile createWithName:name duration:10 managedObjectContext:context];
 	[newTimer setNotificationScheduler:OCMClassMock([CountdownNotificationScheduler class])];
 	return newTimer;
 }
 
 - (TimerProfile *)someTimerProfileWithDuration:(NSTimeInterval)duration
 {
-	TimerProfile* newTimer = [TimerProfile createWithName:@"Test" duration:duration managedObjectContext:[self managedObjectTestContext]];
+	TimerProfile* newTimer = [TimerProfile createWithName:@"Test" duration:duration managedObjectContext:context];
 	[newTimer setNotificationScheduler:OCMClassMock([CountdownNotificationScheduler class])];
 	return newTimer;
 }

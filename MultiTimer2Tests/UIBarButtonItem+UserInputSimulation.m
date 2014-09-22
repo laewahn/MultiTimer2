@@ -13,7 +13,7 @@
 - (void)simulateTap
 {
 	[self.target performSelectorOnMainThread:[self action] withObject:self waitUntilDone:YES];
-	[[NSRunLoop mainRunLoop] runUntilDate:[NSDate dateWithTimeIntervalSinceNow:1]];
+	[[NSRunLoop mainRunLoop] runUntilDate:[NSDate dateWithTimeIntervalSinceNow:2]];
 }
 
 @end

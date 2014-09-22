@@ -77,9 +77,11 @@
 	UIDatePicker* countdownPicker = [testVC.view findCountdownPickerView];
 	[countdownPicker setCountDownDuration:120];
 	
-	[testVC doneButtonPressed:nil];
+	[[(id)storeMock expect] createTimerProfileWithName:@"Foo" duration:120];
 	
-	OCMVerify([storeMock createTimerProfileWithName:@"Foo" duration:120]);
+	[testVC doneButtonPressed:nil];
+
+	[(id)storeMock verify];
 }
 
 @end

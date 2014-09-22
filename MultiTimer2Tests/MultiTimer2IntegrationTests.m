@@ -33,6 +33,12 @@
 	[self replaceTheSQLiteStoreWithTheFixtureStore];
 }
 
+- (void)tearDown
+{
+	[overviewViewController dismissViewControllerAnimated:YES completion:nil];
+	[overviewViewController.navigationController popToRootViewControllerAnimated:NO];
+}
+
 - (void)replaceTheSQLiteStoreWithTheFixtureStore
 {
 	[appDelegate.managedObjectContext reset];
@@ -141,7 +147,7 @@
 {
 	[overviewViewController.tableView selectRowAtIndexPath:[NSIndexPath indexPathForItem:0 inSection:0] animated:YES scrollPosition:UITableViewScrollPositionMiddle];
 	[overviewViewController performSegueWithIdentifier:@"showDetail" sender:[overviewViewController tableView]];
-	[[NSRunLoop mainRunLoop] runUntilDate:[NSDate dateWithTimeIntervalSinceNow:1]];
+	[[NSRunLoop mainRunLoop] runUntilDate:[NSDate dateWithTimeIntervalSinceNow:2]];
 	
 	DetailViewController* detailViewController = (DetailViewController *)[overviewViewController.navigationController topViewController];
 	XCTAssertEqual([detailViewController class], [DetailViewController class]);
