@@ -14,10 +14,10 @@
 
 - (void)viewDidAppear:(BOOL)animated
 {
-	[super viewWillAppear:animated];
-	
 	[self.profileNameTextField setDelegate:self];
 	[self.profileNameTextField becomeFirstResponder];
+	
+	[super viewDidAppear:animated];
 }
 
 - (IBAction)doneButtonPressed:(id)sender

@@ -82,10 +82,10 @@ void * TimerProfileRemainingTimeContext = &TimerProfileRemainingTimeContext;
 	NSInteger minutes = seconds / 60;
 	NSInteger hours = minutes/60;
 	
-	NSString* timeString = [NSString stringWithFormat:@"%02d:%02d", minutes % 60, seconds % 60];
+	NSString* timeString = [NSString stringWithFormat:@"%02ld:%02ld", minutes % 60, seconds % 60];
 	
 	if (hours != 0) {
-		timeString = [NSString stringWithFormat:@"%d:%@", hours, timeString];
+		timeString = [NSString stringWithFormat:@"%ld:%@", (long)hours, timeString];
 	}
 
 	return timeString;

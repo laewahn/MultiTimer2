@@ -38,6 +38,7 @@ void * TimerProfileViewControllerChangeContext = &TimerProfileViewControllerChan
 - (void)viewDidDisappear:(BOOL)animated
 {
 	[self setTimerProfileViewModel:nil];
+	[super viewDidDisappear:animated];
 }
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
