@@ -69,6 +69,7 @@ void * TimerProfileViewControllerChangeContext = &TimerProfileViewControllerChan
 		[self.startPauseButton setTitle:@"Pause" forState:UIControlStateNormal];
 		[self.stopResetButton setTitle:@"Reset" forState:UIControlStateNormal];
 		[self.startPauseButton setEnabled:NO];
+		[self.stopResetButton setEnabled:YES];
 	}
 }
 
