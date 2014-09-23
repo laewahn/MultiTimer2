@@ -91,7 +91,7 @@
 	testViewModel = [[TimerProfileViewModel alloc] initWithTimerProfile:mockProfile];
 	[testViewModel startCountdown];
 	
-	OCMVerify([mockProfile startCountdown]);
+	OCMVerify([mockProfile startTimer]);
 }
 
 - (void)testWhenPauseCountdownIsCalled_ItPausesTheCountdown
@@ -99,7 +99,7 @@
 	testViewModel = [[TimerProfileViewModel alloc] initWithTimerProfile:mockProfile];
 	[testViewModel pauseCountdown];
 	
-	OCMVerify([mockProfile pauseCountdown]);
+	OCMVerify([mockProfile pauseTimer]);
 }
 
 - (void)testWhenStopCountdownIsCalled_itStopsTheCountdown
@@ -107,7 +107,7 @@
 	testViewModel = [[TimerProfileViewModel alloc] initWithTimerProfile:mockProfile];
 	[testViewModel stopCountdown];
 	
-	OCMVerify([mockProfile stopCountdown]);
+	OCMVerify([mockProfile stopTimer]);
 }
 
 - (void)testOnViewModel_WhenTheTimerProfileCountdownIsRunning_ItShowsTheRemainingTime

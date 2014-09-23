@@ -15,9 +15,9 @@
 
 + (instancetype) createWithName:(NSString *)profileName duration:(NSTimeInterval)profileDuration managedObjectContext:(NSManagedObjectContext *)context;
 
-- (void)startCountdown;
-- (void)stopCountdown;
-- (void)pauseCountdown;
+- (void)startTimer;
+- (void)stopTimer;
+- (void)pauseTimer;
 
 @property (nonatomic, readonly) NSURL* managedObjectIDAsURI;
 @property (nonatomic, retain) NSString* name;

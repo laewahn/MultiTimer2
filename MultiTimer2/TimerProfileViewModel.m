@@ -56,17 +56,17 @@ void * TimerProfileRemainingTimeContext = &TimerProfileRemainingTimeContext;
 
 - (void) startCountdown
 {
-	[self.timerProfile startCountdown];
+	[self.timerProfile startTimer];
 }
 
 - (void) stopCountdown
 {
-	[self.timerProfile stopCountdown];
+	[self.timerProfile stopTimer];
 }
 
 - (void) pauseCountdown
 {
-	[self.timerProfile pauseCountdown];
+	[self.timerProfile pauseTimer];
 }
 
 - (NSString *)name

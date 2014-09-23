@@ -82,18 +82,18 @@
 
 - (void)testOnOverviewController_WhenAskedToDeleteStoppedTimer_ItReturnsYES
 {
-	[someProfile stopCountdown];
+	[someProfile stopTimer];
 	
 	XCTAssertTrue([testVC canDeleteObject:someProfile]);
 }
 
 - (void)testOnOverviewViewController_WhenAskedToDeleteRunningTimer_ItReturnsNO
 {
-	[someProfile startCountdown];
+	[someProfile startTimer];
 	
 	XCTAssertFalse([testVC canDeleteObject:someProfile]);
 	
-	[someProfile stopCountdown];
+	[someProfile stopTimer];
 }
 
 - (void)testOverviewViewControllerConfiguresCells

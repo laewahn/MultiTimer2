@@ -43,7 +43,7 @@
 
 - (void)handleExpiredTimer:(TimerProfile *)timer
 {
-	[timer pauseCountdown];
+	[timer pauseTimer];
 	
 	[self.timerAlert setTitle:[timer name]];
 	[self.timerAlert show];
@@ -53,7 +53,7 @@
 - (void)applicationDidBecomeActive:(UIApplication *)application
 {
 	for (TimerProfile* expiredTimer in [self.timerProfileStore fetchExpiredTimerProfiles]) {
-		[expiredTimer stopCountdown];
+		[expiredTimer stopTimer];
 	}
 	
 	for (TimerProfile* profile in [self.timerProfileStore fetchTimerProfiles]) {
@@ -111,7 +111,7 @@
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-	[[(TimerAlert *)alertView timer] stopCountdown];
+	[[(TimerAlert *)alertView timer] stopTimer];
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application

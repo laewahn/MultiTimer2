@@ -104,7 +104,7 @@
 	TimerProfile* notExpiredProfile = [testStore createTimerProfileWithName:@"Not expired" duration:10];
 	NSArray* allTimers = @[expiredProfile, notExpiredProfile, anotherExpiredProfile];
 	for (TimerProfile* timer in allTimers) {
-		[timer startCountdown];
+		[timer startTimer];
 	}
 	
 	NSSet* fetchedExpiredTimers = [testStore fetchExpiredTimerProfiles];
@@ -115,7 +115,7 @@
 	XCTAssertFalse([fetchedExpiredTimers containsObject:notExpiredProfile]);
 	
 	for (TimerProfile* timer in allTimers) {
-		[timer stopCountdown];
+		[timer stopTimer];
 	}
 }
 

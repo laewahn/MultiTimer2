@@ -78,13 +78,13 @@
 	
 	[self setRemainingTime:[self remainingTime] - 1];
 	if ([self remainingTime] == 0) {
-		[self pauseCountdown];
+		[self stopCountdown];
 	}
 	
 	[self didChangeValueForKey:@"remainingTime"];
 }
 
-- (void)startCountdown
+- (void)startTimer
 {
 	if ([self remainingTime] == 0) {
 		[self setRemainingTime:[self duration]];
@@ -97,20 +97,25 @@
 	[[NSRunLoop mainRunLoop] addTimer:[self countdownTimer] forMode:NSDefaultRunLoopMode];
 }
 
-- (void)stopCountdown
+- (void)stopTimer
 {
-	[self pauseCountdown];
+	[self pauseTimer];
 	[self setRemainingTime:[self duration]];
 }
 
-- (void)pauseCountdown
+- (void)pauseTimer
 {
-	[self setRunning:NO];
+	[self stopCountdown];
 
 	[self setExpirationDate:nil];
 	[self.notificationScheduler cancelScheduledNotification];
-	[self.countdownTimer invalidate];
 	[self setCountdownTimer:nil];
+}
+
+- (void)stopCountdown
+{
+	[self setRunning:NO];
+	[self.countdownTimer invalidate];
 }
 
 @end

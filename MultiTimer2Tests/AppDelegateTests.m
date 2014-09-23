@@ -91,7 +91,7 @@
 	
 	[testAppDelegate alertView:alert clickedButtonAtIndex:0];
 	
-	OCMVerify([mockProfile stopCountdown]);
+	OCMVerify([mockProfile stopTimer]);
 }
 
 - (void)testOnAppDelegate_WhenAppBecomesActive_ItStopsAllExpiredTimers
@@ -103,25 +103,25 @@
 
 	[testAppDelegate applicationDidBecomeActive:nil];
 	
-	OCMVerify([mockExpiredProfile stopCountdown]);
+	OCMVerify([mockExpiredProfile stopTimer]);
 }
 
 - (void)testOnAppDelegate_WhenAppBecomesActive_ItUpdatesAllRunningTimers
 {
     TimerProfile* runningTimer = [[testAppDelegate timerProfileStore] createTimerProfileWithName:@"Running" duration:10];
-	[runningTimer startCountdown];
+	[runningTimer startTimer];
 	[runningTimer setRemainingTime:20];
 
 	TimerProfile* notRunningTimer = [[testAppDelegate timerProfileStore] createTimerProfileWithName:@"Not running" duration:30];
-	[notRunningTimer startCountdown];
-	[notRunningTimer pauseCountdown];
+	[notRunningTimer startTimer];
+	[notRunningTimer pauseTimer];
 	
 	[testAppDelegate applicationDidBecomeActive:nil];
 	
-	XCTAssertEqualWithAccuracy([runningTimer remainingTime], 10, 0.1);
+	XCTAssertEqualWithAccuracy([runningTimer remainingTime], 10, 0.5);
 	XCTAssertEqual([notRunningTimer remainingTime], 30);
 	
-	[runningTimer stopCountdown];
+	[runningTimer stopTimer];
 }
 
 @end

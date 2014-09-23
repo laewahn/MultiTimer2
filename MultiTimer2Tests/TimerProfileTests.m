@@ -67,17 +67,17 @@
 
 - (void)testOnTimerProfileWithRunningCountdown_WhenStartCountdownIsCalled_TheIsRunningPropertyIsSetToTrue
 {
-	[testProfile startCountdown];
+	[testProfile startTimer];
 	
 	XCTAssertTrue([testProfile isRunning]);
 }
 
 - (void)testOnTimerProfileWithRunningCountdown_WhenStopCountdownIsCalled_TheIsRunningPropertyIsSetToFalseAndTheRemainingTimeIsReset
 {
-	[testProfile startCountdown];
+	[testProfile startTimer];
 	[testProfile setRemainingTime:7];
     
-	[testProfile stopCountdown];
+	[testProfile stopTimer];
 	
 	XCTAssertFalse([testProfile isRunning]);
 	XCTAssertEqual([testProfile remainingTime], [testProfile duration]);
@@ -85,28 +85,28 @@
 
 - (void)testOnTimerProfileWithRunningCountdown_WhenCountdownIsPaused_TheRunningPropertyIsSetToTrue
 {
-	[testProfile startCountdown];
+	[testProfile startTimer];
 	
-	[testProfile pauseCountdown];
+	[testProfile pauseTimer];
 	
 	XCTAssertFalse([testProfile isRunning]);
 }
 
 - (void)testOnTimerProfileWithPausedCountdown_WhenCountdownIsStarted_TheRemainingTimeIsSetToTheTimeWhenItWasPaused
 {
-    [testProfile startCountdown];
+    [testProfile startTimer];
 	[testProfile setRemainingTime:3];
-	[testProfile pauseCountdown];
+	[testProfile pauseTimer];
 	
 	NSTimeInterval timeAfterPause = [testProfile remainingTime];
-	[testProfile startCountdown];
+	[testProfile startTimer];
 	
 	XCTAssertEqual([testProfile remainingTime], timeAfterPause);
 }
 
 - (void)testOnTimerProfile_WhenCountdownIsStarted_ItStoresTheExpirationTime
 {
-	[testProfile startCountdown];
+	[testProfile startTimer];
 	
 	NSDate* countdownExpirationTime = [testProfile expirationDate];
 	XCTAssertEqualWithAccuracy([countdownExpirationTime timeIntervalSinceNow], [testProfile duration], 0.001);
@@ -114,29 +114,29 @@
 
 - (void)testOnTimerProfile_CountdownIsStarted_ItSchedulesANotificationForTheDateWhenTheCountdownFinishes
 {
-	[testProfile startCountdown];
+	[testProfile startTimer];
 	
 	OCMVerify([mockNotificationScheduler scheduleCountdownExpiredNotificationIn:[testProfile duration] secondsForTimer:testProfile]);
 }
 
 - (void)testOnTimerProfileWithRunningCountdown_WhenCountdownPausedAndStartedAgain_ItScheduledANotificationForTheRemainingTime
 {
-    [testProfile startCountdown];
+    [testProfile startTimer];
 	[testProfile setRemainingTime:[testProfile remainingTime] - 1];
 
-	[testProfile pauseCountdown];
-	[testProfile startCountdown];
+	[testProfile pauseTimer];
+	[testProfile startTimer];
 	
 	OCMVerify([mockNotificationScheduler scheduleCountdownExpiredNotificationIn:[testProfile remainingTime] secondsForTimer:testProfile]);
 }
 
 - (void)testOnTimerProfileWithRunningCountdown_WhenCountdownIsPausedAndStartedAgain_ItStoresTheUpdatedExpirationTime
 {
-	[testProfile startCountdown];
+	[testProfile startTimer];
 	[testProfile setRemainingTime:[testProfile remainingTime] -1];
 	
-	[testProfile pauseCountdown];
-	[testProfile startCountdown];
+	[testProfile pauseTimer];
+	[testProfile startTimer];
 	
 	NSDate* countdownExpirationTime = [testProfile expirationDate];
 	XCTAssertEqualWithAccuracy([countdownExpirationTime timeIntervalSinceNow], [testProfile remainingTime], 0.001);
@@ -145,32 +145,32 @@
 
 - (void)testOnTimerProfile_WhenStopCountdownIsCalled_ItCancelsItsNotification
 {
-	[testProfile stopCountdown];
+	[testProfile stopTimer];
 	
 	OCMVerify([mockNotificationScheduler cancelScheduledNotification]);
 }
 
 - (void)testOnTimerProfileWithRunningCountdown_WhenCountIsStopped_ItRemovesTheExpirationDate
 {
-    [testProfile startCountdown];
+    [testProfile startTimer];
 	
-	[testProfile stopCountdown];
+	[testProfile stopTimer];
 	
 	XCTAssertNil([testProfile expirationDate]);
 }
 
 - (void)testOnTimerProfile_WhenPausingTheCountdown_ItCancelsItsNotification
 {
-    [testProfile pauseCountdown];
+    [testProfile pauseTimer];
 	
 	OCMVerify([mockNotificationScheduler cancelScheduledNotification]);
 }
 
 - (void)testOnTimerProfileWithRunningCountdown_WhenPausingCountdown_ItRemovesTheExpirationDate
 {
-    [testProfile startCountdown];
+    [testProfile startTimer];
 	
-	[testProfile pauseCountdown];
+	[testProfile pauseTimer];
 	
 	XCTAssertNil([testProfile expirationDate]);
 }
@@ -189,22 +189,24 @@
 	XCTAssertEqual([testProfile remainingTime], remainingTimeBeforeCountdownInvocation - 1);
 }
 
-- (void)testOnTimerProfile_WhenTheCountdownReachesZero_ItPausesTheTimer
+- (void)testOnTimerProfile_WhenTheCountdownReachesZero_ItPausesTheCountdownButDoesNotCancelTheNotification
 {
 	[testProfile setRunning:YES];
     [testProfile setRemainingTime:1];
+	[[(id)mockNotificationScheduler reject] cancelScheduledNotification];
 	
 	[testProfile.countdownTimer fire];
 	
 	XCTAssertFalse([testProfile isRunning]);
-	XCTAssertNil([testProfile expirationDate]);
+	XCTAssertFalse([testProfile.countdownTimer isValid]);
+	OCMVerifyAll((id)mockNotificationScheduler);
 }
 
 - (void)testOnTimerProfile_WhenStartingTheCountdown_ItAddsTheCountdownToTheRunloop
 {
     NSRunLoop* partialMainRunloop = OCMPartialMock([NSRunLoop mainRunLoop]);
 	
-	[testProfile startCountdown];
+	[testProfile startTimer];
 	
 	OCMVerify([partialMainRunloop addTimer:[testProfile countdownTimer] forMode:NSDefaultRunLoopMode]);
 }
@@ -214,7 +216,7 @@
     NSTimer* mockTimer = OCMClassMock([NSTimer class]);
 	[testProfile setCountdownTimer:mockTimer];
 	
-	[testProfile stopCountdown];
+	[testProfile stopTimer];
 	
 	OCMVerify([mockTimer invalidate]);
 }
@@ -224,7 +226,7 @@
     NSTimer* mockTimer = OCMClassMock([NSTimer class]);
 	[testProfile setCountdownTimer:mockTimer];
 	
-	[testProfile pauseCountdown];
+	[testProfile pauseTimer];
 	
 	OCMVerify([mockTimer invalidate]);
 }
