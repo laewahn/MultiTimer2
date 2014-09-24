@@ -19,7 +19,10 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-	// Override point for customization after application launch.
+	if ([UIApplication instancesRespondToSelector:@selector(registerUserNotificationSettings:)]){
+		[application registerUserNotificationSettings:[UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeAlert|UIUserNotificationTypeSound categories:nil]];
+	}
+	
 	UINavigationController* navigationController = (UINavigationController *)[self.window rootViewController];
 		
 	TimerOverviewViewController* overviewVC = (TimerOverviewViewController *)[navigationController topViewController];
