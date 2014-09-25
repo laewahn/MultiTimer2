@@ -24,6 +24,9 @@
 
 @implementation TimerProfileStoreTests
 
+# pragma mark -
+# pragma mark SetUp & TearDown
+
 - (void)setUp
 {
 	someProfileName = @"TestTest";
@@ -34,11 +37,50 @@
 	[testStore setManagedObjectContext:someContext];
 }
 
+
+# pragma mark -
+# pragma mark Property Tests
+
 - (void)testStoreCanHaveManagedObjectContext
 {
 	[testStore setManagedObjectContext:someContext];
 	XCTAssertEqualObjects([testStore managedObjectContext], someContext);
 }
+
+- (void)testStoreHasFetchedResultsController
+{
+	NSFetchedResultsController* frc = [testStore timerProfilesFetchedResultsController];
+	
+	XCTAssertNotNil(frc);
+}
+
+- (void)testFetchedResultsControllerFetchesTimerProfiles
+{
+	[testStore setManagedObjectContext:[self managedObjectTestContextWithTimerProfileNamed:someProfileName duration:someProfileDuration]];
+	
+	NSFetchedResultsController* frc = [testStore timerProfilesFetchedResultsController];
+	NSError* fetchError;
+	BOOL fetchSuccess = [frc performFetch:&fetchError];
+	
+	XCTAssertTrue(fetchSuccess, @"Fetch failed with error: %@", fetchError);
+	XCTAssertEqual([frc.fetchedObjects count], 1);
+	
+	[self assertObject:[frc.fetchedObjects firstObject] isTimerProfileWithName:someProfileName duration:someProfileDuration];
+}
+
+- (void)testFetchedResultsControllerIsInitializedLazily
+{
+	[testStore setManagedObjectContext:someContext];
+	
+	NSFetchedResultsController* firstFrc = [testStore timerProfilesFetchedResultsController];
+	NSFetchedResultsController* secondFrc = [testStore timerProfilesFetchedResultsController];
+	
+	XCTAssertEqualObjects(firstFrc, secondFrc);
+}
+
+
+# pragma mark -
+# pragma mark Public Method Tests
 
 - (void)testStoreCanCreateTimerProfiles
 {
@@ -57,44 +99,6 @@
 	XCTAssertEqual([fetchedItems count], 1);
 	
 	[self assertObject:[fetchedItems anyObject] isTimerProfileWithName:someProfileName duration:someProfileDuration];
-}
-
-- (void)testStoreHasFetchedResultsController
-{
-	NSFetchedResultsController* frc = [testStore timerProfilesFetchedResultsController];
-	
-	XCTAssertNotNil(frc);
-}
-
-- (void)testFetchedResultsControllerFetchesTimerProfiles
-{
-    [testStore setManagedObjectContext:[self managedObjectTestContextWithTimerProfileNamed:someProfileName duration:someProfileDuration]];
-    
-	NSFetchedResultsController* frc = [testStore timerProfilesFetchedResultsController];
-	NSError* fetchError;
-	BOOL fetchSuccess = [frc performFetch:&fetchError];
-	
-	XCTAssertTrue(fetchSuccess, @"Fetch failed with error: %@", fetchError);
-	XCTAssertEqual([frc.fetchedObjects count], 1);
-
-	[self assertObject:[frc.fetchedObjects firstObject] isTimerProfileWithName:someProfileName duration:someProfileDuration];
-}
-
-- (void)assertObject:(id)someObject isTimerProfileWithName:(NSString *)name duration:(NSTimeInterval)duration
-{
-	XCTAssertTrue([someObject isKindOfClass:[TimerProfile class]]);
-	XCTAssertEqualObjects([someObject name], name);
-	XCTAssertEqual([(TimerProfile *)someObject duration], duration);
-}
-
-- (void)testFetchedResultsControllerIsInitializedLazily
-{
-    [testStore setManagedObjectContext:someContext];
-	
-	NSFetchedResultsController* firstFrc = [testStore timerProfilesFetchedResultsController];
-	NSFetchedResultsController* secondFrc = [testStore timerProfilesFetchedResultsController];
-	
-	XCTAssertEqualObjects(firstFrc, secondFrc);
 }
 
 - (void)testOnTimerProfileStore_ItCanFetchExpiredTimers
@@ -117,6 +121,17 @@
 	for (TimerProfile* timer in allTimers) {
 		[timer stopTimer];
 	}
+}
+
+
+# pragma mark -
+# pragma mark Helper Assertions
+
+- (void)assertObject:(id)someObject isTimerProfileWithName:(NSString *)name duration:(NSTimeInterval)duration
+{
+	XCTAssertTrue([someObject isKindOfClass:[TimerProfile class]]);
+	XCTAssertEqualObjects([someObject name], name);
+	XCTAssertEqual([(TimerProfile *)someObject duration], duration);
 }
 
 @end

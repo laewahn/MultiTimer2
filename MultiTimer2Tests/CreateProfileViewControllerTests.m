@@ -22,6 +22,9 @@
 
 @implementation CreateProfileViewControllerTests
 
+# pragma mark -
+# pragma mark SetUp & TearDown
+
 - (void)setUp
 {
 	NSBundle* mainBundle = [NSBundle bundleForClass:[CreateProfileViewController class]];
@@ -29,6 +32,10 @@
 	
     testVC = [storyBoard instantiateViewControllerWithIdentifier:@"CreateProfileViewController"];
 }
+
+
+# pragma mark -
+# pragma mark View Configuration Tests
 
 - (void)testViewControllerHasSomeFieldToEnterProfileName
 {
@@ -61,12 +68,20 @@
 	XCTAssertEqualObjects([cancelButton title], @"Cancel");
 }
 
+
+# pragma mark -
+# pragma mark Property Tests
+
 - (void)testViewControllerCanHasAStore
 {
     TimerProfileStore* store = [[TimerProfileStore alloc] init];
 	[testVC setTimerProfileStore:store];
 	XCTAssertNotNil([testVC timerProfileStore]);
 }
+
+
+# pragma mark -
+# pragma mark UI Interaction Tests
 
 - (void)testWhenPressingDoneANewTimerProfileIsCreatedInTheStore
 {

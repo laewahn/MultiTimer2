@@ -46,6 +46,9 @@
 
 @implementation CountdownNotificationSchedulerTests
 
+# pragma mark -
+# pragma mark SetUp & TearDown
+
 - (void)setUp
 {
 	testScheduler = [[CountdownNotificationScheduler alloc] init];
@@ -62,6 +65,10 @@
 	[testScheduler cancelScheduledNotification];
 }
 
+
+# pragma mark -
+# pragma mark Property Tests
+
 - (void)testOnCountdownNotificationScheduler_ItCanKnowTheApplication
 {
 	[testScheduler setApplication:[UIApplication sharedApplication]];
@@ -74,6 +81,10 @@
 	[testScheduler setNotification:someNotification];
 	XCTAssertEqualObjects([testScheduler notification], someNotification);
 }
+
+
+# pragma mark -
+# pragma mark Public Method Tests
 
 - (void)testOnCountdownNotificationScheduler_WhenSchedulingANotification_ItsSchedulesANotificationOnTheApplication
 {
@@ -127,5 +138,6 @@
 {
     XCTAssertNoThrow([testScheduler cancelScheduledNotification]);
 }
+
 
 @end

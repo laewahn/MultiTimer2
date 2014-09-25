@@ -30,6 +30,9 @@
 
 @implementation TimerProfileTableViewCellTests
 
+# pragma mark -
+# pragma mark SetUp & TearDown
+
 - (void)setUp
 {
 	testCell = [[TimerProfileTableViewCell alloc] init];
@@ -49,6 +52,10 @@
 {
 	[testCell setViewModel:nil];
 }
+
+
+# pragma mark -
+# pragma mark Property Tests
 
 - (void)testOnTimerProfileTableViewCell_ItCanHaveATimerProfileViewModel
 {
@@ -77,6 +84,10 @@
 	
 	[(id)mockViewModel verify];
 }
+
+
+# pragma mark -
+# pragma mark View Model Update Handling Tests
 
 - (void)testOnTimerProfileTableViewCell_ItHandlesKVOUpdates
 {

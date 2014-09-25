@@ -23,6 +23,9 @@
 
 @implementation DetailViewControllerTests
 
+# pragma mark -
+# pragma mark SetUp & TearDown
+
 - (void)setUp
 {
 	NSBundle* mainBundle = [NSBundle bundleForClass:[DetailViewController class]];
@@ -73,14 +76,9 @@
 	[(id)mockViewModel verify];
 }
 
-- (void)testOnDetailViewController_ItCanHandleViewModelUpdates
-{
-	NSDictionary* someChanges = @{
-								  NSKeyValueChangeNewKey : @3
-								  };
-	
-    XCTAssertNoThrow([testVC observeValueForKeyPath:@"duration" ofObject:mockViewModel change:someChanges context:TimerProfileRemainingTimeContext]);
-}
+
+# pragma mark -
+# pragma mark UI Interaction Tests
 
 - (void)testOnDetailViewControllerWithTimerProfileViewModel_WhenStartButtonIsPressed_ItStartsTheCountdown
 {
@@ -90,57 +88,6 @@
 	[startButton sendActionsForControlEvents:UIControlEventTouchUpInside];
 	
 	OCMVerify([mockViewModel startCountdown]);
-}
-
-- (void)testOnDetailViewControllerWithTimerProfileStopped_ItShowsTheStartButtonAndDisablesTheStopButton
-{
-	[someViewModel setCountdownState:TimerProfileViewModelStateStopped];
-	
-	UIButton* startPauseButton = [testVC.view findButtonWithTitle:@"Start"];
-	XCTAssertNotNil(startPauseButton);
-	
-	UIButton* stopResetButton = [testVC.view findButtonWithTitle:@"Stop"];
-	XCTAssertNotNil(stopResetButton);
-	XCTAssertFalse([stopResetButton isEnabled]);
-}
-
-- (void)testOnDetailViewControllerWithTimerProfileRunning_ItShowsThePauseButtonAndEnablesTheStopButton
-{
-	[someViewModel setCountdownState:TimerProfileViewModelStateRunning];
-	
-	UIButton* startPauseButton = [testVC.view findButtonWithTitle:@"Pause"];
-	XCTAssertNotNil(startPauseButton);
-	
-	UIButton* stopResetButton = [testVC.view findButtonWithTitle:@"Stop"];
-	XCTAssertTrue([stopResetButton isEnabled]);
-}
-
-- (void)testOnDetailViewControllerWithTimerProfilePaused_ItShowsTheResumeButtonAndSetsTheResetButtonEnabled
-{
-	[someViewModel setCountdownState:TimerProfileViewModelStatePaused];
-	
-	UIButton* startPauseButton = [testVC.view findButtonWithTitle:@"Resume"];
-	XCTAssertNotNil(startPauseButton);
-	
-	UIButton* stopResetButton = [testVC.view findButtonWithTitle:@"Reset"];
-	XCTAssertNotNil(stopResetButton);
-	XCTAssertTrue([stopResetButton isEnabled]);
-}
-
-- (void)testOnDetailViewController_WhenViewModelWithExpiredStateIsSet_ItActivatesTheResetButton
-{
-	[testVC setTimerProfileViewModel:nil];
-
-	[someViewModel setCountdownState:TimerProfileViewModelStateExpired];
-	[testVC setTimerProfileViewModel:someViewModel];
-	
-	UIButton* startPauseButton = [testVC.view findButtonWithTitle:@"Pause"];
-	XCTAssertNotNil(startPauseButton);
-	XCTAssertFalse([startPauseButton isEnabled]);
-	
-	UIButton* stopResetButton = [testVC.view findButtonWithTitle:@"Reset"];
-	XCTAssertNotNil(stopResetButton);
-	XCTAssertTrue([stopResetButton isEnabled]);
 }
 
 - (void)testOnDetailViewControllerWithTimerProfileStopped_WhenPressingStart_ItStartsTheCountdown
@@ -202,5 +149,70 @@
 	
 	OCMVerify([mockViewModel stopCountdown]);
 }
+
+
+# pragma mark -
+# pragma mark View Model Update Tests
+
+- (void)testOnDetailViewController_ItCanHandleViewModelUpdates
+{
+	NSDictionary* someChanges = @{
+								  NSKeyValueChangeNewKey : @3
+								  };
+	
+	XCTAssertNoThrow([testVC observeValueForKeyPath:@"duration" ofObject:mockViewModel change:someChanges context:TimerProfileRemainingTimeContext]);
+}
+
+- (void)testOnDetailViewControllerWithTimerProfileStopped_ItShowsTheStartButtonAndDisablesTheStopButton
+{
+	[someViewModel setCountdownState:TimerProfileViewModelStateStopped];
+	
+	UIButton* startPauseButton = [testVC.view findButtonWithTitle:@"Start"];
+	XCTAssertNotNil(startPauseButton);
+	
+	UIButton* stopResetButton = [testVC.view findButtonWithTitle:@"Stop"];
+	XCTAssertNotNil(stopResetButton);
+	XCTAssertFalse([stopResetButton isEnabled]);
+}
+
+- (void)testOnDetailViewControllerWithTimerProfileRunning_ItShowsThePauseButtonAndEnablesTheStopButton
+{
+	[someViewModel setCountdownState:TimerProfileViewModelStateRunning];
+	
+	UIButton* startPauseButton = [testVC.view findButtonWithTitle:@"Pause"];
+	XCTAssertNotNil(startPauseButton);
+	
+	UIButton* stopResetButton = [testVC.view findButtonWithTitle:@"Stop"];
+	XCTAssertTrue([stopResetButton isEnabled]);
+}
+
+- (void)testOnDetailViewControllerWithTimerProfilePaused_ItShowsTheResumeButtonAndSetsTheResetButtonEnabled
+{
+	[someViewModel setCountdownState:TimerProfileViewModelStatePaused];
+	
+	UIButton* startPauseButton = [testVC.view findButtonWithTitle:@"Resume"];
+	XCTAssertNotNil(startPauseButton);
+	
+	UIButton* stopResetButton = [testVC.view findButtonWithTitle:@"Reset"];
+	XCTAssertNotNil(stopResetButton);
+	XCTAssertTrue([stopResetButton isEnabled]);
+}
+
+- (void)testOnDetailViewController_WhenViewModelWithExpiredStateIsSet_ItActivatesTheResetButton
+{
+	[testVC setTimerProfileViewModel:nil];
+
+	[someViewModel setCountdownState:TimerProfileViewModelStateExpired];
+	[testVC setTimerProfileViewModel:someViewModel];
+	
+	UIButton* startPauseButton = [testVC.view findButtonWithTitle:@"Pause"];
+	XCTAssertNotNil(startPauseButton);
+	XCTAssertFalse([startPauseButton isEnabled]);
+	
+	UIButton* stopResetButton = [testVC.view findButtonWithTitle:@"Reset"];
+	XCTAssertNotNil(stopResetButton);
+	XCTAssertTrue([stopResetButton isEnabled]);
+}
+
 
 @end

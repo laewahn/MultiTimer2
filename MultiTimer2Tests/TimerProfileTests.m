@@ -27,6 +27,9 @@
 
 @implementation TimerProfileTests
 
+# pragma mark -
+# pragma mark SetUp & TearDown
+
 - (void)setUp
 {
 	someManagedObjectContext = [self managedObjectTestContext];
@@ -40,6 +43,10 @@
 	[testProfile setNotificationScheduler:mockNotificationScheduler];
 }
 
+
+# pragma mark -
+# pragma mark Initialization Tests
+
 - (void)testTimerProfileCanBeCreatedWithNameDurationAndManagedObjectContext
 {
 	testProfile = [TimerProfile createWithName:someProfileName duration:someProfileDuration managedObjectContext:someManagedObjectContext];
@@ -49,6 +56,10 @@
 	XCTAssertEqualObjects([testProfile name], someProfileName, @"Name should be set.");
 	XCTAssertEqual([testProfile duration], someProfileDuration, @"Duration should be set.");
 }
+
+
+# pragma mark -
+# pragma mark Defaults Tests
 
 - (void)testOnTimerProfileCreation_ItHasACountdownNotificationScheduler
 {
@@ -64,6 +75,16 @@
 	
 	XCTAssertEqual([testProfile remainingTime], initialTime);
 }
+
+- (void)testOnTimerProfileCreation_ItHasACountdownTimer
+{
+	XCTAssertNotNil([testProfile countdownTimer]);
+	XCTAssertEqual([testProfile.countdownTimer timeInterval], 1);
+}
+
+
+# pragma mark -
+# pragma mark Countdown Start & Stop Tests
 
 - (void)testOnTimerProfileWithRunningCountdown_WhenStartCountdownIsCalled_TheIsRunningPropertyIsSetToTrue
 {
@@ -142,7 +163,6 @@
 	XCTAssertEqualWithAccuracy([countdownExpirationTime timeIntervalSinceNow], [testProfile remainingTime], 0.001);
 }
 
-
 - (void)testOnTimerProfile_WhenStopCountdownIsCalled_ItCancelsItsNotification
 {
 	[testProfile stopTimer];
@@ -175,11 +195,38 @@
 	XCTAssertNil([testProfile expirationDate]);
 }
 
-- (void)testOnTimerProfileCreation_ItHasACountdownTimer
+- (void)testOnTimerProfile_WhenStartingTheCountdown_ItAddsTheCountdownToTheRunloop
 {
-    XCTAssertNotNil([testProfile countdownTimer]);
-	XCTAssertEqual([testProfile.countdownTimer timeInterval], 1);
+	NSRunLoop* partialMainRunloop = OCMPartialMock([NSRunLoop mainRunLoop]);
+	
+	[testProfile startTimer];
+	
+	OCMVerify([partialMainRunloop addTimer:[testProfile countdownTimer] forMode:NSDefaultRunLoopMode]);
 }
+
+- (void)testOnTimerProfile_WhenStoppingTheCountdown_ItInvalidatesTheCountdown {
+	
+	NSTimer* mockTimer = OCMClassMock([NSTimer class]);
+	[testProfile setCountdownTimer:mockTimer];
+	
+	[testProfile stopTimer];
+	
+	OCMVerify([mockTimer invalidate]);
+}
+
+- (void)testOnTimerProfile_WhenPausingTheCountdown_ItInvalidatesTheCountdown
+{
+	NSTimer* mockTimer = OCMClassMock([NSTimer class]);
+	[testProfile setCountdownTimer:mockTimer];
+	
+	[testProfile pauseTimer];
+	
+	OCMVerify([mockTimer invalidate]);
+}
+
+
+# pragma mark -
+# pragma mark Countdown Update Handling Tests
 
 - (void)testOnTimerProfile_WhenTheCountdownTimerFires_TheRemainingTimeDecreasesByOne
 {
@@ -200,35 +247,6 @@
 	XCTAssertFalse([testProfile isRunning]);
 	XCTAssertFalse([testProfile.countdownTimer isValid]);
 	OCMVerifyAll((id)mockNotificationScheduler);
-}
-
-- (void)testOnTimerProfile_WhenStartingTheCountdown_ItAddsTheCountdownToTheRunloop
-{
-    NSRunLoop* partialMainRunloop = OCMPartialMock([NSRunLoop mainRunLoop]);
-	
-	[testProfile startTimer];
-	
-	OCMVerify([partialMainRunloop addTimer:[testProfile countdownTimer] forMode:NSDefaultRunLoopMode]);
-}
-
-- (void)testOnTimerProfile_WhenStoppingTheCountdown_ItInvalidatesTheCountdown {
-	
-    NSTimer* mockTimer = OCMClassMock([NSTimer class]);
-	[testProfile setCountdownTimer:mockTimer];
-	
-	[testProfile stopTimer];
-	
-	OCMVerify([mockTimer invalidate]);
-}
-
-- (void)testOnTimerProfile_WhenPausingTheCountdown_ItInvalidatesTheCountdown
-{
-    NSTimer* mockTimer = OCMClassMock([NSTimer class]);
-	[testProfile setCountdownTimer:mockTimer];
-	
-	[testProfile pauseTimer];
-	
-	OCMVerify([mockTimer invalidate]);
 }
 
 

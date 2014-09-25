@@ -25,6 +25,9 @@
 
 @implementation MultiTimer2IntegrationTests
 
+# pragma mark -
+# pragma mark SetUp & TearDown
+
 - (void)setUp
 {
 	appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
@@ -73,6 +76,10 @@
 	[overviewViewController.tableView reloadData];
 }
 
+
+# pragma mark -
+# pragma mark Application Setup Tests
+
 - (void)testAppStarts
 {
     UIApplication* app = [UIApplication sharedApplication];
@@ -85,6 +92,10 @@
 	XCTAssertEqualObjects([store managedObjectContext] , [appDelegate managedObjectContext]);
 }
 
+
+# pragma mark -
+# pragma mark User Interaction Tests
+
 - (void)testWhenTheAppStartsTheUserIsPresentedAListOfTimers
 {
 	NSArray* cells = [overviewViewController.tableView visibleCells];
@@ -96,6 +107,8 @@
 	XCTAssertNotNil([firstCell.contentView findLabelWithText:@"Black Tea"]);
 	XCTAssertNotNil([firstCell.contentView findLabelWithText:@"03:00"]);
 }
+
+# pragma mark :: Create a new Profile ::
 
 - (void)testWhenTheUserPressesTheAddButtonTheCreateTimerProfileViewIsPresented
 {
@@ -142,6 +155,8 @@
 	NSArray* cellsAfterCancel = [overviewViewController.tableView visibleCells];
 	XCTAssertEqualObjects(cellsBeforeCancel, cellsAfterCancel);
 }
+
+# pragma mark :: Show Timer Details ::
 
 - (void)testWhenTheUserSelectsATimerProfileTheDetailViewForTheTimerIsShown
 {

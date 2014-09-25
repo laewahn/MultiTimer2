@@ -27,12 +27,19 @@
 
 @implementation TimerProfileViewModelTests
 
+# pragma mark -
+# pragma mark SetUp & TearDown
+
 - (void)setUp
 {
 	context = [self managedObjectTestContext];
 	mockProfile = OCMClassMock([TimerProfile class]);
 	testViewModel = [[TimerProfileViewModel alloc] initWithTimerProfile:[self someTimerProfile]];
 }
+
+
+# pragma mark -
+# pragma mark Initialization Tests
 
 - (void)testTimerProfileViewModelCanBeInitializedWithTimerProfile
 {
@@ -42,6 +49,31 @@
 	XCTAssertNotNil(testViewModel);
 	XCTAssertEqualObjects([testViewModel timerProfile], testProfile, @"Should have the TimerProfile");
 }
+
+- (void)testOnViewModelInitialization_ItAddsItselfAsObserverForTheTimerProfilesState
+{
+	[[[(id)mockProfile expect] ignoringNonObjectArgs] addObserver:OCMOCK_ANY forKeyPath:@"remainingTime" options:0 context:[OCMArg anyPointer]];
+	[[[(id)mockProfile expect] ignoringNonObjectArgs] addObserver:OCMOCK_ANY forKeyPath:@"running" options:0 context:[OCMArg anyPointer]];
+	
+	testViewModel = [[TimerProfileViewModel alloc] initWithTimerProfile:mockProfile];
+	
+	[(id)mockProfile verify];
+}
+
+- (void)testOnViewModel_WhenTheTimerProfileCountdownIsRunning_ItShowsTheRemainingTime
+{
+	TimerProfile* someProfile = [self someTimerProfile];
+	[someProfile setRemainingTime:7];
+	[someProfile setRunning:YES];
+	
+	testViewModel = [[TimerProfileViewModel alloc] initWithTimerProfile:someProfile];
+	
+	XCTAssertEqualObjects([testViewModel duration], @"00:07");
+}
+
+
+# pragma mark -
+# pragma mark Property Tests
 
 - (void)testTimerProfileViewModelReturnsProfileName
 {
@@ -79,6 +111,15 @@
 	XCTAssertEqualObjects([testViewModel duration], @"1:01:00");
 }
 
+- (void)testOnViewModel_ItHasDifferentStates
+{
+	XCTAssertNoThrow([testViewModel countdownState]);
+}
+
+
+# pragma mark -
+# pragma mark Public Methods Tests
+
 - (void)testTimerCanBeStarted
 {
     testViewModel = [[TimerProfileViewModel alloc] initWithTimerProfile:[self someTimerProfile]];
@@ -108,41 +149,6 @@
 	[testViewModel stopCountdown];
 	
 	OCMVerify([mockProfile stopTimer]);
-}
-
-- (void)testOnViewModel_WhenTheTimerProfileCountdownIsRunning_ItShowsTheRemainingTime
-{
-	TimerProfile* someProfile = [self someTimerProfile];
-	[someProfile setRemainingTime:7];
-	[someProfile setRunning:YES];
-	
-	testViewModel = [[TimerProfileViewModel alloc] initWithTimerProfile:someProfile];
-	
-	XCTAssertEqualObjects([testViewModel duration], @"00:07");
-}
-
-- (void)testOnViewModelInitialization_ItAddsItselfAsObserverForTheTimerProfilesState
-{
-	[[[(id)mockProfile expect] ignoringNonObjectArgs] addObserver:OCMOCK_ANY forKeyPath:@"remainingTime" options:0 context:[OCMArg anyPointer]];
-	[[[(id)mockProfile expect] ignoringNonObjectArgs] addObserver:OCMOCK_ANY forKeyPath:@"running" options:0 context:[OCMArg anyPointer]];
-    
-	testViewModel = [[TimerProfileViewModel alloc] initWithTimerProfile:mockProfile];
-	
-	[(id)mockProfile verify];
-}
-
-- (void)testOnViewModel_ItHandlesKVOCalls
-{
-	NSDictionary* modelChange = @{
-								  NSKeyValueChangeNewKey : @1
-								  };
-	
-    XCTAssertNoThrow([testViewModel observeValueForKeyPath:@"remainingTime" ofObject:testViewModel change:modelChange context:TimerProfileRemainingTimeContext]);
-}
-
-- (void)testOnViewModel_ItHasDifferentStates
-{
-    XCTAssertNoThrow([testViewModel countdownState]);
 }
 
 - (void)testOnViewModelCreationWithTimerProfileNotRunningAndRemainingTimeIsDuration_TheStateIsStopped
@@ -180,7 +186,7 @@
 
 - (void)testOnViewModelCreation_WhenRemainingTimeIsZero_TheStateIsExpired
 {
-    TimerProfile* someProfile = [self someTimerProfile];
+	TimerProfile* someProfile = [self someTimerProfile];
 	[someProfile setRemainingTime:0];
 	
 	testViewModel = [[TimerProfileViewModel alloc] initWithTimerProfile:someProfile];
@@ -189,6 +195,20 @@
 }
 
 
+# pragma mark -
+# pragma mark Remaining Time Update Tests
+
+- (void)testOnViewModel_ItHandlesKVOCalls
+{
+	NSDictionary* modelChange = @{
+								  NSKeyValueChangeNewKey : @1
+								  };
+	
+    XCTAssertNoThrow([testViewModel observeValueForKeyPath:@"remainingTime" ofObject:testViewModel change:modelChange context:TimerProfileRemainingTimeContext]);
+}
+
+
+# pragma mark -
 # pragma mark Fixtures generation
 
 - (TimerProfile *)someTimerProfile

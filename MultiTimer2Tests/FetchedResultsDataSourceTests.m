@@ -30,6 +30,9 @@ static NSString* const kTestReuseIdentifier = @"TestCell";
 
 @implementation FetchedResultsDataSourceTests
 
+# pragma mark -
+# pragma mark SetUp & TearDown
+
 - (void)setUp
 {
 	testDataSource = [[FetchedResultsDataSource alloc] init];
@@ -53,6 +56,10 @@ static NSString* const kTestReuseIdentifier = @"TestCell";
 	
 	return stubFetchedResultsController;
 }
+
+
+# pragma mark -
+# pragma mark Property Tests
 
 - (void)testDataSourceCanHaveFetchedResultsController
 {
@@ -81,6 +88,9 @@ static NSString* const kTestReuseIdentifier = @"TestCell";
 	OCMVerify([stubFetchedResultsController setDelegate:testDataSource]);
 }
 
+
+# pragma mark TableViewDataSource Implementation Tests
+
 - (void)testDataSourceImplementsUITableViewDataSourceProtocol
 {
     XCTAssertTrue([testDataSource conformsToProtocol:@protocol(UITableViewDataSource)]);
@@ -108,6 +118,10 @@ static NSString* const kTestReuseIdentifier = @"TestCell";
 	
 	XCTAssertEqualObjects([testDataSource tableView:stubTableView cellForRowAtIndexPath:pathForTestRow], someCell);
 }
+
+
+# pragma mark -
+# pragma mark Delegate Interaction Tests
 
 - (void)testDataSourceHasDelegate
 {
@@ -146,6 +160,10 @@ static NSString* const kTestReuseIdentifier = @"TestCell";
 	
 	OCMVerify([delegateMock canDeleteObject:expectedObject]);
 }
+
+
+# pragma mark -
+# pragma mark Fixtures Helper
 
 - (UITableView *)stubTableViewDequeueingCell:(UITableViewCell *)aCell forReuseIdentifier:(NSString *)reuseIdentifier
 {

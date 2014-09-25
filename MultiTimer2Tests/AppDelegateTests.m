@@ -29,6 +29,9 @@
 
 @implementation AppDelegateTests
 
+# pragma mark -
+# pragma mark Setup & TearDown
+
 - (void)setUp
 {
 	testAppDelegate = [[AppDelegate alloc] init];
@@ -40,6 +43,10 @@
 	someProfile = [TimerProfile createWithName:@"Some Timer" duration:10 managedObjectContext:testContext];
 	[someNotification setUserInfo:@{ @"timerProfileURI" : [someProfile.managedObjectIDAsURI absoluteString]}];
 }
+
+
+# pragma mark -
+# pragma mark CoreData Setup Tests
 
 - (void)testAppDelegateSetsUpCoreDataStack
 {
@@ -57,6 +64,10 @@
     XCTAssertNotNil([testAppDelegate timerProfileStore]);
 	XCTAssertEqualObjects([testAppDelegate.timerProfileStore managedObjectContext], [testAppDelegate managedObjectContext]);
 }
+
+
+# pragma mark -
+# pragma mark Notification Handling Tests
 
 - (void)testOnAppDelegate_WhenReceivingLocalNotification_ItFindsTheTimerProfileAndHandlesIt
 {
@@ -93,6 +104,10 @@
 	
 	OCMVerify([mockProfile stopTimer]);
 }
+
+
+# pragma mark -
+# pragma mark Application Lifecycle Tests
 
 - (void)testOnAppDelegate_WhenAppBecomesActive_ItStopsAllExpiredTimers
 {

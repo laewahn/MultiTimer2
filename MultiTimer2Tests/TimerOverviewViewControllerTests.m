@@ -29,6 +29,9 @@
 
 @implementation TimerOverviewViewControllerTests
 
+# pragma mark -
+# pragma mark SetUp & TearDown
+
 - (void)setUp
 {
 	NSBundle* mainBundle = [NSBundle bundleForClass:[TimerOverviewViewController class]];
@@ -42,6 +45,10 @@
 	
 	someProfile = [testStore createTimerProfileWithName:@"Some Profile" duration:10];
 }
+
+
+# pragma mark -
+# pragma mark DataSource Configuration Tests
 
 - (void)testTableViewHasFetchedResultsDataSourceAfterLoading
 {
@@ -64,6 +71,10 @@
     XCTAssertEqualObjects([(FetchedResultsDataSource *)testVC.tableView.dataSource tableView], [testVC tableView]);
 }
 
+
+# pragma mark -
+# pragma mark Property Tests
+
 - (void)testOverviewViewControllerReloadsTableWhenStoreIsSet
 {
     id mockTableView = OCMClassMock([UITableView class]);
@@ -74,11 +85,19 @@
 	OCMVerify([mockTableView reloadData]);
 }
 
+
+# pragma mark -
+# pragma mark TableView Tests
+
 - (void)testOnOverviewViewControllerTableView_ItCreatesTimerProfileTableViewCells
 {
     UITableViewCell* someCell = [testVC.tableView dequeueReusableCellWithIdentifier:@"Cell"];
 	XCTAssertTrue([someCell isKindOfClass:[TimerProfileTableViewCell class]]);
 }
+
+
+# pragma mark -
+# pragma mark DataSourceDelegate Implementation Tests
 
 - (void)testOnOverviewController_WhenAskedToDeleteStoppedTimer_ItReturnsYES
 {
@@ -109,10 +128,15 @@
 	XCTAssertEqualObjects([someCell.durationLabel text], @"00:10");
 }
 
+
+# pragma mark -
+# pragma mark View Configuration Tests
+
 - (void)testOverviewViewControllerHasAddButton
 {
     UIBarButtonItem* addButton = [testVC addButton];
 	XCTAssertNotNil(addButton);
 }
+
 
 @end
