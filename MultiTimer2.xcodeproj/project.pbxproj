@@ -102,7 +102,7 @@
 		95B622B419ABA0A900BB2708 /* TimerOverviewViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TimerOverviewViewController.m; sourceTree = "<group>"; };
 		95B622B619ABA0A900BB2708 /* DetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
 		95B622B719ABA0A900BB2708 /* DetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
-		95B622B919ABA0A900BB2708 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		95B622B919ABA0A900BB2708 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = MultiTimer2/Images.xcassets; sourceTree = "<group>"; };
 		95B622BF19ABA0A900BB2708 /* MultiTimer2Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MultiTimer2Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		95B622C019ABA0A900BB2708 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		95B622C919ABA0A900BB2708 /* MultiTimer2Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MultiTimer2Tests-Info.plist"; sourceTree = "<group>"; };
@@ -152,7 +152,9 @@
 			isa = PBXGroup;
 			children = (
 				95B622A119ABA0A900BB2708 /* MultiTimer2 */,
+				95B622B919ABA0A900BB2708 /* Images.xcassets */,
 				95B622C719ABA0A900BB2708 /* MultiTimer2Tests */,
+				95B622C819ABA0A900BB2708 /* Supporting Files */,
 				95B6229819ABA0A900BB2708 /* Frameworks */,
 				95B6229719ABA0A900BB2708 /* Products */,
 				82E24051A3E64982A3F5B88A /* Pods-MultiTimer2Tests.xcconfig */,
@@ -186,30 +188,10 @@
 			children = (
 				95B622AA19ABA0A900BB2708 /* AppDelegate.h */,
 				95B622AB19ABA0A900BB2708 /* AppDelegate.m */,
-				95B622AD19ABA0A900BB2708 /* Main.storyboard */,
-				95B622B319ABA0A900BB2708 /* TimerOverviewViewController.h */,
-				95B622B419ABA0A900BB2708 /* TimerOverviewViewController.m */,
-				9528242319C6B116007E5F7C /* TimerProfileTableViewCell.h */,
-				9528242419C6B116007E5F7C /* TimerProfileTableViewCell.m */,
-				95B622B619ABA0A900BB2708 /* DetailViewController.h */,
-				95B622B719ABA0A900BB2708 /* DetailViewController.m */,
-				95B622B919ABA0A900BB2708 /* Images.xcassets */,
-				95B622B019ABA0A900BB2708 /* MultiTimer2.xcdatamodeld */,
+				95BFA4BA19D3D9A80080468B /* Views */,
+				95BFA4B919D3D97B0080468B /* View Controllers */,
+				95BFA4BB19D3D9DC0080468B /* Model */,
 				95B622A219ABA0A900BB2708 /* Supporting Files */,
-				95B622D919ABA8FB00BB2708 /* TimerProfile.h */,
-				95B622DA19ABA8FB00BB2708 /* TimerProfile.m */,
-				95B622DF19ABB1F600BB2708 /* TimerProfileViewModel.h */,
-				95B622E019ABB1F600BB2708 /* TimerProfileViewModel.m */,
-				95B622EC19ABCEF300BB2708 /* FetchedResultsDataSource.h */,
-				95B622ED19ABCEF300BB2708 /* FetchedResultsDataSource.m */,
-				952823FF19AD16B1007E5F7C /* TimerProfileStore.h */,
-				9528240019AD16B1007E5F7C /* TimerProfileStore.m */,
-				9528240A19B5BB3B007E5F7C /* CreateProfileViewController.h */,
-				9528240B19B5BB3B007E5F7C /* CreateProfileViewController.m */,
-				9528241E19C5B35B007E5F7C /* CountdownNotificationScheduler.h */,
-				9528241F19C5B35B007E5F7C /* CountdownNotificationScheduler.m */,
-				956649A419CAAA1B00DA97EC /* TimerAlert.h */,
-				956649A519CAAA1B00DA97EC /* TimerAlert.m */,
 			);
 			path = MultiTimer2;
 			sourceTree = "<group>";
@@ -228,25 +210,12 @@
 		95B622C719ABA0A900BB2708 /* MultiTimer2Tests */ = {
 			isa = PBXGroup;
 			children = (
-				95B622C819ABA0A900BB2708 /* Supporting Files */,
-				952823FB19AD0E4C007E5F7C /* MultiTimer2IntegrationTests.m */,
 				9528240719B4D823007E5F7C /* AppDelegateTests.m */,
-				95B622E419ABB66800BB2708 /* XCTest+CoreDataTestStack.h */,
-				95B622E519ABB66900BB2708 /* XCTest+CoreDataTestStack.m */,
-				95B622D719ABA89A00BB2708 /* TimerProfileTests.m */,
-				95B622E219ABB22500BB2708 /* TimerProfileViewModelTests.m */,
-				95B622EA19ABCCD000BB2708 /* FetchedResultsDataSourceTests.m */,
-				952823F919AD083B007E5F7C /* TimerOverviewViewControllerTests.m */,
-				952823FD19AD167B007E5F7C /* TimerProfileStoreTests.m */,
-				9528240D19B5D5C7007E5F7C /* CreateProfileViewControllerTests.m */,
-				9528241C19C5B2EE007E5F7C /* CountdownNotificationSchedulerTests.m */,
-				9528240219AFACB7007E5F7C /* MultiTimer2Fixtures.sqlite */,
-				9528240F19B6309F007E5F7C /* UIBarButtonItem+UserInputSimulation.h */,
-				9528241019B6309F007E5F7C /* UIBarButtonItem+UserInputSimulation.m */,
-				9528241219B63128007E5F7C /* UIView+FindingViews.h */,
-				9528241319B63128007E5F7C /* UIView+FindingViews.m */,
-				9528241A19B75A1E007E5F7C /* DetailViewControllerTests.m */,
-				9528242819C6B12D007E5F7C /* TimerProfileTableViewCellTests.m */,
+				95BFA4BC19D3DA210080468B /* Integration Tests */,
+				95BFA4C019D3DA730080468B /* View Tests */,
+				95BFA4BE19D3DA550080468B /* View Controller Tests */,
+				95BFA4BF19D3DA680080468B /* Model Tests */,
+				95BFA4BD19D3DA3D0080468B /* Test Helpers */,
 			);
 			path = MultiTimer2Tests;
 			sourceTree = "<group>";
@@ -258,6 +227,102 @@
 				95B622CA19ABA0A900BB2708 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			path = MultiTimer2Tests;
+			sourceTree = "<group>";
+		};
+		95BFA4B919D3D97B0080468B /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				95B622AD19ABA0A900BB2708 /* Main.storyboard */,
+				95B622B319ABA0A900BB2708 /* TimerOverviewViewController.h */,
+				95B622B419ABA0A900BB2708 /* TimerOverviewViewController.m */,
+				95B622B619ABA0A900BB2708 /* DetailViewController.h */,
+				95B622B719ABA0A900BB2708 /* DetailViewController.m */,
+				9528240A19B5BB3B007E5F7C /* CreateProfileViewController.h */,
+				9528240B19B5BB3B007E5F7C /* CreateProfileViewController.m */,
+			);
+			name = "View Controllers";
+			sourceTree = "<group>";
+		};
+		95BFA4BA19D3D9A80080468B /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				9528242319C6B116007E5F7C /* TimerProfileTableViewCell.h */,
+				9528242419C6B116007E5F7C /* TimerProfileTableViewCell.m */,
+				956649A419CAAA1B00DA97EC /* TimerAlert.h */,
+				956649A519CAAA1B00DA97EC /* TimerAlert.m */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		95BFA4BB19D3D9DC0080468B /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				95B622B019ABA0A900BB2708 /* MultiTimer2.xcdatamodeld */,
+				95B622DF19ABB1F600BB2708 /* TimerProfileViewModel.h */,
+				95B622E019ABB1F600BB2708 /* TimerProfileViewModel.m */,
+				95B622D919ABA8FB00BB2708 /* TimerProfile.h */,
+				95B622DA19ABA8FB00BB2708 /* TimerProfile.m */,
+				95B622EC19ABCEF300BB2708 /* FetchedResultsDataSource.h */,
+				95B622ED19ABCEF300BB2708 /* FetchedResultsDataSource.m */,
+				952823FF19AD16B1007E5F7C /* TimerProfileStore.h */,
+				9528240019AD16B1007E5F7C /* TimerProfileStore.m */,
+				9528241E19C5B35B007E5F7C /* CountdownNotificationScheduler.h */,
+				9528241F19C5B35B007E5F7C /* CountdownNotificationScheduler.m */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		95BFA4BC19D3DA210080468B /* Integration Tests */ = {
+			isa = PBXGroup;
+			children = (
+				952823FB19AD0E4C007E5F7C /* MultiTimer2IntegrationTests.m */,
+				9528240219AFACB7007E5F7C /* MultiTimer2Fixtures.sqlite */,
+			);
+			name = "Integration Tests";
+			sourceTree = "<group>";
+		};
+		95BFA4BD19D3DA3D0080468B /* Test Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				95B622E419ABB66800BB2708 /* XCTest+CoreDataTestStack.h */,
+				95B622E519ABB66900BB2708 /* XCTest+CoreDataTestStack.m */,
+				9528240F19B6309F007E5F7C /* UIBarButtonItem+UserInputSimulation.h */,
+				9528241019B6309F007E5F7C /* UIBarButtonItem+UserInputSimulation.m */,
+				9528241219B63128007E5F7C /* UIView+FindingViews.h */,
+				9528241319B63128007E5F7C /* UIView+FindingViews.m */,
+			);
+			name = "Test Helpers";
+			sourceTree = "<group>";
+		};
+		95BFA4BE19D3DA550080468B /* View Controller Tests */ = {
+			isa = PBXGroup;
+			children = (
+				952823F919AD083B007E5F7C /* TimerOverviewViewControllerTests.m */,
+				9528240D19B5D5C7007E5F7C /* CreateProfileViewControllerTests.m */,
+				9528241A19B75A1E007E5F7C /* DetailViewControllerTests.m */,
+			);
+			name = "View Controller Tests";
+			sourceTree = "<group>";
+		};
+		95BFA4BF19D3DA680080468B /* Model Tests */ = {
+			isa = PBXGroup;
+			children = (
+				95B622D719ABA89A00BB2708 /* TimerProfileTests.m */,
+				95B622E219ABB22500BB2708 /* TimerProfileViewModelTests.m */,
+				95B622EA19ABCCD000BB2708 /* FetchedResultsDataSourceTests.m */,
+				952823FD19AD167B007E5F7C /* TimerProfileStoreTests.m */,
+				9528241C19C5B2EE007E5F7C /* CountdownNotificationSchedulerTests.m */,
+			);
+			name = "Model Tests";
+			sourceTree = "<group>";
+		};
+		95BFA4C019D3DA730080468B /* View Tests */ = {
+			isa = PBXGroup;
+			children = (
+				9528242819C6B12D007E5F7C /* TimerProfileTableViewCellTests.m */,
+			);
+			name = "View Tests";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
