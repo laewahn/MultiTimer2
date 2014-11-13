@@ -22,6 +22,7 @@
 		9528242019C5B35B007E5F7C /* CountdownNotificationScheduler.m in Sources */ = {isa = PBXBuildFile; fileRef = 9528241F19C5B35B007E5F7C /* CountdownNotificationScheduler.m */; };
 		9528242619C6B116007E5F7C /* TimerProfileTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9528242419C6B116007E5F7C /* TimerProfileTableViewCell.m */; };
 		9528242919C6B12D007E5F7C /* TimerProfileTableViewCellTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9528242819C6B12D007E5F7C /* TimerProfileTableViewCellTests.m */; };
+		9562C7E81A14D27600C87324 /* TimerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9562C7E71A14D27600C87324 /* TimerController.m */; };
 		956649A619CAAA1B00DA97EC /* TimerAlert.m in Sources */ = {isa = PBXBuildFile; fileRef = 956649A519CAAA1B00DA97EC /* TimerAlert.m */; };
 		95B6229A19ABA0A900BB2708 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95B6229919ABA0A900BB2708 /* Foundation.framework */; };
 		95B6229C19ABA0A900BB2708 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95B6229B19ABA0A900BB2708 /* CoreGraphics.framework */; };
@@ -82,6 +83,8 @@
 		9528242319C6B116007E5F7C /* TimerProfileTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimerProfileTableViewCell.h; sourceTree = "<group>"; };
 		9528242419C6B116007E5F7C /* TimerProfileTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimerProfileTableViewCell.m; sourceTree = "<group>"; };
 		9528242819C6B12D007E5F7C /* TimerProfileTableViewCellTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimerProfileTableViewCellTests.m; sourceTree = "<group>"; };
+		9562C7E61A14D27600C87324 /* TimerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimerController.h; sourceTree = "<group>"; };
+		9562C7E71A14D27600C87324 /* TimerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimerController.m; sourceTree = "<group>"; };
 		956649A419CAAA1B00DA97EC /* TimerAlert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimerAlert.h; sourceTree = "<group>"; };
 		956649A519CAAA1B00DA97EC /* TimerAlert.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimerAlert.m; sourceTree = "<group>"; };
 		95B6229619ABA0A900BB2708 /* MultiTimer2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MultiTimer2.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -193,6 +196,8 @@
 				95BFA4B919D3D97B0080468B /* View Controllers */,
 				95BFA4BB19D3D9DC0080468B /* Model */,
 				95B622A219ABA0A900BB2708 /* Supporting Files */,
+				9562C7E61A14D27600C87324 /* TimerController.h */,
+				9562C7E71A14D27600C87324 /* TimerController.m */,
 			);
 			path = MultiTimer2;
 			sourceTree = "<group>";
@@ -491,6 +496,7 @@
 				95B622AC19ABA0A900BB2708 /* AppDelegate.m in Sources */,
 				95B622EE19ABCEF300BB2708 /* FetchedResultsDataSource.m in Sources */,
 				956649A619CAAA1B00DA97EC /* TimerAlert.m in Sources */,
+				9562C7E81A14D27600C87324 /* TimerController.m in Sources */,
 				9528242019C5B35B007E5F7C /* CountdownNotificationScheduler.m in Sources */,
 				9528240119AD16B1007E5F7C /* TimerProfileStore.m in Sources */,
 				95B622A819ABA0A900BB2708 /* main.m in Sources */,

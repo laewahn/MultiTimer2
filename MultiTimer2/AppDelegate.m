@@ -12,6 +12,7 @@
 #import "TimerProfileStore.h"
 #import "TimerProfile.h"
 #import "TimerAlert.h"
+#import "TimerController.h"
 
 @implementation AppDelegate
 
@@ -44,19 +45,20 @@
 	}
 }
 
-- (void)handleExpiredTimer:(TimerProfile *)timer
+- (void)handleExpiredTimer:(TimerController *)timerController
 {
-	[timer pauseTimer];
+	[timerController pauseTimer];
 	
-	[self.timerAlert setTitle:[timer name]];
+	[self.timerAlert setTitle:[timerController.profile name]];
 	[self.timerAlert show];
-	[self.timerAlert setTimer:timer];
+	[self.timerAlert setTimerController:timerController];
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application
 {
 	for (TimerProfile* expiredTimer in [self.timerProfileStore fetchExpiredTimerProfiles]) {
-		[expiredTimer stopTimer];
+        // TODO: Need a clever way to create controllers for timers
+//		[expiredTimer stopTimer];
 	}
 	
 	for (TimerProfile* profile in [self.timerProfileStore fetchTimerProfiles]) {
@@ -114,7 +116,7 @@
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-	[[(TimerAlert *)alertView timer] stopTimer];
+	[[(TimerAlert *)alertView timerController] stopTimer];
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application
