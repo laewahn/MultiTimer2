@@ -36,3 +36,5 @@ xcuserdata
 .DS_Store
 *.swp
 profile
+
+Pods/
